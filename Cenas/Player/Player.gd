@@ -4,53 +4,52 @@ onready var sprite = $Sprite
 onready var shoot_timer = $Shoot_timer
 onready var reload_timer = $Reload_timer
 onready var Interface = get_parent().get_node("Interface")
+onready var shoot_animation = $ShootAnimations
+onready var Pistol_bullet = preload('res://Cenas/Bullets/Pistol_bullet.tscn')
+onready var Shotgun_bullet = preload("res://Cenas/Bullets/Shotgun_bullet.tscn")
+onready var Sniper_bullet = preload("res://Cenas/Bullets/Sniper_bullet.tscn")
 
 enum {PISTOL, SHOTGUN, SNIPER}
 var attributes = {
 	"player" : {},
 	PISTOL : {
-		"bullet": preload('res://Cenas/Bullets/Pistol_bullet.tscn'),
 		"damage": 5,
 		"reload_time": 3,
 		"fire_rate": 1,
-		"magazine_capacity": 6
+		"magazine_capacity": 6,
+		"status" : {
+			"qnt_reloaded_bullets": 6,
+			"qnt_total_bullets" : -1,  # numero negativo de balas representa que é infinito.
+			"time_left": 0,
+			"ready_to_shoot": true
+		}
 	},
 	SHOTGUN : {
-		"bullet": preload("res://Cenas/Bullets/Shotgun_bullet.tscn"),
 		"damage": 1,
 		"reload_time": 4,
 		"fire_rate": 1.5,
-		"magazine_capacity": 2
+		"magazine_capacity": 2,
+		"status" : {
+			"qnt_reloaded_bullets": 2,
+			"qnt_total_bullets" : 10,
+			"time_left": 0,
+			"ready_to_shoot": true
+		}
 	},
 	SNIPER : {
-		"bullet": preload("res://Cenas/Bullets/Sniper_bullet.tscn"),
 		"damage": 10,
 		"reload_time": 5,
 		"fire_rate": 2,
-		"magazine_capacity": 5
+		"magazine_capacity": 5,
+		"status" : {
+			"qnt_reloaded_bullets": 5,
+			"qnt_total_bullets" : 20,
+			"time_left": 0,
+			"ready_to_shoot": true
+		}
 	}
 }
-var weapons_status = {
-	# Time left = tempo que faltou para poder atirar mais uma vez.
-	PISTOL : {
-		"qnt_reloaded_bullets": attributes[PISTOL]['magazine_capacity'],
-		"qnt_total_bullets" : -1,  # numero negativo de balas representa que é infinito.
-		"time_left": 0,
-		"ready_to_shoot": true
-	},
-	SHOTGUN : {
-		"qnt_reloaded_bullets": attributes[SHOTGUN]['magazine_capacity'],
-		"qnt_total_bullets" : 10,
-		"time_left": 0,
-		"ready_to_shoot": true
-	},
-	SNIPER : {
-		"qnt_reloaded_bullets": attributes[SNIPER]['magazine_capacity'],
-		"qnt_total_bullets" : 20,
-		"time_left": 0,
-		"ready_to_shoot": true
-	}
-}
+
 var velocity = Vector2.ZERO
 var rotation_fix = PI / 2
 var speed = 150
@@ -74,9 +73,9 @@ func _input(event):
 			reload_current_weapon()
 		
 		if event.get_action_strength("shoot"):
-			if weapons_status[current_weapon]['qnt_reloaded_bullets'] == 0:
+			if attributes[current_weapon]['status']['qnt_reloaded_bullets'] == 0:
 				reload_current_weapon()
-			elif weapons_status[current_weapon]['ready_to_shoot'] and not reloading:
+			elif attributes[current_weapon]['status']['ready_to_shoot'] and not reloading:
 				shoot()
 
 func _process(delta):
@@ -93,37 +92,50 @@ func rotate_player_to_mouse_dir():
 	rotation = (get_global_mouse_position() - global_position).angle() + rotation_fix
 
 func update_weapons_interface():
-	Interface.update_weaponAndAmmo_interface(current_weapon, weapons_status[current_weapon]['qnt_reloaded_bullets'], weapons_status[current_weapon]['qnt_total_bullets'])
+	Interface.update_weaponAndAmmo_interface(current_weapon, attributes[current_weapon]['status']['qnt_reloaded_bullets'], attributes[current_weapon]['status']['qnt_total_bullets'])
+
+func update_weapon_animation():
+	if current_weapon == PISTOL:
+		shoot_animation.play("Pistol")
+	elif current_weapon == SHOTGUN:
+		shoot_animation.play("Shotgun")
+	else:
+		shoot_animation.play("Sniper")
 
 func reload_current_weapon():
-	if not reloading and weapons_status[current_weapon]['qnt_reloaded_bullets'] != attributes[current_weapon]['magazine_capacity'] and weapons_status[current_weapon]['qnt_total_bullets'] != 0:
+	if not reloading and attributes[current_weapon]['status']['qnt_reloaded_bullets'] != attributes[current_weapon]['magazine_capacity'] and attributes[current_weapon]['status']['qnt_total_bullets'] != 0:
 		reloading = true
 		reload_timer.start(attributes[current_weapon]['reload_time'])
 
 func change_weapon(new_weapon):
 	if new_weapon != current_weapon:
-		if not weapons_status[current_weapon]['ready_to_shoot']:
-			weapons_status[current_weapon]['time_left'] = shoot_timer.time_left
-		if not weapons_status[new_weapon]['ready_to_shoot']:
-			shoot_timer.start(weapons_status[new_weapon]['time_left'])
+		if not attributes[current_weapon]['status']['ready_to_shoot']:
+			attributes[current_weapon]['status']['time_left'] = shoot_timer.time_left
+		if not attributes[new_weapon]['status']['ready_to_shoot']:
+			shoot_timer.start(attributes[new_weapon]['status']['time_left'])
 		
 		sprite.frame = new_weapon
 		current_weapon = new_weapon
 		reloading = false
 		reload_timer.stop()
+		shoot_animation.stop()
 		update_weapons_interface()
 
 func shoot():
 	var direction = Vector2(0, -1).rotated(rotation)
-	if current_weapon == SHOTGUN:
+	if current_weapon == PISTOL:
+		instantiate_bullet(Pistol_bullet, attributes[current_weapon]['damage'], direction)
+	elif current_weapon == SHOTGUN:
 		for i in range(12):
-			instantiate_bullet(attributes[current_weapon]['bullet'], attributes[current_weapon]['damage'], direction.rotated(rand_range(-PI/12, PI/12)))
+			instantiate_bullet(Shotgun_bullet, attributes[current_weapon]['damage'], direction.rotated(rand_range(-PI/12, PI/12)))
 	else:
-		instantiate_bullet(attributes[current_weapon]['bullet'], attributes[current_weapon]['damage'], direction)
+		instantiate_bullet(Sniper_bullet, attributes[current_weapon]['damage'], direction)
+	
 	shoot_timer.start(attributes[current_weapon]['fire_rate'])
-	weapons_status[current_weapon]['ready_to_shoot'] = false
-	weapons_status[current_weapon]['qnt_reloaded_bullets'] -= 1
+	attributes[current_weapon]['status']['ready_to_shoot'] = false
+	attributes[current_weapon]['status']['qnt_reloaded_bullets'] -= 1
 	update_weapons_interface()
+	update_weapon_animation()
 
 func instantiate_bullet(bullet_type, damage, direction):
 	var bullet = bullet_type.instance()
@@ -132,20 +144,20 @@ func instantiate_bullet(bullet_type, damage, direction):
 
 
 func _on_Shoot_timer_timeout():
-	weapons_status[current_weapon]['ready_to_shoot'] = true
+	attributes[current_weapon]['status']['ready_to_shoot'] = true
 
 func _on_Reload_timer_timeout():
 	reloading = false
-	var bullets_to_reload = attributes[current_weapon]['magazine_capacity'] - weapons_status[current_weapon]['qnt_reloaded_bullets']
+	var bullets_to_reload = attributes[current_weapon]['magazine_capacity'] - attributes[current_weapon]['status']['qnt_reloaded_bullets']
 	
-	if weapons_status[current_weapon]['qnt_total_bullets'] < 0:
-		weapons_status[current_weapon]['qnt_reloaded_bullets'] = attributes[current_weapon]['magazine_capacity']
+	if attributes[current_weapon]['status']['qnt_total_bullets'] < 0:
+		attributes[current_weapon]['status']['qnt_reloaded_bullets'] = attributes[current_weapon]['magazine_capacity']
 		
-	elif weapons_status[current_weapon]['qnt_total_bullets'] >= bullets_to_reload:
-		weapons_status[current_weapon]['qnt_reloaded_bullets'] = attributes[current_weapon]['magazine_capacity']
-		weapons_status[current_weapon]['qnt_total_bullets'] -= bullets_to_reload
+	elif attributes[current_weapon]['status']['qnt_total_bullets'] >= bullets_to_reload:
+		attributes[current_weapon]['status']['qnt_reloaded_bullets'] = attributes[current_weapon]['magazine_capacity']
+		attributes[current_weapon]['status']['qnt_total_bullets'] -= bullets_to_reload
 	
 	else:
-		weapons_status[current_weapon]['qnt_reloaded_bullets'] = weapons_status[current_weapon]['qnt_total_bullets']
-		weapons_status[current_weapon]['qnt_total_bullets'] = 0
+		attributes[current_weapon]['status']['qnt_reloaded_bullets'] = attributes[current_weapon]['status']['qnt_total_bullets']
+		attributes[current_weapon]['status']['qnt_total_bullets'] = 0
 	update_weapons_interface()
