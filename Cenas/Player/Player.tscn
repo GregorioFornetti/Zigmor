@@ -34,5 +34,7 @@ position = Vector2( 0, -45 )
 one_shot = true
 
 [node name="Reload_timer" type="Timer" parent="."]
+one_shot = true
 
 [connection signal="timeout" from="Shoot_timer" to="." method="_on_Shoot_timer_timeout"]
+[connection signal="timeout" from="Reload_timer" to="." method="_on_Reload_timer_timeout"]
