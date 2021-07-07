@@ -1,18 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Cenas/Bullets/Bullet.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Sprites/Bullets/M-bullet.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/Bullets/M-bullet-crit.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Bullets/M-bullet-enemy.png" type="Texture" id=2]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 8.51328
+radius = 8.51464
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 8.8867
 
-[node name="Pistol_bullet" instance=ExtResource( 1 )]
-speed = 500.0
-crit_sprite = ExtResource( 3 )
+[node name="Enemy_pistol_bullet" instance=ExtResource( 1 )]
+speed = 300.0
+crit_sprite = ExtResource( 2 )
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
@@ -21,8 +19,8 @@ texture = ExtResource( 2 )
 shape = SubResource( 1 )
 
 [node name="Hitbox" parent="." index="2"]
-collision_layer = 32
-collision_mask = 16
+collision_layer = 64
+collision_mask = 8
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource( 2 )

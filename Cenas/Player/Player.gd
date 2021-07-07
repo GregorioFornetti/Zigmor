@@ -11,7 +11,12 @@ onready var Sniper_bullet = preload("res://Cenas/Bullets/Sniper_bullet.tscn")
 
 enum {PISTOL, SHOTGUN, SNIPER}
 var attributes = {
-	"player" : {},
+	"speed" : 150,
+	"max_health" : 100,
+	"status" : {
+		"health" : 100,
+		"money" : 0
+	},
 	PISTOL : {
 		"damage": 5,
 		"reload_time": 3,
@@ -52,13 +57,14 @@ var attributes = {
 
 var velocity = Vector2.ZERO
 var rotation_fix = PI / 2
-var speed = 150
 var current_weapon = PISTOL
 var reloading = false
 
 
 func _ready():
 	update_weapons_interface()
+	update_health_interface()
+	update_weaponReloading_interface()
 
 func _input(event):
 	if not event is InputEventMouseMotion:
@@ -81,18 +87,25 @@ func _input(event):
 func _process(delta):
 	move_player(delta)
 	rotate_player_to_mouse_dir()
+	update_weaponReloading_interface()
 
 
 func move_player(delta):
 	velocity.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	velocity.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	move_and_collide(velocity.normalized() * speed * delta)
+	move_and_collide(velocity.normalized() * attributes['speed'] * delta)
 
 func rotate_player_to_mouse_dir():
 	rotation = (get_global_mouse_position() - global_position).angle() + rotation_fix
 
 func update_weapons_interface():
-	Interface.update_weaponAndAmmo_interface(current_weapon, attributes[current_weapon]['status']['qnt_reloaded_bullets'], attributes[current_weapon]['status']['qnt_total_bullets'])
+	Interface.update_weaponAndAmmo(current_weapon, attributes[current_weapon]['status']['qnt_reloaded_bullets'], attributes[current_weapon]['status']['qnt_total_bullets'])
+
+func update_health_interface():
+	Interface.update_healthbar(attributes['status']['health'], attributes['max_health'])
+
+func update_weaponReloading_interface():
+	Interface.update_reloadbar(reload_timer.time_left, attributes[current_weapon]['reload_time'], reloading)
 
 func update_weapon_animation():
 	if current_weapon == PISTOL:
