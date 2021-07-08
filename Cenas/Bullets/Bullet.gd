@@ -4,6 +4,7 @@ export (float) var speed
 export (Texture) var crit_sprite
 export (int) var damage
 var velocity = Vector2.ZERO
+var attributes
 
 
 func _process(delta):
@@ -21,6 +22,12 @@ func apply_critical(crit_buff):
 	damage *= crit_buff
 	$Sprite.texture = crit_sprite
 
+func get_damage():
+	return damage
 
 func _on_Life_timer_timeout():
+	queue_free()
+
+
+func _on_Hitbox_area_entered(_area):
 	queue_free()

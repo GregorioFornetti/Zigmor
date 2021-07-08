@@ -13,7 +13,6 @@ func set_default_attributes(health, speed, damage, money_drop):
 	attributes['money_drop'] = money_drop
 
 func _on_Hurtbox_body_entered(player_bullet):
-	print("OI")
 	attributes['health'] -= player_bullet.damage
 	if attributes['health'] <= 0:
 		die()
@@ -30,6 +29,8 @@ func die():
 	Player.attributes["status"]['money'] += attributes['money_drop']
 	queue_free()
 
+func get_damage():
+	return attributes['damage']
 
 func _on_HealthBar_timer_timeout():
 	healthbar.visible = false

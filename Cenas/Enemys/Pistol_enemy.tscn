@@ -13,8 +13,8 @@ radius = 20.0
 [sub_resource type="CircleShape2D" id=3]
 radius = 20.0
 
-[sub_resource type="CircleShape2D" id=4]
-radius = 300.0
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 512, 300 )
 
 [sub_resource type="Animation" id=5]
 resource_name = "Shoot"
@@ -33,41 +33,44 @@ tracks/0/keys = {
 }
 
 [node name="Pistol_enemy" instance=ExtResource( 1 )]
+collision_mask = 4
 script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
-position = Vector2( 0.0636482, -6.86868 )
+position = Vector2( 0, -14 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 2 )
 vframes = 4
 
 [node name="CollisionShape2D" parent="." index="1"]
-position = Vector2( 0, 8 )
 shape = SubResource( 1 )
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
-position = Vector2( 0, 8 )
+position = Vector2( -0.883888, -0.131729 )
 shape = SubResource( 2 )
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
-position = Vector2( 0, 8 )
 shape = SubResource( 3 )
 
 [node name="CollisionShape2D" parent="Range" index="0"]
+position = Vector2( 0.132439, 0 )
 shape = SubResource( 4 )
 
 [node name="HealthBar" parent="." index="5"]
-visible = true
-margin_left = -42.3977
-margin_top = 29.958
-margin_right = 42.6023
-margin_bottom = 43.958
+margin_left = -42.5092
+margin_top = 21.3446
+margin_right = 42.4908
+margin_bottom = 35.3446
 
 [node name="Weapon_pos" parent="." index="8"]
-position = Vector2( -0.0210304, -32.9281 )
+position = Vector2( 0, -40 )
+scale = Vector2( 2, 2 )
 
 [node name="ShootAnimation" type="AnimationPlayer" parent="." index="9"]
 playback_speed = 5.0
 anims/Shoot = SubResource( 5 )
+
+[node name="Weapon_pos" parent="." index="10"]
+position = Vector2( 0, -40 )
 
 [connection signal="body_entered" from="Hurtbox" to="." method="_on_Hurtbox_body_entered"]

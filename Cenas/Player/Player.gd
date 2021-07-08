@@ -77,18 +77,20 @@ func _input(event):
 		
 		if event.get_action_strength("reload_weapon"):
 			reload_current_weapon()
-		
-		if event.get_action_strength("shoot"):
-			if attributes[current_weapon]['status']['qnt_reloaded_bullets'] == 0:
-				reload_current_weapon()
-			elif attributes[current_weapon]['status']['ready_to_shoot'] and not reloading:
-				shoot()
 
 func _process(delta):
 	move_player(delta)
 	rotate_player_to_mouse_dir()
 	update_weaponReloading_interface()
+	
+	verify_shoot_input()
 
+func verify_shoot_input():
+	if Input.is_action_pressed("shoot"):
+		if attributes[current_weapon]['status']['qnt_reloaded_bullets'] == 0:
+			reload_current_weapon()
+		elif attributes[current_weapon]['status']['ready_to_shoot'] and not reloading:
+			shoot()
 
 func move_player(delta):
 	velocity.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
@@ -174,3 +176,14 @@ func _on_Reload_timer_timeout():
 		attributes[current_weapon]['status']['qnt_reloaded_bullets'] = attributes[current_weapon]['status']['qnt_total_bullets']
 		attributes[current_weapon]['status']['qnt_total_bullets'] = 0
 	update_weapons_interface()
+
+func _on_Hurtbox_area_entered(area):
+	var enemy = area.get_parent()
+	attributes['status']['health'] -= enemy.get_damage()
+	if attributes['status']['health'] <= 0:
+		die()
+	else:
+		update_health_interface()
+
+func die():
+	pass
