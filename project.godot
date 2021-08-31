@@ -10,8 +10,8 @@ config_version=4
 
 [application]
 
-config/name="Jogo"
-run/main_scene="res://Cenas/MapaDeTestes.tscn"
+config/name="Zigmor"
+run/main_scene="res://Cenas/Testing_map.tscn"
 config/icon="res://icon.png"
 
 [input]

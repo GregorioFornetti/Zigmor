@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://Sprites/Enemys/enemy-with-shotgun.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Enemys/Enemy-with-shotgun.png" type="Texture" id=1]
 [ext_resource path="res://Cenas/Enemys/Enemy_shooter_chaser.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Cenas/Enemys/Shotgun_enemy.gd" type="Script" id=3]
 

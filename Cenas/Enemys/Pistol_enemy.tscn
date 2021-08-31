@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Cenas/Enemys/Enemy_shooter_chaser.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Sprites/Enemys/enemy-with-pistol.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Enemys/Enemy-with-pistol.png" type="Texture" id=2]
 [ext_resource path="res://Cenas/Enemys/Pistol_enemy.gd" type="Script" id=3]
 
 [sub_resource type="CircleShape2D" id=1]

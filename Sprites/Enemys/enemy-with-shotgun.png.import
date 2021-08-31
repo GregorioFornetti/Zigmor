@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy-with-shotgun.png-786987fa8cf9a2e505aab6fb56c7516d.stex"
+path="res://.import/Enemy-with-shotgun.png-ae2975f0b630b5dd49b793311d132816.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemys/enemy-with-shotgun.png"
-dest_files=[ "res://.import/enemy-with-shotgun.png-786987fa8cf9a2e505aab6fb56c7516d.stex" ]
+source_file="res://Sprites/Enemys/Enemy-with-shotgun.png"
+dest_files=[ "res://.import/Enemy-with-shotgun.png-ae2975f0b630b5dd49b793311d132816.stex" ]
 
 [params]
 

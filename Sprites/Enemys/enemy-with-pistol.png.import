@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemy-with-pistol.png-2db9de907771b9321a532e7b481dba63.stex"
+path="res://.import/Enemy-with-pistol.png-a3d9f1accb5903934603499488ddd30a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemys/enemy-with-pistol.png"
-dest_files=[ "res://.import/enemy-with-pistol.png-2db9de907771b9321a532e7b481dba63.stex" ]
+source_file="res://Sprites/Enemys/Enemy-with-pistol.png"
+dest_files=[ "res://.import/Enemy-with-pistol.png-a3d9f1accb5903934603499488ddd30a.stex" ]
 
 [params]
 
