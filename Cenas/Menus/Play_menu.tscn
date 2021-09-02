@@ -1,0 +1,170 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites/Interface/Menu-interface/Play-menu-background.jpg" type="Texture" id=1]
+[ext_resource path="res://Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 2 )
+
+[node name="Play_menu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Left_container" type="Control" parent="."]
+anchor_bottom = 1.0
+margin_right = 384.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Top_box" type="Control" parent="Left_container"]
+anchor_right = 1.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Left_container/Top_box"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -153.0
+margin_top = -38.0
+margin_right = 153.0
+custom_fonts/font = SubResource( 1 )
+text = "Selecione uma opção"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Center_box" type="Control" parent="Left_container"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -201.26
+margin_bottom = 198.74
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Left_container/Center_box"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -104.5
+margin_top = -143.5
+margin_right = 104.5
+margin_bottom = 143.5
+custom_constants/separation = 40
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Btn_saves" type="Button" parent="Left_container/Center_box/VBoxContainer"]
+margin_top = 33.0
+margin_right = 209.0
+margin_bottom = 58.0
+custom_fonts/font = SubResource( 2 )
+disabled = true
+text = "Jogos salvos"
+
+[node name="Btn_easy" type="Button" parent="Left_container/Center_box/VBoxContainer"]
+margin_top = 98.0
+margin_right = 209.0
+margin_bottom = 123.0
+custom_fonts/font = SubResource( 2 )
+toggle_mode = true
+text = "Fácil"
+
+[node name="Btn_medium" type="Button" parent="Left_container/Center_box/VBoxContainer"]
+margin_top = 163.0
+margin_right = 209.0
+margin_bottom = 188.0
+custom_fonts/font = SubResource( 2 )
+toggle_mode = true
+text = "Intermediário"
+
+[node name="Btn_hard" type="Button" parent="Left_container/Center_box/VBoxContainer"]
+margin_top = 228.0
+margin_right = 209.0
+margin_bottom = 253.0
+custom_fonts/font = SubResource( 2 )
+toggle_mode = true
+text = "Difícil"
+
+[node name="Bottom_box" type="Control" parent="Left_container"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Btn_return" type="Button" parent="Left_container/Bottom_box"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -86.0
+margin_top = -15.0
+margin_right = 86.0
+margin_bottom = 15.0
+custom_fonts/font = SubResource( 3 )
+text = "Voltar"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Right_container" type="Control" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -600.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Top_box" type="Control" parent="Right_container"]
+anchor_right = 1.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Center_box" type="Control" parent="Right_container"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -200.0
+margin_bottom = 200.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bottom_box" type="Control" parent="Right_container"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
