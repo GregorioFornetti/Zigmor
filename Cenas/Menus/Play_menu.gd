@@ -16,6 +16,7 @@ onready var selected_option_label = $Right_container/Top_box/Option_label
 
 var current_option = "no_option"
 
+
 func update_boxes():
 	for box_name in options_boxes:
 		options_boxes[box_name].visible = false
@@ -39,6 +40,7 @@ func option_btn_toggle(option, option_message):
 		btn_play.disabled = false
 		selected_option_label.text = option_message
 
+
 func _on_Btn_easy_button_down():
 	option_btn_toggle("easy", "Dificuldade: fácil")
 
@@ -47,3 +49,6 @@ func _on_Btn_medium_button_down():
 
 func _on_Btn_hard_pressed():
 	option_btn_toggle("hard", "Dificuldade: difícil")
+
+func _on_Btn_return_pressed():
+	get_tree().change_scene("res://Cenas/Menus/Main_menu.tscn")

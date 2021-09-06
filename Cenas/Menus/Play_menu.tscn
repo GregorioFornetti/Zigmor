@@ -311,3 +311,4 @@ __meta__ = {
 [connection signal="button_down" from="Left_container/Center_box/VBoxContainer/Btn_easy" to="." method="_on_Btn_easy_button_down"]
 [connection signal="button_down" from="Left_container/Center_box/VBoxContainer/Btn_medium" to="." method="_on_Btn_medium_button_down"]
 [connection signal="pressed" from="Left_container/Center_box/VBoxContainer/Btn_hard" to="." method="_on_Btn_hard_pressed"]
+[connection signal="pressed" from="Left_container/Bottom_box/Btn_return" to="." method="_on_Btn_return_pressed"]
