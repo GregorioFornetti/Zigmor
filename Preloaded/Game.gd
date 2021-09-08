@@ -1,5 +1,7 @@
 extends Node
 
+onready var timer = $Timer
+
 enum difficulties {EASY, MEDIUM, HARD}
 enum status {MENU, PLAYING, PAUSED}
 

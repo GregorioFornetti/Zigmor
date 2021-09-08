@@ -1,14 +1,15 @@
 extends CanvasLayer
 
-onready var current_weapon_sprite = $Weapon_status_box/Current_weapon
-onready var ammo_info_label = $Weapon_status_box/Ammo_info
-onready var health_bar = $Player_status_box/HealthBar
-onready var health_bar_label = $Player_status_box/HealthBar/HealthInfo
-onready var reload_bar = $Weapon_status_box/ReloadBar
+onready var current_weapon_sprite = $Top_right_interface/Center_container/Weapon_status_box/Current_weapon
+onready var ammo_info_label = $Top_right_interface/Center_container/Weapon_status_box/Ammo_info
+onready var health_bar = $Top_right_interface/Center_container/Player_status_box/HealthBar
+onready var health_bar_label = $Top_right_interface/Center_container/Player_status_box/HealthBar/HealthInfo
+onready var reload_bar = $Top_right_interface/Center_container/Weapon_status_box/ReloadBar
+onready var time_label = $Top_right_interface/Top_container/Time_box/Time_label
 
 
 func _ready():
-	pass # Replace with function body.
+	Game.timer.connect("timeout", self, "_on_Timer_1sec_timeout")
 
 
 func update_weaponAndAmmo(weapon_index, current_ammo, total_ammo):
@@ -30,3 +31,6 @@ func update_reloadbar(time_left, final_time, reloading):
 		reload_bar.max_value = final_time
 	else:
 		reload_bar.visible = false
+
+func _on_Timer_1sec_timeout():
+	time_label.text = GeneralCommands.seconds_to_time_string(Game.current_time)
