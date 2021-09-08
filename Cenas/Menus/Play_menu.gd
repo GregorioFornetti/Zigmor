@@ -1,20 +1,20 @@
 extends Control
 
 onready var options_boxes = {
-	"no_option" : $Right_container/Center_box/Box_no_option,
-	"easy" : $Right_container/Center_box/Box_easy,
-	"medium" : $Right_container/Center_box/Box_medium,
-	"hard" : $Right_container/Center_box/Box_hard
+	null : $Right_container/Center_box/Box_no_option,
+	Game.difficulties.EASY : $Right_container/Center_box/Box_easy,
+	Game.difficulties.MEDIUM : $Right_container/Center_box/Box_medium,
+	Game.difficulties.HARD : $Right_container/Center_box/Box_hard
 }
 onready var options_buttons = {
-	"easy" : $Left_container/Center_box/VBoxContainer/Btn_easy,
-	"medium" : $Left_container/Center_box/VBoxContainer/Btn_medium,
-	"hard" : $Left_container/Center_box/VBoxContainer/Btn_hard
+	Game.difficulties.EASY : $Left_container/Center_box/VBoxContainer/Btn_easy,
+	Game.difficulties.MEDIUM: $Left_container/Center_box/VBoxContainer/Btn_medium,
+	Game.difficulties.HARD : $Left_container/Center_box/VBoxContainer/Btn_hard
 }
 onready var btn_play = $Right_container/Bottom_box/Btn_play
 onready var selected_option_label = $Right_container/Top_box/Option_label
 
-var current_option = "no_option"
+var current_option
 
 
 func update_boxes():
@@ -29,7 +29,7 @@ func update_buttons():
 
 func option_btn_toggle(option, option_message):
 	if current_option == option: # Selecionou a mesma dificuldade (volta a ficar sem dificuldade selecionada)
-		current_option = "no_option"
+		current_option = null
 		update_boxes()
 		btn_play.disabled = true
 		selected_option_label.text = "Nenhuma dificuldade escolhida"
@@ -42,13 +42,16 @@ func option_btn_toggle(option, option_message):
 
 
 func _on_Btn_easy_button_down():
-	option_btn_toggle("easy", "Dificuldade: fácil")
+	option_btn_toggle(Game.difficulties.EASY, "Dificuldade: fácil")
 
 func _on_Btn_medium_button_down():
-	option_btn_toggle("medium", "Dificuldade: intermediária")
+	option_btn_toggle(Game.difficulties.MEDIUM, "Dificuldade: intermediária")
 
 func _on_Btn_hard_pressed():
-	option_btn_toggle("hard", "Dificuldade: difícil")
+	option_btn_toggle(Game.difficulties.HARD, "Dificuldade: difícil")
 
 func _on_Btn_return_pressed():
 	get_tree().change_scene("res://Cenas/Menus/Main_menu.tscn")
+
+func _on_Btn_play_pressed():
+	Game.start_game(current_option)

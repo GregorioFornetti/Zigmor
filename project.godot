@@ -11,16 +11,18 @@ config_version=4
 [application]
 
 config/name="Zigmor"
-run/main_scene="res://Cenas/Testing_map.tscn"
+run/main_scene="res://Cenas/Menus/Main_menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-GeneralCommands="*res://GeneralCommands.gd"
-GameInit="*res://GameInit.gd"
+GeneralCommands="*res://Preloaded/GeneralCommands.gd"
+GameInit="*res://Preloaded/GameInit.gd"
+Game="*res://Preloaded/Game.tscn"
 
 [display]
 
+window/size/resizable=false
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
