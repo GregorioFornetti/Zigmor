@@ -4,6 +4,7 @@ var attributes = {}
 onready var Player = get_parent().get_node("Player")
 onready var healthbar_timer = $HealthBar_timer
 onready var healthbar = $HealthBar
+onready var collision_shape = $CollisionShape2D.shape
 
 func set_default_attributes(health, speed, damage, money_drop):
 	attributes['health'] = health
