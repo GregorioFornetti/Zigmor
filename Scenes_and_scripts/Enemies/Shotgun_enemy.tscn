@@ -1,0 +1,59 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Sprites/Enemys/Enemy-with-shotgun.png" type="Texture" id=1]
+[ext_resource path="res://Scenes_and_scripts/Enemies/Enemy_shooter_chaser.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes_and_scripts/Enemies/Shotgun_enemy.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 18.4206
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 19.3475
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 19.5203
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 15.8043, 10 )
+
+[sub_resource type="Animation" id=5]
+resource_name = "Shoot"
+
+[node name="Shotgun_enemy" instance=ExtResource( 2 )]
+collision_mask = 4
+script = ExtResource( 3 )
+angle = 60.0
+qnt_bullets = 4
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2( 0, -14 )
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )
+vframes = 4
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D" parent="Range" index="0"]
+shape = SubResource( 4 )
+
+[node name="HealthBar" parent="." index="5"]
+margin_left = -42.3544
+margin_top = 21.3203
+margin_right = 42.6456
+margin_bottom = 35.3203
+
+[node name="Timer_shoot" parent="." index="7"]
+wait_time = 2.5
+
+[node name="ShootAnimation" type="AnimationPlayer" parent="." index="8"]
+anims/Shoot = SubResource( 5 )
+
+[node name="Weapon_pos" parent="." index="9"]
+position = Vector2( 0.0635605, -45.7018 )

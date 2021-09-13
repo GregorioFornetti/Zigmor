@@ -11,14 +11,14 @@ config_version=4
 [application]
 
 config/name="Zigmor"
-run/main_scene="res://Cenas/Menus/Main_menu.tscn"
+run/main_scene="res://Scenes_and_scripts/Interfaces/Menus/Main_menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
-GeneralCommands="*res://Preloaded/GeneralCommands.gd"
-GameInit="*res://Preloaded/GameInit.gd"
-Game="*res://Preloaded/Game.tscn"
+GeneralCommands="*res://Scenes_and_scripts/Preloaded/GeneralCommands.gd"
+GameInit="*res://Scenes_and_scripts/Preloaded/GameInit.gd"
+Game="*res://Scenes_and_scripts/Preloaded/Game.tscn"
 
 [display]
 
