@@ -5,7 +5,7 @@ onready var Bullet = preload("res:///Scenes_and_scripts/Bullets/Enemy_pistol_bul
 var current_rotation
 
 func _ready():
-	set_default_attributes(100, 90, 5, 20)
+	set_default_attributes(20, 90, 5, 20)
 	set_default_range()
 
 func _process(delta):

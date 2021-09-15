@@ -67,13 +67,13 @@ func hard_enemies_points_function(t):
 
 
 func easy_spawn_points_function(t):
-	return t
+	return int(t / 60 + 2)
 
 func medium_spawn_points_function(t):
-	return 2 * t
+	return int(t / 40 + 3)
 
 func hard_spawn_points_function(t):
-	return 3 * t
+	return int(t / 20 + 4)
 
 
 func easy_spawn_delay_function(t):

@@ -95,7 +95,6 @@ anims/Sniper = SubResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 5, 5 )
 
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="timeout" from="Shoot_timer" to="." method="_on_Shoot_timer_timeout"]
