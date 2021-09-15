@@ -48,9 +48,9 @@ func die():
 func get_damage():
 	return attributes['damage']
 
+
 func _on_HealthBar_timer_timeout():
 	healthbar.visible = false
-
 
 func _on_Hurtbox_area_entered(area):
 	var player_bullet = area.get_parent()
