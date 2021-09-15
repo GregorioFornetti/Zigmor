@@ -70,10 +70,10 @@ func easy_spawn_points_function(t):
 	return int(t / 60 + 2)
 
 func medium_spawn_points_function(t):
-	return int(t / 40 + 3)
+	return int(t / 45 + 3)
 
 func hard_spawn_points_function(t):
-	return int(t / 20 + 4)
+	return int(t / 30 + 3)
 
 
 func easy_spawn_delay_function(t):

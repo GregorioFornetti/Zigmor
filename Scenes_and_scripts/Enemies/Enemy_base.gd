@@ -6,6 +6,25 @@ onready var healthbar_timer = $HealthBar_timer
 onready var healthbar = $HealthBar
 onready var collision_shape = $CollisionShape2D.shape
 
+signal enemy_spawn(enemy)
+signal enemy_died(enemy)
+
+func on_ready():
+	pass
+
+func _ready():
+	var enemies_spawner = get_parent().get_node("Enemies_spawner")
+	var interface = get_parent().get_node("Interface")
+	
+	connect("enemy_spawn", interface, "_on_enemy_spawn", [self])
+	
+	connect("enemy_died", enemies_spawner, "_on_enemy_death", [self])
+	connect("enemy_died", interface, "_on_enemy_death", [self])
+	
+	emit_signal("enemy_spawn")
+	
+	on_ready()
+
 func set_default_attributes(health, speed, damage, money_drop):
 	attributes['health'] = health
 	attributes['max_health'] = health
@@ -28,6 +47,7 @@ func update_healthbar():
 
 func die():
 	Player.attributes["status"]['money'] += attributes['money_drop']
+	emit_signal("enemy_died")
 	queue_free()
 
 func get_damage():

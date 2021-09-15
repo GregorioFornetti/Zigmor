@@ -17,7 +17,9 @@ onready var enemies = [
 onready var player = get_parent().get_node("Player")
 onready var spawn_blocker = get_node("Spawn_blocker")
 onready var rng = RandomNumberGenerator.new()
+
 var possible_ranges_array = []
+var qnt_enemies_alive = 0
 
 class EnemiesSorter:
 	static func sort_ascending(enemy1, enemy2):
@@ -60,6 +62,7 @@ func spawn_enemies():
 		var selected = enemies[rng.randi_range(0, get_possible_enemies_max_range(current_spawn_points))]
 		current_spawn_points -= selected["spawn_points_cost"]
 		spawn_enemy(selected['enemy'])
+		qnt_enemies_alive += 1
 
 func get_possible_enemies_max_range(current_points):
 	# O max range possível representa até qual inimigo podemos pegar aleatoriamente com uma certa quantidade de pontos
@@ -95,7 +98,10 @@ func get_random_position(enemy_colision_shape):
 		if not space_state.collide_shape(query,1):
 			return random_pos
 
-
+func _on_enemy_death(_enemy):
+	qnt_enemies_alive -= 1
+	if qnt_enemies_alive == 0:
+		$Timer.start(min($Timer.time_left, 3))
 
 
 # Para realizar testes de tamanhos da nova área de spawn, descomentar as linhas abaixo (Dica: use CTRL + K para descomentar, aumente o zoom no player)

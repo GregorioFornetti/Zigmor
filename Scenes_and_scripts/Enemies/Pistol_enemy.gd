@@ -4,7 +4,7 @@ onready var shoot_animation = $ShootAnimation
 onready var Bullet = preload("res:///Scenes_and_scripts/Bullets/Enemy_pistol_bullet.tscn")
 var current_rotation
 
-func _ready():
+func on_ready():
 	set_default_attributes(20, 90, 5, 20)
 	set_default_range()
 
