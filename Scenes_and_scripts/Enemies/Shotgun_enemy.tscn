@@ -43,10 +43,11 @@ shape = SubResource( 3 )
 shape = SubResource( 4 )
 
 [node name="HealthBar" parent="." index="5"]
-margin_left = -42.3544
-margin_top = 21.3203
-margin_right = 42.6456
-margin_bottom = 35.3203
+margin_left = -42.0
+margin_top = -58.0
+margin_right = 43.0
+margin_bottom = -44.0
+rect_pivot_offset = Vector2( 42, 58 )
 
 [node name="Timer_shoot" parent="." index="7"]
 wait_time = 2.5

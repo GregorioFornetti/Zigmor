@@ -8,7 +8,7 @@ func on_ready():
 	set_default_attributes(20, 90, 5, 20)
 	set_default_range()
 
-func _process(delta):
+func on_process(delta):
 	movimentation(delta)
 	set_default_rotation()
 

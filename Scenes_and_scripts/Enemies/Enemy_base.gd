@@ -13,6 +13,13 @@ signal enemy_died(enemy)
 func on_ready():
 	pass
 
+func on_process(delta):
+	pass
+
+func _process(delta):
+	healthbar.set_rotation(-rotation)
+	on_process(delta)
+
 func _ready():
 	var enemies_spawner = get_parent().get_node("Enemies_spawner")
 	var interface = get_parent().get_node("Interface")

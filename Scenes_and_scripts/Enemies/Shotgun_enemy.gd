@@ -11,7 +11,7 @@ func on_ready():
 	angle = deg2rad(angle)
 	set_default_range()
 
-func _process(delta):
+func on_process(delta):
 	movimentation(delta)
 	set_default_rotation()
 
