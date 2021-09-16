@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Interface.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes_and_scripts/Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes_and_scripts/Enemies/Pistol_enemy.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Upgrades_shop.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes_and_scripts/Spawner/Enemies_spawner.tscn" type="PackedScene" id=5]
 
 [node name="Testing_map" type="Node2D"]
@@ -13,7 +13,4 @@
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 
-[node name="Pistol_enemy" parent="." instance=ExtResource( 3 )]
-position = Vector2( 169.706, 7.07106 )
-collision_layer = 2
-collision_mask = 6
+[node name="CanvasLayer" parent="." instance=ExtResource( 4 )]

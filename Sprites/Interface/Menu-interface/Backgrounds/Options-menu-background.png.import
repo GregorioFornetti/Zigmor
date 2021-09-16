@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Credits-menu-background.jpg-169e2313a9c730d2a6c5e5b78a7f120a.stex"
+path="res://.import/Options-menu-background.png-11d6738cbddd1560f2a4327a9a89fb37.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Interface/Menu-interface/Credits-menu-background.jpg"
-dest_files=[ "res://.import/Credits-menu-background.jpg-169e2313a9c730d2a6c5e5b78a7f120a.stex" ]
+source_file="res://Sprites/Interface/Menu-interface/Backgrounds/Options-menu-background.png"
+dest_files=[ "res://.import/Options-menu-background.png-11d6738cbddd1560f2a4327a9a89fb37.stex" ]
 
 [params]
 

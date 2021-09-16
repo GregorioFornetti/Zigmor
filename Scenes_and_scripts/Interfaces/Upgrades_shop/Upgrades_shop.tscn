@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/Interface/Menu-interface/Backgrounds/Upgrades-shop-background.png" type="Texture" id=1]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Shop_content_container.tscn" type="PackedScene" id=2]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="Main_container" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -450.0
+margin_top = -250.0
+margin_right = 450.0
+margin_bottom = 250.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background" type="Sprite" parent="Main_container"]
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Top_container" type="Control" parent="Main_container"]
+anchor_right = 1.0
+margin_bottom = 50.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bottom_container" type="Control" parent="Main_container"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -450.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shop_content_container" parent="Main_container/Bottom_container" instance=ExtResource( 2 )]
+
+[editable path="Main_container/Bottom_container/Shop_content_container"]
