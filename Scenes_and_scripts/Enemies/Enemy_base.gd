@@ -1,7 +1,6 @@
 extends KinematicBody2D
 
 var attributes = {}
-var died = false
 onready var Player = get_parent().get_node("Player")
 onready var healthbar_timer = $HealthBar_timer
 onready var healthbar = $HealthBar
@@ -47,7 +46,6 @@ func update_healthbar():
 	healthbar_timer.start()
 
 func die():
-	died = true
 	Player.attributes["status"]['money'] += attributes['money_drop']
 	emit_signal("enemy_died")
 	queue_free()
@@ -62,7 +60,7 @@ func _on_HealthBar_timer_timeout():
 func _on_Hurtbox_area_entered(area):
 	var player_bullet = area.get_parent()
 	attributes['health'] -= player_bullet.damage
-	if attributes['health'] <= 0 and not died:
+	if attributes['health'] <= 0 and not self.is_queued_for_deletion():
 		die()
 	else:
 		update_healthbar()

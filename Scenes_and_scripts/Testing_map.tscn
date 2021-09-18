@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Interface.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes_and_scripts/Player/Player.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes_and_scripts/Enemies/Pistol_enemy.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes_and_scripts/Spawner/Enemies_spawner.tscn" type="PackedScene" id=5]
 
 [node name="Testing_map" type="Node2D"]

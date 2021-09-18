@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/enemy-sniper-shoot.wav-20f8cd86869ff199cb000db143cec533.sample"
+
+[deps]
+
+source_file="res://Sound/Effects/Weapons/enemy-sniper-shoot.wav"
+dest_files=[ "res://.import/enemy-sniper-shoot.wav-20f8cd86869ff199cb000db143cec533.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
