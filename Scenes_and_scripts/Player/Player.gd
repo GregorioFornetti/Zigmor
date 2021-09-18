@@ -8,6 +8,7 @@ onready var shoot_animation = $ShootAnimations
 onready var Pistol_bullet = preload('res://Scenes_and_scripts/Bullets/Pistol_bullet.tscn')
 onready var Shotgun_bullet = preload("res://Scenes_and_scripts/Bullets/Shotgun_bullet.tscn")
 onready var Sniper_bullet = preload("res://Scenes_and_scripts/Bullets/Sniper_bullet.tscn")
+onready var pistol_shoot_sound = preload("res://Sound/Effects/Weapons/player-pistol-shoot.wav")
 
 enum {PISTOL, SHOTGUN, SNIPER}
 var attributes = {
@@ -139,6 +140,7 @@ func change_weapon(new_weapon):
 func shoot():
 	var direction = Vector2(0, -1).rotated(rotation)
 	if current_weapon == PISTOL:
+		SoundSystem.play_sound_effect(pistol_shoot_sound)
 		instantiate_bullet(Pistol_bullet, attributes[current_weapon]['damage'], direction)
 	elif current_weapon == SHOTGUN:
 		for i in range(12):
