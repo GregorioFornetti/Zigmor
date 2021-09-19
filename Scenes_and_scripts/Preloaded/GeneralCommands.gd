@@ -1,5 +1,6 @@
 extends Node
 
+
 func apply_resolution(resolution_option):
 	if resolution_option.full_screen:
 		OS.window_fullscreen = true
