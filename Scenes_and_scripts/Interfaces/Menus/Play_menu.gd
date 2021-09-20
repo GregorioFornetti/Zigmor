@@ -47,7 +47,7 @@ func _on_Btn_easy_button_down():
 func _on_Btn_medium_button_down():
 	option_btn_toggle(Game.difficulties.MEDIUM, "Dificuldade: intermediária")
 
-func _on_Btn_hard_pressed():
+func _on_Btn_hard_button_down():
 	option_btn_toggle(Game.difficulties.HARD, "Dificuldade: difícil")
 
 func _on_Btn_return_pressed():
@@ -55,3 +55,5 @@ func _on_Btn_return_pressed():
 
 func _on_Btn_play_pressed():
 	Game.start_game(current_option)
+
+

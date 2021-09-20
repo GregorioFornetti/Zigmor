@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Sprites/Interface/Menu-interface/Upgrade-shop-images/Player-frontal-image.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Interface/Menu-interface/Buttons/Shop-button.png" type="Texture" id=2]
+
+
+[node name="Shop_content_container" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left_container" type="Control" parent="."]
+anchor_bottom = 1.0
+margin_right = 500.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="Left_container"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -175.0
+margin_right = 200.0
+margin_bottom = 175.0
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Left_container/GridContainer"]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="Rigth_container" type="Control" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -400.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="Rigth_container"]
+position = Vector2( 207, 130 )
+texture = ExtResource( 1 )

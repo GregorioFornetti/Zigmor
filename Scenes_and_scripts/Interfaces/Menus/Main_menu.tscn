@@ -1,19 +1,13 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Sprites/Interface/Menu-interface/Main-menu-background.jpg" type="Texture" id=1]
+[ext_resource path="res://Sprites/Interface/Menu-interface/Backgrounds/Main-menu-background.jpg" type="Texture" id=1]
 [ext_resource path="res://Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Menus/Main_menu.gd" type="Script" id=3]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Buttons/Btn_lg.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFontData" id=2]
-font_path = "res://Fonts/Roboto-Regular.ttf"
-
-[sub_resource type="DynamicFont" id=3]
-size = 24
-font_data = SubResource( 2 )
 
 [node name="Main_menu" type="Control"]
 anchor_right = 1.0
@@ -53,7 +47,8 @@ __meta__ = {
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_top = -500.0
+margin_top = -498.74
+margin_bottom = 1.25989
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -63,9 +58,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -150.0
+margin_left = -151.189
 margin_top = -175.0
-margin_right = 150.0
+margin_right = 148.811
 margin_bottom = 175.0
 custom_constants/separation = 50
 alignment = 1
@@ -73,35 +68,43 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Btn_play" type="Button" parent="Bottom_container/Btns_container"]
-margin_top = 30.0
+[node name="Btn_play" parent="Bottom_container/Btns_container" instance=ExtResource( 4 )]
+margin_top = 20.0
 margin_right = 300.0
-margin_bottom = 65.0
-custom_fonts/font = SubResource( 3 )
+margin_bottom = 60.0
+
+[node name="Label" parent="Bottom_container/Btns_container/Btn_play" index="0"]
 text = "Jogar"
 
-[node name="Btn_options" type="Button" parent="Bottom_container/Btns_container"]
-margin_top = 115.0
+[node name="Btn_options" parent="Bottom_container/Btns_container" instance=ExtResource( 4 )]
+margin_top = 110.0
 margin_right = 300.0
 margin_bottom = 150.0
-custom_fonts/font = SubResource( 3 )
+
+[node name="Label" parent="Bottom_container/Btns_container/Btn_options" index="0"]
 text = "Opções"
 
-[node name="Btn_credits" type="Button" parent="Bottom_container/Btns_container"]
+[node name="Btn_credits" parent="Bottom_container/Btns_container" instance=ExtResource( 4 )]
 margin_top = 200.0
 margin_right = 300.0
-margin_bottom = 235.0
-custom_fonts/font = SubResource( 3 )
+margin_bottom = 240.0
+
+[node name="Label" parent="Bottom_container/Btns_container/Btn_credits" index="0"]
 text = "Créditos"
 
-[node name="Btn_exit" type="Button" parent="Bottom_container/Btns_container"]
-margin_top = 285.0
+[node name="Btn_exit" parent="Bottom_container/Btns_container" instance=ExtResource( 4 )]
+margin_top = 290.0
 margin_right = 300.0
-margin_bottom = 320.0
-custom_fonts/font = SubResource( 3 )
+margin_bottom = 330.0
+
+[node name="Label" parent="Bottom_container/Btns_container/Btn_exit" index="0"]
 text = "Sair"
 
 [connection signal="pressed" from="Bottom_container/Btns_container/Btn_play" to="." method="_on_Btn_play_pressed"]
 [connection signal="pressed" from="Bottom_container/Btns_container/Btn_options" to="." method="_on_Btn_options_pressed"]
 [connection signal="pressed" from="Bottom_container/Btns_container/Btn_credits" to="." method="_on_Btn_credits_pressed"]
-[connection signal="pressed" from="Bottom_container/Btns_container/Btn_exit" to="." method="_on_Btn_exit_pressed"]
+
+[editable path="Bottom_container/Btns_container/Btn_play"]
+[editable path="Bottom_container/Btns_container/Btn_options"]
+[editable path="Bottom_container/Btns_container/Btn_credits"]
+[editable path="Bottom_container/Btns_container/Btn_exit"]
