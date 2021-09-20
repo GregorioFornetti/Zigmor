@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Shop-button.png-c457fff74f7decff30498e3a00b7ece8.stex"
+path="res://.import/Tooltip-background.png-456f534a4227000eb019256163db53ca.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Interface/Menu-interface/Buttons/Shop-button.png"
-dest_files=[ "res://.import/Shop-button.png-c457fff74f7decff30498e3a00b7ece8.stex" ]
+source_file="res://Sprites/Interface/Menu-interface/Backgrounds/Tooltip-background.png"
+dest_files=[ "res://.import/Tooltip-background.png-456f534a4227000eb019256163db53ca.stex" ]
 
 [params]
 

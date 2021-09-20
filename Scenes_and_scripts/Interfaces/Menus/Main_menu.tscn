@@ -103,6 +103,7 @@ text = "Sair"
 [connection signal="pressed" from="Bottom_container/Btns_container/Btn_play" to="." method="_on_Btn_play_pressed"]
 [connection signal="pressed" from="Bottom_container/Btns_container/Btn_options" to="." method="_on_Btn_options_pressed"]
 [connection signal="pressed" from="Bottom_container/Btns_container/Btn_credits" to="." method="_on_Btn_credits_pressed"]
+[connection signal="pressed" from="Bottom_container/Btns_container/Btn_exit" to="." method="_on_Btn_exit_pressed"]
 
 [editable path="Bottom_container/Btns_container/Btn_play"]
 [editable path="Bottom_container/Btns_container/Btn_options"]
