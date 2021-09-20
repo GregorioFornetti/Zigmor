@@ -19,6 +19,7 @@ config/icon="res://icon.png"
 GeneralCommands="*res://Scenes_and_scripts/Preloaded/GeneralCommands.gd"
 GameInit="*res://Scenes_and_scripts/Preloaded/GameInit.gd"
 Game="*res://Scenes_and_scripts/Preloaded/Game.tscn"
+SoundSystem="*res://Scenes_and_scripts/Preloaded/SoundSystem.tscn"
 
 [display]
 

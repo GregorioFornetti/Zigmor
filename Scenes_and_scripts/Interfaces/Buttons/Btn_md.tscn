@@ -1,0 +1,11 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/Interface/Menu-interface/Buttons/Medium/Btn-md-normal.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Interface/Menu-interface/Buttons/Medium/Btn-md-pressed.png" type="Texture" id=2]
+[ext_resource path="res://Sprites/Interface/Menu-interface/Buttons/Medium/Btn-md-hover.png" type="Texture" id=3]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Buttons/Btn.tscn" type="PackedScene" id=4]
+
+[node name="Btn_md" instance=ExtResource( 4 )]
+texture_normal = ExtResource( 1 )
+texture_pressed = ExtResource( 2 )
+texture_hover = ExtResource( 3 )

@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Scenes_and_scripts/Preloaded/Sound_system.gd" type="Script" id=1]
+
+[node name="SoundSystem" type="Node"]
+script = ExtResource( 1 )
+
+[node name="Music_player" type="AudioStreamPlayer" parent="."]
+bus = "Musics"
+
+[node name="Effects_players_list" type="Node" parent="."]
+
+[node name="Effect_player1" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player2" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player3" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player4" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player5" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player6" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player7" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player8" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player9" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player10" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player11" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player12" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player13" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player14" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"
+
+[node name="Effect_player15" type="AudioStreamPlayer" parent="Effects_players_list"]
+bus = "Effects"

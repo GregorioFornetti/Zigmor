@@ -3,16 +3,13 @@
 [ext_resource path="res://Sprites/Interface/Menu-interface/Backgrounds/Credits-menu-background.jpg" type="Texture" id=1]
 [ext_resource path="res://Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Menus/Credits_menu.gd" type="Script" id=3]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Buttons/Btn_sm.tscn" type="PackedScene" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
-size = 32
-font_data = ExtResource( 2 )
-
-[sub_resource type="DynamicFont" id=3]
 size = 32
 font_data = ExtResource( 2 )
 
@@ -78,19 +75,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button" type="Button" parent="Bottom_container"]
+[node name="Btn_return" parent="Bottom_container" instance=ExtResource( 4 )]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -76.5
-margin_top = -25.0
-margin_right = 76.5
-margin_bottom = 25.0
-custom_fonts/font = SubResource( 3 )
-text = "Voltar"
-__meta__ = {
-"_edit_use_anchors_": false
-}
+margin_left = -75.0
+margin_top = -20.0
+margin_right = 75.0
+margin_bottom = 20.0
 
-[connection signal="pressed" from="Bottom_container/Button" to="." method="_on_Button_pressed"]
+[node name="Label" parent="Bottom_container/Btn_return" index="0"]
+text = "Voltar"
+
+[connection signal="pressed" from="Bottom_container/Btn_return" to="." method="_on_Btn_return_pressed"]
+
+[editable path="Bottom_container/Btn_return"]

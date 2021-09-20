@@ -9,6 +9,7 @@ func _ready():
 		file.open(options_path, File.READ)
 		var options = file.get_var()
 		GeneralCommands.apply_resolution(options.resolution)
+		SoundSystem.apply_sound_configurations(options.audio)
 	else:
 		file.open(options_path, File.WRITE)
 		file.store_var({
@@ -16,6 +17,11 @@ func _ready():
 				"full_screen" : false,
 				"window_size_x" : 1024,
 				"window_size_y" : 600
+			},
+			"audio": {
+				"master_volume": SoundSystem.MASTER_MAX_VOLUME,
+				"musics_volume": (SoundSystem.MUSICS_MAX_VOLUME + SoundSystem.MUSICS_MIN_VOLUME) / 2,
+				"effects_volume": (SoundSystem.EFFECTS_MAX_VOLUME + SoundSystem.EFFECTS_MIN_VOLUME) / 2
 			}
 		})
 	

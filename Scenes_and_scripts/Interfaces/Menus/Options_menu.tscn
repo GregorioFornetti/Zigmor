@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Sprites/Interface/Menu-interface/Backgrounds/Options-menu-background.png" type="Texture" id=1]
 [ext_resource path="res://Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
@@ -10,6 +10,10 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
 font_data = ExtResource( 2 )
 
 [node name="Options_menu" type="Control"]
@@ -32,7 +36,8 @@ centered = false
 
 [node name="Top_container" type="Control" parent="."]
 anchor_right = 1.0
-margin_bottom = 70.0
+margin_top = -0.707108
+margin_bottom = 69.2929
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -77,26 +82,149 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Res_options" type="OptionButton" parent="Bottom_container"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -47.0
-margin_top = -10.0
-margin_right = 47.0
-margin_bottom = 10.0
+[node name="Options_content" type="Control" parent="Bottom_container"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Resolution_box" type="Control" parent="Bottom_container/Options_content"]
+margin_left = 53.4487
+margin_top = 239.607
+margin_right = 150.449
+margin_bottom = 279.607
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Bottom_container/Options_content/Resolution_box"]
+margin_right = 65.0
+margin_bottom = 14.0
 text = "Resolução"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Bottom_container"]
-margin_left = 405.791
-margin_top = 186.878
-margin_right = 445.791
-margin_bottom = 200.878
+[node name="Res_options" type="OptionButton" parent="Bottom_container/Options_content/Resolution_box"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -47.0
+margin_top = -20.0
+margin_right = 47.0
 text = "Resolução"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Audio_box" type="Control" parent="Bottom_container/Options_content"]
+anchor_right = 1.0
+margin_bottom = 164.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Volume_box" type="VBoxContainer" parent="Bottom_container/Options_content/Audio_box"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 34.0
+margin_top = 29.0
+margin_right = -52.0
+margin_bottom = 29.0
+custom_constants/separation = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Master_volume_box" type="Control" parent="Bottom_container/Options_content/Audio_box/Volume_box"]
+margin_right = 814.0
+
+[node name="Label_master_volume" type="Label" parent="Bottom_container/Options_content/Audio_box/Volume_box/Master_volume_box"]
+margin_left = 1.0
+margin_right = 270.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 3 )
+text = "Volume geral"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slider_master_volume" type="HSlider" parent="Bottom_container/Options_content/Audio_box/Volume_box/Master_volume_box"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -536.0
+margin_top = 8.0
+margin_bottom = 24.0
+min_value = -60.0
+max_value = 0.0
+step = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Music_volume_box" type="Control" parent="Bottom_container/Options_content/Audio_box/Volume_box"]
+margin_top = 50.0
+margin_right = 814.0
+margin_bottom = 50.0
+
+[node name="Label_music_volume" type="Label" parent="Bottom_container/Options_content/Audio_box/Volume_box/Music_volume_box"]
+margin_left = 1.0
+margin_right = 270.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 3 )
+text = "Volume música"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slider_music_volume" type="HSlider" parent="Bottom_container/Options_content/Audio_box/Volume_box/Music_volume_box"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -536.0
+margin_top = 8.0
+margin_bottom = 24.0
+min_value = -60.0
+max_value = 0.0
+step = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sfx_volume_box" type="Control" parent="Bottom_container/Options_content/Audio_box/Volume_box"]
+margin_top = 100.0
+margin_right = 814.0
+margin_bottom = 100.0
+
+[node name="Label_sfx_volume" type="Label" parent="Bottom_container/Options_content/Audio_box/Volume_box/Sfx_volume_box"]
+margin_left = 1.0
+margin_right = 270.0
+margin_bottom = 29.0
+custom_fonts/font = SubResource( 3 )
+text = "Volume efeitos sonoros"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Slider_sfx_volume" type="HSlider" parent="Bottom_container/Options_content/Audio_box/Volume_box/Sfx_volume_box"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -536.0
+margin_top = 8.0
+margin_bottom = 24.0
+min_value = -60.0
+max_value = 0.0
+step = 0.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [connection signal="pressed" from="Top_container/Btn_exit" to="." method="_on_Btn_exit_pressed"]
-[connection signal="item_selected" from="Bottom_container/Res_options" to="." method="_on_Res_options_item_selected"]
+[connection signal="item_selected" from="Bottom_container/Options_content/Resolution_box/Res_options" to="." method="_on_Res_options_item_selected"]
+[connection signal="value_changed" from="Bottom_container/Options_content/Audio_box/Volume_box/Master_volume_box/Slider_master_volume" to="." method="_on_Slider_master_volume_value_changed"]
+[connection signal="value_changed" from="Bottom_container/Options_content/Audio_box/Volume_box/Music_volume_box/Slider_music_volume" to="." method="_on_Slider_music_volume_value_changed"]
+[connection signal="value_changed" from="Bottom_container/Options_content/Audio_box/Volume_box/Sfx_volume_box/Slider_sfx_volume" to="." method="_on_Slider_sfx_volume_value_changed"]

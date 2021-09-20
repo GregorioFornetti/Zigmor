@@ -16,6 +16,8 @@ onready var selected_option_label = $Right_container/Top_box/Option_label
 
 var current_option
 
+func _ready():
+	btn_play.visible = false
 
 func update_boxes():
 	for box_name in options_boxes:
@@ -31,13 +33,13 @@ func option_btn_toggle(option, option_message):
 	if current_option == option: # Selecionou a mesma dificuldade (volta a ficar sem dificuldade selecionada)
 		current_option = null
 		update_boxes()
-		btn_play.disabled = true
+		btn_play.visible = false
 		selected_option_label.text = "Nenhuma dificuldade escolhida"
 	else:  # Selecionou nova opção de dificuldade
 		current_option = option
 		update_boxes()
 		update_buttons()
-		btn_play.disabled = false
+		btn_play.visible = true
 		selected_option_label.text = option_message
 
 
@@ -47,7 +49,7 @@ func _on_Btn_easy_button_down():
 func _on_Btn_medium_button_down():
 	option_btn_toggle(Game.difficulties.MEDIUM, "Dificuldade: intermediária")
 
-func _on_Btn_hard_pressed():
+func _on_Btn_hard_button_down():
 	option_btn_toggle(Game.difficulties.HARD, "Dificuldade: difícil")
 
 func _on_Btn_return_pressed():
@@ -55,3 +57,5 @@ func _on_Btn_return_pressed():
 
 func _on_Btn_play_pressed():
 	Game.start_game(current_option)
+
+
