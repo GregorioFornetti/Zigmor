@@ -7,6 +7,7 @@ onready var health_bar_label = $Top_right_interface/Center_container/Player_stat
 onready var reload_bar = $ReloadBar
 onready var time_label = $Top_right_interface/Top_container/Time_box/Time_label
 onready var enemy_label = $Top_right_interface/Top_container/Enemy_box/Enemy_label
+onready var money_label = $Top_right_interface/Center_container/Money_label
 var qnt_enemies_alive = 0
 
 func _ready():
@@ -35,6 +36,10 @@ func update_reloadbar(time_left, final_time, reloading):
 
 func update_enemies_qnt(enemies_qnt):
 	enemy_label.text = str(enemies_qnt)
+
+func update_money(money):
+	print("OI")
+	money_label.text = "$ " + str(money)
 
 func _on_Timer_1sec_timeout():
 	time_label.text = GeneralCommands.seconds_to_time_string(Game.current_time)

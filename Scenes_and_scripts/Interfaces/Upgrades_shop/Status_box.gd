@@ -6,7 +6,3 @@ func _on_Status_box_mouse_entered():
 
 func _on_Status_box_mouse_exited():
 	$Tooltip.visible = false
-
-
-func _on_Status_box_focus_entered():
-	print("OI")

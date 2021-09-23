@@ -3,7 +3,7 @@ extends Node
 onready var timer = $Timer
 
 enum difficulties {EASY, MEDIUM, HARD}
-enum status {MENU, PLAYING, PAUSED}
+enum status {MENU, PLAYING, SHOPPING, PAUSED}
 
 var enemies_points_function
 var spawn_points_function
@@ -12,6 +12,7 @@ var spawn_delay_function
 var current_status = status.MENU
 var current_difficulty
 var current_time = 0  # Game time in seconds
+var Player
 
 
 func _ready():

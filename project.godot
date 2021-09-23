@@ -16,10 +16,10 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GeneralCommands="*res://Scenes_and_scripts/Preloaded/GeneralCommands.gd"
-GameInit="*res://Scenes_and_scripts/Preloaded/GameInit.gd"
-Game="*res://Scenes_and_scripts/Preloaded/Game.tscn"
-SoundSystem="*res://Scenes_and_scripts/Preloaded/SoundSystem.tscn"
+GeneralCommands="*res://Scenes_and_scripts/Autoloaded/GeneralCommands.gd"
+GameInit="*res://Scenes_and_scripts/Autoloaded/GameInit.gd"
+Game="*res://Scenes_and_scripts/Autoloaded/Game.tscn"
+SoundSystem="*res://Scenes_and_scripts/Autoloaded/SoundSystem.tscn"
 
 [display]
 
@@ -80,6 +80,56 @@ shoot={
 reload_weapon={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":82,"unicode":0,"echo":false,"script":null)
+ ]
+}
+0_shop_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":48,"unicode":0,"echo":false,"script":null)
+ ]
+}
+1_shop_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":49,"unicode":0,"echo":false,"script":null)
+ ]
+}
+2_shop_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":50,"unicode":0,"echo":false,"script":null)
+ ]
+}
+3_shop_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":51,"unicode":0,"echo":false,"script":null)
+ ]
+}
+4_shop_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":52,"unicode":0,"echo":false,"script":null)
+ ]
+}
+5_shop_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":53,"unicode":0,"echo":false,"script":null)
+ ]
+}
+6_shop_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":54,"unicode":0,"echo":false,"script":null)
+ ]
+}
+7_shop_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":55,"unicode":0,"echo":false,"script":null)
+ ]
+}
+8_shop_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":56,"unicode":0,"echo":false,"script":null)
+ ]
+}
+9_shop_select={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":57,"unicode":0,"echo":false,"script":null)
  ]
 }
 

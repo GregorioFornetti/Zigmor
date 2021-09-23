@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Sprites/Interface/Menu-interface/Backgrounds/Status-box-background.png" type="Texture" id=1]
 [ext_resource path="res://Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
-[ext_resource path="res://Sprites/Interface/Menu-interface/Upgrade-shop-images/Sword-damage-icon.png" type="Texture" id=3]
 [ext_resource path="res://Sprites/Interface/Menu-interface/Backgrounds/Tooltip-background.png" type="Texture" id=4]
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Status_box.gd" type="Script" id=5]
 
@@ -29,14 +28,13 @@ __meta__ = {
 texture = ExtResource( 1 )
 centered = false
 
-[node name="Amount" type="Label" parent="."]
+[node name="Attribute_label" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 34.0
 margin_top = 5.0
 margin_bottom = 1.0
 custom_fonts/font = SubResource( 1 )
-text = "1500"
 valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -44,7 +42,6 @@ __meta__ = {
 
 [node name="Icon" type="Sprite" parent="."]
 position = Vector2( 16, 16 )
-texture = ExtResource( 3 )
 
 [node name="Tooltip" type="Control" parent="."]
 visible = false
@@ -67,12 +64,10 @@ margin_right = 96.6663
 margin_bottom = 96.6652
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Dano da arma por tiro"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="focus_entered" from="." to="." method="_on_Status_box_focus_entered"]
 [connection signal="mouse_entered" from="." to="." method="_on_Status_box_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Status_box_mouse_exited"]

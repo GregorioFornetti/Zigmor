@@ -63,9 +63,11 @@ var reloading = false
 
 
 func _ready():
+	Game.Player = self
 	update_weapons_interface()
 	update_health_interface()
 	update_weaponReloading_interface()
+	update_money_interface()
 
 func _input(event):
 	if not event is InputEventMouseMotion:
@@ -109,6 +111,9 @@ func update_health_interface():
 
 func update_weaponReloading_interface():
 	Interface.update_reloadbar(reload_timer.time_left, attributes[current_weapon]['reload_time'], reloading)
+
+func update_money_interface():
+	Interface.update_money(attributes.status.money)
 
 func update_weapon_animation():
 	if current_weapon == PISTOL:
@@ -186,6 +191,16 @@ func _on_Hurtbox_area_entered(area):
 		die()
 	else:
 		update_health_interface()
+
+
+func get_money():
+	return attributes.status.money
+
+func decrease_money(value):
+	attributes.status.money -= value
+
+func increase_money(value):
+	attributes.status.money += value
 
 func die():
 	pass
