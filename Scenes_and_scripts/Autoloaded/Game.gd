@@ -1,5 +1,6 @@
 extends Node
 
+onready var rng = RandomNumberGenerator.new()
 onready var timer = $Timer
 
 enum difficulties {EASY, MEDIUM, HARD}
@@ -8,6 +9,7 @@ enum status {MENU, PLAYING, SHOPPING, PAUSED}
 var enemies_points_function
 var spawn_points_function
 var spawn_delay_function
+var enemy_money_drop_function
 
 var current_status = status.MENU
 var current_difficulty
@@ -16,7 +18,7 @@ var Player
 
 
 func _ready():
-	pass
+	rng.randomize()
 
 func start_game(game_difficulty):
 	current_difficulty = game_difficulty
@@ -34,6 +36,7 @@ func start_game(game_difficulty):
 	enemies_points_function = funcref(self, difficult_name + "_enemies_points_function")
 	spawn_points_function = funcref(self, difficult_name + "_spawn_points_function")
 	spawn_delay_function = funcref(self, difficult_name + "_spawn_delay_function")
+	enemies_points_function = funcref(self, difficult_name + "_enemy_money_drop_function")
 	
 	get_tree().change_scene("res://Scenes_and_scripts/Testing_map.tscn")
 	$Timer.start()
@@ -55,6 +58,9 @@ func get_spawn_points():
 
 func get_spawn_delay():
 	return spawn_delay_function.call_func(current_time)
+
+func get_enemy_monmey_drop(enemy_points):
+	return enemies_points_function.call_func(enemy_points, current_time)
 
 
 func easy_enemies_points_function(t):
@@ -85,3 +91,19 @@ func medium_spawn_delay_function(t):
 
 func hard_spawn_delay_function(t):
 	return 20
+
+
+func easy_enemy_money_drop_function(enemy_points, current_time):
+	var min_money = 5 + int(enemy_points * 10 * current_time / 60)
+	var max_money = 10 + int(enemy_points * 15 * current_time / 60)
+	return rng.randi_range(min_money, max_money)
+
+func medium_enemy_money_drop_function(enemy_points, current_time):
+	var min_money = 3 + int(enemy_points * 7 * current_time / 60)
+	var max_money = 7 + int(enemy_points * 13 * current_time / 60)
+	return rng.randi_range(min_money, max_money)
+
+func hard_enemy_money_drop_function(enemy_points, current_time):
+	var min_money = 2 + int(enemy_points * 5 * current_time / 60)
+	var max_money = 5 + int(enemy_points * 10 * current_time / 60)
+	return rng.randi_range(min_money, max_money)

@@ -6,6 +6,7 @@ onready var healthbar_timer = $HealthBar_timer
 onready var healthbar = $HealthBar
 onready var collision_shape = $CollisionShape2D.shape
 onready var enemy_hit_sound = preload("res://Sound/Effects/Collisions/enemy-hit.wav")
+export (int) var points
 
 signal enemy_spawn(enemy)
 signal enemy_died(enemy)
@@ -33,12 +34,11 @@ func _ready():
 	
 	on_ready()
 
-func set_default_attributes(health, speed, damage, money_drop):
+func set_default_attributes(health, speed, damage):
 	attributes['health'] = health
 	attributes['max_health'] = health
 	attributes['speed'] = speed
 	attributes['damage'] = damage
-	attributes['money_drop'] = money_drop
 
 func update_healthbar():
 	healthbar.visible = true
@@ -47,7 +47,9 @@ func update_healthbar():
 	healthbar_timer.start()
 
 func die():
-	Player.attributes["status"]['money'] += attributes['money_drop']
+	Player.attributes["status"]['money'] += Game.get_enemy_monmey_drop(points)
+	var interface = get_parent().get_node("Interface")
+	interface.update_money(Player.attributes["status"]['money'])
 	emit_signal("enemy_died")
 	queue_free()
 

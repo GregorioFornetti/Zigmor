@@ -21,6 +21,7 @@ resource_name = "Shoot"
 
 [node name="Shotgun_enemy" instance=ExtResource( 2 )]
 script = ExtResource( 3 )
+points = 5
 angle = 60.0
 qnt_bullets = 4
 

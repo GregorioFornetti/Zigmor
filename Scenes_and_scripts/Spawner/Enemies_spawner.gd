@@ -4,13 +4,11 @@ const SPAWN_WIDTH = 6000  # Largura a partir do player para spawn de inimigos (p
 const SPAWN_HEIGHT = 3500  # Altura a partir do player para spawn de inimigos (player centralizado)
 const EXTRA_SPACE = 100  # Inimigos não podem spawnar no campo de visão do player + EXTRA_SPACE
 
-onready var enemies = [ 
+onready var enemies = [  # Definir os enemy points (dificuldade) de cada no export var de cada inimigo
 	{   # Pistol enemy (policial com pistola)
-		"spawn_points_cost": 1, 
 		"enemy": preload("res://Scenes_and_scripts/Enemies/Pistol_enemy.tscn")
 	},
 	{   # Shotgun enemy (policial com shotgun)
-		"spawn_points_cost": 1,
 		"enemy": preload("res://Scenes_and_scripts/Enemies/Shotgun_enemy.tscn")
 	}
 ]
@@ -36,6 +34,9 @@ func _ready():
 	spawn_blocker.shape.extents.x = ProjectSettings.get_setting("display/window/size/width") / 2 + EXTRA_SPACE
 	spawn_blocker.shape.extents.y = ProjectSettings.get_setting("display/window/size/height") / 2 + EXTRA_SPACE
 	
+	for enemy_dict in enemies:
+		var enemy_instance = enemy_dict['enemy'].instance()
+		enemy_dict['spawn_points_cost'] = enemy_instance.points
 	# Criação do vetor que ajudará na coleta do max range possível com certa quantidade de pontos de spawn.
 	# possible_ranges_array[ponto_de_spawn_atual] deve representar o maximo range 
 	# possivel de se conseguir com tal quantidade de pontos

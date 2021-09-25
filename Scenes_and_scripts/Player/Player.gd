@@ -16,7 +16,7 @@ var attributes = {
 	"max_health" : 100,
 	"status" : {
 		"health" : 100,
-		"money" : 0
+		"money" : 1000
 	},
 	PISTOL : {
 		"damage": 5,

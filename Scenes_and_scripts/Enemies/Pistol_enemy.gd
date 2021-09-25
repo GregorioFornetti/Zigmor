@@ -6,7 +6,8 @@ onready var pistol_shoot_sound = preload("res://Sound/Effects/Weapons/enemy-pist
 var current_rotation
 
 func on_ready():
-	set_default_attributes(20, 90, 5, 20)
+	points = 5
+	set_default_attributes(20, 90, 5)
 	set_default_range()
 
 func on_process(delta):

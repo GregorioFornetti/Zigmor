@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Interface.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes_and_scripts/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Upgrades_shop.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes_and_scripts/Testing_map.gd" type="Script" id=4]
 [ext_resource path="res://Scenes_and_scripts/Spawner/Enemies_spawner.tscn" type="PackedScene" id=5]
 
 [node name="Testing_map" type="Node2D"]
+script = ExtResource( 4 )
 
 [node name="Interface" parent="." instance=ExtResource( 1 )]
 
@@ -14,3 +16,12 @@
 [node name="Enemies_spawner" parent="." instance=ExtResource( 5 )]
 
 [node name="Upgrade_shop" parent="." instance=ExtResource( 3 )]
+
+[editable path="Upgrade_shop"]
+[editable path="Upgrade_shop/Main_container/Bottom_container/Shop_main_page"]
+[editable path="Upgrade_shop/Main_container/Bottom_container/Shop_main_page/Left_container/GridContainer/Btn_upgrade_pistol"]
+[editable path="Upgrade_shop/Main_container/Bottom_container/Shop_main_page/Left_container/GridContainer/Btn_upgrade_shotgun"]
+[editable path="Upgrade_shop/Main_container/Bottom_container/Shop_main_page/Left_container/GridContainer/Btn_upgrade_sniper"]
+[editable path="Upgrade_shop/Main_container/Bottom_container/Shop_fixed_container/Money_status"]
+[editable path="Upgrade_shop/Main_container/Bottom_container/Shop_fixed_container/Btn_close"]
+[editable path="Upgrade_shop/Main_container/Bottom_container/Shop_fixed_container/Btn_return"]

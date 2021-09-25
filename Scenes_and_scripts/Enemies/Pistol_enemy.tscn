@@ -34,6 +34,7 @@ tracks/0/keys = {
 
 [node name="Pistol_enemy" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+points = 1
 
 [node name="Sprite" parent="." index="0"]
 position = Vector2( 0, -14 )

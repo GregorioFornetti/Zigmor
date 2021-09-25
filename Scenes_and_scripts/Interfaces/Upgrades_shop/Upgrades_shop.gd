@@ -5,14 +5,16 @@ onready var return_btn = $Main_container/Bottom_container/Shop_fixed_container/B
 onready var main_page = $Main_container/Bottom_container/Shop_main_page
 onready var current_page = main_page
 
+func open_shop():
+	$Main_container.visible = true
+	update_money_label()
 
 func update_money_label():
 	var label_money = $Main_container/Bottom_container/Shop_fixed_container/Money_status/Attribute_label
-	label_money.text = Game.Player.get_money()
+	label_money.text = str(Game.Player.get_money())
 
 func return_to_main_page():
 	$Main_container/Top_container/Page_title.text = "Pagina principal"
-	
 	current_page.visible = false
 	main_page.visible = true
 	current_page = main_page
@@ -50,6 +52,10 @@ func _on_Btn_close_pressed():
 
 func _on_Btn_return_pressed():
 	return_to_main_page()
+
+func _on_Btn_quit_pressed():
+	return_to_main_page()
+	close_shop()
 
 func _input(event):
 	if Game.current_status == Game.status.SHOPPING:

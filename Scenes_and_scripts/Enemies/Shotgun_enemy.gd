@@ -8,7 +8,7 @@ export (int) var qnt_bullets
 var current_rotation
 
 func on_ready():
-	set_default_attributes(20, 90, 5, 20)
+	set_default_attributes(20, 90, 5)
 	angle = deg2rad(angle)
 	set_default_range()
 

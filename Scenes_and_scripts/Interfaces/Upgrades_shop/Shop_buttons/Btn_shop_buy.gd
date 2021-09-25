@@ -1,6 +1,11 @@
 extends TextureButton
 
 var qnt_buyed = 0
+onready var status_boxes_container = get_parent().get_parent().get_parent().get_node("Rigth_container/GridContainer")
+
+func disable_btn():
+	$Price.text = "MAXIMIZADO"
+	disabled = true
 
 func get_upgrade_price():
 	pass
@@ -27,7 +32,6 @@ func _on_Btn_shop_buy_pressed():
 		Game.Player.update_money_interface()
 		var shop_main = get_parent().get_parent().get_parent().get_parent().get_parent().get_parent()
 		shop_main.update_money_label()
-
 
 func _ready():
 	update_status_box()
