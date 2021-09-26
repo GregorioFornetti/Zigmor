@@ -206,14 +206,14 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -159.0
+margin_left = -182.0
 margin_top = -62.5
-margin_right = 159.0
+margin_right = 182.0
 margin_bottom = 62.5
 custom_fonts/font = SubResource( 3 )
 text = "Inimigos evoluem devagar
 Hordas de inimigos pequenas
-Preços mais baixos na loja
+Matar inimigos gera mais dinheiro
 A loja pausa o jogo"
 align = 1
 __meta__ = {
@@ -266,7 +266,7 @@ margin_bottom = 62.5
 custom_fonts/font = SubResource( 3 )
 text = "Inimigos evoluem super rapidamente
 Hordas de inimigos imensas
-Preços mais caros na loja
+Matar inimigos gera menos dinheiro
 A loja NÃO pausa o jogo"
 align = 1
 __meta__ = {

@@ -7,4 +7,4 @@
 script = ExtResource( 2 )
 
 [node name="Title" parent="." index="0"]
-text = "Dano [1]"
+text = "Dano"

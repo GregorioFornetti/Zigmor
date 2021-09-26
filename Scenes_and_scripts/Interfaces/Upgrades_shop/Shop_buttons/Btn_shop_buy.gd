@@ -1,7 +1,7 @@
 extends TextureButton
 
 var qnt_buyed = 0
-onready var status_boxes_container = get_parent().get_parent().get_parent().get_node("Rigth_container/GridContainer")
+onready var status_boxes_container = get_parent().get_parent().get_parent().get_node("Rigth_container/Status_boxes_container")
 
 func disable_btn():
 	$Price.text = "MAXIMIZADO"

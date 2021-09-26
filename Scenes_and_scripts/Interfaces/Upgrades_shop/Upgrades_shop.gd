@@ -57,12 +57,66 @@ func _on_Btn_quit_pressed():
 	return_to_main_page()
 	close_shop()
 
+
+func _ready():
+	# Adicionando um texto de ajuda em cada botão da loja com a tecla
+	# que pode ser apertada para fazer o mesmo que clicar naquele botão
+	# EX: Fechar [0] -> 0 é a tecla padrão para fechar/voltar na loja
+	
+	var b_container = $Main_container/Bottom_container
+	var fixed_container = b_container.get_node("Shop_fixed_container")
+	
+	# Adicionando a ajuda nos botões de fechar e voltar da loja
+	var btn_close = b_container.get_node("Shop_fixed_container/Btn_close")
+	var btn_return = b_container.get_node("Shop_fixed_container/Btn_return")
+	var close_and_return_key = OS.get_scancode_string(InputMap.get_action_list("0_shop_select")[0].scancode)
+	btn_close.get_node("Label").text += to_helper_str(close_and_return_key)
+	btn_return.get_node("Label").text += to_helper_str(close_and_return_key)
+	
+	# Adicionando a ajuda no restante dos botões da loja
+	for page in b_container.get_children():
+		if page != fixed_container:
+			var btns_container = page.get_node("Left_container/Shop_btns_container")
+			for i in range(btns_container.get_child_count()):
+				var btn = btns_container.get_child(i)
+				var help_text = to_helper_str(OS.get_scancode_string( \
+					InputMap.get_action_list(str(i+1) + "_shop_select")[0].scancode))
+				btn.get_node("Title").text += help_text
+
+func to_helper_str(key):
+	return " [" + key + "]" 
+
+
 func _input(event):
-	if Game.current_status == Game.status.SHOPPING:
-		if event.get_action_strength("0_shop_select"):
+	if Game.current_status == Game.status.SHOPPING and event is InputEventKey:
+		if event.is_action_pressed("0_shop_select"):
 			if current_page == main_page:
 				close_shop()
 			else:
 				return_to_main_page()
+		else:
+			var btns_container = current_page.get_node("Left_container/Shop_btns_container")
+			var btn_num = null
+			if event.is_action_pressed("1_shop_select"):
+				btn_num = 0
+			elif event.is_action_pressed("2_shop_select"):
+				btn_num = 1
+			elif event.is_action_pressed("3_shop_select"):
+				btn_num = 2
+			elif event.is_action_pressed("4_shop_select"):
+				btn_num = 3
+			elif event.is_action_pressed("5_shop_select"):
+				btn_num = 4
+			elif event.is_action_pressed("6_shop_select"):
+				btn_num = 5
+			elif event.is_action_pressed("7_shop_select"):
+				btn_num = 6
+			elif event.is_action_pressed("8_shop_select"):
+				btn_num = 7
+			elif event.is_action_pressed("9_shop_select"):
+				btn_num = 8
+			
+			if btn_num != null and btn_num < btns_container.get_child_count():
+				btns_container.get_child(btn_num).emit_signal("pressed")
 
 
