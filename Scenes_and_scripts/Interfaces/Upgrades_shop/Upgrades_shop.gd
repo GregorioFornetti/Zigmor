@@ -33,9 +33,9 @@ func change_page(page_name, page_node):
 	return_btn.visible = true
 
 func close_shop():
-	get_tree().paused = false
 	Game.current_status = Game.status.PLAYING
 	$Main_container.visible = false
+	get_tree().paused = false
 
 
 func _on_Btn_upgrade_pistol_pressed():
@@ -89,7 +89,10 @@ func to_helper_str(key):
 
 func _input(event):
 	if Game.current_status == Game.status.SHOPPING and event is InputEventKey:
-		if event.is_action_pressed("0_shop_select"):
+		if event.is_action_pressed("open_shop"):
+			close_shop()
+			get_tree().set_input_as_handled()
+		elif event.is_action_pressed("0_shop_select"):
 			if current_page == main_page:
 				close_shop()
 			else:

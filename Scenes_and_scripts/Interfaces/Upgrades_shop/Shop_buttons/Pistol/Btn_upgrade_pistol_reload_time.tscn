@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Shop_buttons/Btn_shop_buy.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Shop_buttons/Pistol/Btn_upgrade_pistol_reload_time.gd" type="Script" id=2]
+
+[node name="Btn_upgrade_pistol_reload_time" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="Title" parent="." index="0"]
+text = "Tempo de recarga"

@@ -2,7 +2,7 @@ extends "res://Scenes_and_scripts/Interfaces/Upgrades_shop/Shop_buttons/Btn_shop
 
 
 func get_upgrade_price():
-	return 50 + qnt_buyed * 50
+	return 50 + qnt_buyed * 50 + 5 * int(pow(qnt_buyed, 2))
 
 func make_upgrade():
 	var pistol_damage = Game.Player.attributes[Game.Player.PISTOL].damage
