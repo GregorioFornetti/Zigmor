@@ -16,7 +16,7 @@ var attributes = {
 	"max_health" : 100,
 	"status" : {
 		"health" : 100,
-		"money" : 1000000
+		"money" : 0
 	},
 	PISTOL : {
 		"damage": 5,
@@ -70,7 +70,7 @@ func _ready():
 	update_money_interface()
 
 func _input(event):
-	if not event is InputEventMouseMotion:
+	if not event is InputEventMouseMotion and not Game.current_status == Game.status.SHOPPING:
 		if event.get_action_strength("change_weapon_to_pistol"):
 			change_weapon(PISTOL)
 		elif event.get_action_strength("change_weapon_to_shotgun"):
@@ -89,7 +89,10 @@ func _process(delta):
 	verify_shoot_input()
 
 func verify_shoot_input():
-	if Input.is_action_pressed("shoot"):
+	# É preciso que seja colocado da função _input para que seja possível segurar o botao
+	# de atirar e continuar atirando.
+	# Se for colocado no _input, só atira uma vez se segurar o botão.
+	if not Game.current_status == Game.status.SHOPPING and Input.is_action_pressed("shoot"):
 		if attributes[current_weapon]['status']['qnt_reloaded_bullets'] == 0:
 			reload_current_weapon()
 		elif attributes[current_weapon]['status']['ready_to_shoot'] and not reloading:

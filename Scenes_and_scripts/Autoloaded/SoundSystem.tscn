@@ -2,8 +2,8 @@
 
 [ext_resource path="res://Scenes_and_scripts/Autoloaded/Sound_system.gd" type="Script" id=1]
 
-
 [node name="SoundSystem" type="Node"]
+pause_mode = 2
 script = ExtResource( 1 )
 
 [node name="Music_player" type="AudioStreamPlayer" parent="."]

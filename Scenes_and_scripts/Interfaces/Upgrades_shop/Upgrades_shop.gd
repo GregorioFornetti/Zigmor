@@ -90,6 +90,7 @@ func to_helper_str(key):
 func _input(event):
 	if Game.current_status == Game.status.SHOPPING and event is InputEventKey:
 		if event.is_action_pressed("open_shop"):
+			return_to_main_page()
 			close_shop()
 			get_tree().set_input_as_handled()
 		elif event.is_action_pressed("0_shop_select"):
