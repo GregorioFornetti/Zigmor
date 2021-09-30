@@ -11,9 +11,10 @@ var spawn_points_function
 var spawn_delay_function
 var enemy_money_drop_function
 
+var qnt_enemies_killed = 50
 var current_status = status.MENU
 var current_difficulty
-var current_time = 0  # Game time in seconds
+var current_time = 100  # Game time in seconds
 var Player
 
 
@@ -22,6 +23,7 @@ func _ready():
 
 func start_game(game_difficulty):
 	current_difficulty = game_difficulty
+	qnt_enemies_killed = 0
 	current_time = 0
 	current_status = status.PLAYING
 	
@@ -46,6 +48,8 @@ func _on_Timer_timeout():
 	current_time += 1
 	$Timer.start()
 
+func _on_enemy_death(_enemy):
+	qnt_enemies_killed += 1
 
 
 # Funções modificadoras das dificuldades do jogo:

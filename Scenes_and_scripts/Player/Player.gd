@@ -9,6 +9,7 @@ onready var Pistol_bullet = preload('res://Scenes_and_scripts/Bullets/Pistol_bul
 onready var Shotgun_bullet = preload("res://Scenes_and_scripts/Bullets/Shotgun_bullet.tscn")
 onready var Sniper_bullet = preload("res://Scenes_and_scripts/Bullets/Sniper_bullet.tscn")
 onready var pistol_shoot_sound = preload("res://Sound/Effects/Weapons/player-pistol-shoot.wav")
+onready var death_sound = preload("res://Sound/Effects/Death/player-death.wav")
 
 enum {PISTOL, SHOTGUN, SNIPER}
 var attributes = {
@@ -206,4 +207,8 @@ func increase_money(value):
 	attributes.status.money += value
 
 func die():
-	pass
+	var final_menu = load("res://Scenes_and_scripts/Interfaces/Menus/Final_menu.tscn").instance()
+	get_parent().add_child(final_menu)
+	SoundSystem.play_sound_effect(death_sound)
+	Game.current_status = Game.status.PAUSED
+	get_tree().paused = true

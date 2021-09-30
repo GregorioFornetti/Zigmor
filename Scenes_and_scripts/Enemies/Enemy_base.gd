@@ -6,6 +6,7 @@ onready var healthbar_timer = $HealthBar_timer
 onready var healthbar = $HealthBar
 onready var collision_shape = $CollisionShape2D.shape
 onready var enemy_hit_sound = preload("res://Sound/Effects/Collisions/enemy-hit.wav")
+onready var enemy_death_sound = preload("res://Sound/Effects/Death/enemy-death.wav")
 export (int) var points
 
 signal enemy_spawn(enemy)
@@ -29,6 +30,7 @@ func _ready():
 	
 	connect("enemy_died", enemies_spawner, "_on_enemy_death", [self])
 	connect("enemy_died", interface, "_on_enemy_death", [self])
+	connect("enemy_died", Game, "_on_enemy_death", [self])
 	
 	emit_signal("enemy_spawn")
 	
@@ -50,6 +52,7 @@ func die():
 	Player.attributes["status"]['money'] += Game.get_enemy_monmey_drop(points)
 	var interface = get_parent().get_node("Interface")
 	interface.update_money(Player.attributes["status"]['money'])
+	SoundSystem.play_sound_effect(enemy_death_sound)
 	emit_signal("enemy_died")
 	queue_free()
 

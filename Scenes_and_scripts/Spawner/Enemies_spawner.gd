@@ -50,7 +50,6 @@ func _ready():
 		# caro de spawnar atualmente (mais caro que da para "gastar" com os "current points".
 		possible_ranges_array.append(current_max_range - 1)
 	possible_ranges_array.append(len(enemies) - 1)
-	
 	spawn_enemies()
 
 func _process(_delta):
