@@ -1,8 +1,8 @@
 extends Node2D
 
-const SPAWN_WIDTH = 6000  # Largura a partir do player para spawn de inimigos (player centralizado)
-const SPAWN_HEIGHT = 3500  # Altura a partir do player para spawn de inimigos (player centralizado)
-const EXTRA_SPACE = 100  # Inimigos não podem spawnar no campo de visão do player + EXTRA_SPACE
+const SPAWN_WIDTH = 5500  # Largura a partir do player para spawn de inimigos (player centralizado)
+const SPAWN_HEIGHT = 3250  # Altura a partir do player para spawn de inimigos (player centralizado)
+const EXTRA_SPACE = 150  # Inimigos não podem spawnar no campo de visão do player + EXTRA_SPACE
 
 onready var enemies = [  # Definir os enemy points (dificuldade) de cada no export var de cada inimigo
 	{   # Pistol enemy (policial com pistola)
@@ -53,6 +53,9 @@ func _ready():
 	
 	spawn_enemies()
 
+func _process(_delta):
+	position = player.global_position
+
 func _on_Timer_timeout():
 	spawn_enemies()
 	$Timer.start(Game.get_spawn_delay())
@@ -84,7 +87,6 @@ func get_random_position(enemy_colision_shape):
 	# e altura definidos pelas constantes no começo do código.
 	# A posição retornada precisa estar livre (sem nenhum objeto com colisão nela)
 	
-	position = player.position  # atualizar a posição do spawn blocker
 	var space_state = get_world_2d().direct_space_state
 	
 	while true: # Enquanto a posição aleatória não for livre, irá ficar sorteando uma nova.

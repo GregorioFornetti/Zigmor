@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Buttons/Btn_md.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Menus/Pause_menu.gd" type="Script" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 32
+font_data = ExtResource( 2 )
+
+[node name="Pause_menu" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 3 )
+
+[node name="Background" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.780392 )
+
+[node name="Top_container" type="Control" parent="."]
+anchor_right = 1.0
+margin_bottom = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="Top_container"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_fonts/font = SubResource( 1 )
+text = "Jogo pausado"
+align = 1
+valign = 1
+
+[node name="Bottom_container" type="Control" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -500.0
+
+[node name="Btns_container" type="GridContainer" parent="Bottom_container"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -110.0
+margin_right = 100.0
+margin_bottom = 110.0
+custom_constants/vseparation = 50
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Btn_continue" parent="Bottom_container/Btns_container" instance=ExtResource( 1 )]
+margin_right = 200.0
+
+[node name="Label" parent="Bottom_container/Btns_container/Btn_continue" index="0"]
+text = "Continuar partida"
+
+[node name="Btn_options" parent="Bottom_container/Btns_container" instance=ExtResource( 1 )]
+margin_top = 90.0
+margin_right = 200.0
+margin_bottom = 130.0
+
+[node name="Label" parent="Bottom_container/Btns_container/Btn_options" index="0"]
+text = "Opções"
+
+[node name="Btn_close" parent="Bottom_container/Btns_container" instance=ExtResource( 1 )]
+margin_top = 180.0
+margin_right = 200.0
+margin_bottom = 220.0
+
+[node name="Label" parent="Bottom_container/Btns_container/Btn_close" index="0"]
+text = "Sair"
+
+[connection signal="pressed" from="Bottom_container/Btns_container/Btn_continue" to="." method="_on_Btn_continue_pressed"]
+[connection signal="pressed" from="Bottom_container/Btns_container/Btn_options" to="." method="_on_Btn_options_pressed"]
+[connection signal="pressed" from="Bottom_container/Btns_container/Btn_close" to="." method="_on_Btn_close_pressed"]
+
+[editable path="Bottom_container/Btns_container/Btn_continue"]
+[editable path="Bottom_container/Btns_container/Btn_options"]
+[editable path="Bottom_container/Btns_container/Btn_close"]
