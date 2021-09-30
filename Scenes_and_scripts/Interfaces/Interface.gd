@@ -38,7 +38,6 @@ func update_enemies_qnt(enemies_qnt):
 	enemy_label.text = str(enemies_qnt)
 
 func update_money(money):
-	print("OI")
 	money_label.text = "$ " + str(money)
 
 func _on_Timer_1sec_timeout():
