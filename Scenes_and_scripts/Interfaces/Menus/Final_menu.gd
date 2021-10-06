@@ -11,7 +11,11 @@ onready var score_info_list = [
 		"function": funcref(self, "update_time_score")
 	},
 	{
-		"points": get_final_points(Game.qnt_enemies_killed, Game.current_time), 
+		"points": Game.qnt_obstacles_destroyed,
+		"function": funcref(self, "update_obstacle_score")
+	},
+	{
+		"points": get_final_points(Game.qnt_enemies_killed, Game.current_time, Game.qnt_obstacles_destroyed), 
 		"function": funcref(self, "update_final_score")
 	}
 ]
@@ -39,14 +43,18 @@ func get_current_points(points):
 	else:
 		return points
 
-func get_final_points(enemies_killed, time):
-	return int(time * time / 100) + int(time * enemies_killed / 50)
+func get_final_points(enemies_killed, time, obstacles_destroyed):
+	return int(time * time / 100) + int(time * enemies_killed / 50) + \
+		   int(time * obstacles_destroyed / 75)
 
 func update_enemies_killed_score(points):
 	$Bottom_container/GridContainer/Enemys_score_box/Value.text = str(points)
 
 func update_time_score(points):
 	$Bottom_container/GridContainer/Time_score_box/Value.text = GeneralCommands.seconds_to_time_string(points)
+
+func update_obstacle_score(points):
+	$Bottom_container/GridContainer/Obstacles_score_box/Value.text = str(points)
 
 func update_final_score(points):
 	$Bottom_container/GridContainer/Final_score_box/Value.text = str(points)

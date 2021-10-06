@@ -84,12 +84,22 @@ margin_bottom = 158.0
 [node name="Title" parent="Bottom_container/GridContainer/Time_score_box" index="0"]
 text = "Tempo sobrevivido"
 
-[node name="Final_score_box" parent="Bottom_container/GridContainer" instance=ExtResource( 2 )]
+[node name="Obstacles_score_box" parent="Bottom_container/GridContainer" instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_top = 162.0
 margin_right = 600.0
 margin_bottom = 212.0
+
+[node name="Title" parent="Bottom_container/GridContainer/Obstacles_score_box" index="0"]
+text = "Obstáculos destruidos"
+
+[node name="Final_score_box" parent="Bottom_container/GridContainer" instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 216.0
+margin_right = 600.0
+margin_bottom = 266.0
 
 [node name="Title" parent="Bottom_container/GridContainer/Final_score_box" index="0"]
 text = "Pontuação final"
@@ -119,5 +129,6 @@ autostart = true
 [editable path="Bottom_container/GridContainer/Difficulty_box"]
 [editable path="Bottom_container/GridContainer/Enemys_score_box"]
 [editable path="Bottom_container/GridContainer/Time_score_box"]
+[editable path="Bottom_container/GridContainer/Obstacles_score_box"]
 [editable path="Bottom_container/GridContainer/Final_score_box"]
 [editable path="Bottom_container/Btn_return"]

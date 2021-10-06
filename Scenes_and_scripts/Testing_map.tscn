@@ -1,10 +1,16 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Interface.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes_and_scripts/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Upgrades_shop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes_and_scripts/Testing_map.gd" type="Script" id=4]
 [ext_resource path="res://Scenes_and_scripts/Spawner/Enemies_spawner.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes_and_scripts/Obstacles/Trees/Tree_sm.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes_and_scripts/Obstacles/Trees/Tree_md.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes_and_scripts/Obstacles/Trees/Tree_lg.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes_and_scripts/Obstacles/Stones/Stone_sm.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes_and_scripts/Obstacles/Stones/Stone_md.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes_and_scripts/Obstacles/Stones/Stone_lg.tscn" type="PackedScene" id=11]
 
 [node name="Testing_map" type="Node2D"]
 script = ExtResource( 4 )
@@ -16,6 +22,24 @@ script = ExtResource( 4 )
 [node name="Enemies_spawner" parent="." instance=ExtResource( 5 )]
 
 [node name="Upgrade_shop" parent="." instance=ExtResource( 3 )]
+
+[node name="Tree_sm" parent="." instance=ExtResource( 6 )]
+position = Vector2( 284.678, -68.9221 )
+
+[node name="Tree_md" parent="." instance=ExtResource( 7 )]
+position = Vector2( 235.234, 361.092 )
+
+[node name="Tree_lg" parent="." instance=ExtResource( 8 )]
+position = Vector2( 349.106, 100.387 )
+
+[node name="Stone_sm" parent="." instance=ExtResource( 9 )]
+position = Vector2( 305.655, 298.163 )
+
+[node name="Stone_lg" parent="." instance=ExtResource( 11 )]
+position = Vector2( -74.9153, 164.814 )
+
+[node name="Stone_md" parent="." instance=ExtResource( 10 )]
+position = Vector2( 124.359, 196.278 )
 
 [editable path="Upgrade_shop"]
 [editable path="Upgrade_shop/Main_container/Bottom_container/Shop_main_page"]

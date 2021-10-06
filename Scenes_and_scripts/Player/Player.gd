@@ -102,7 +102,7 @@ func verify_shoot_input():
 func move_player(delta):
 	velocity.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	velocity.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	move_and_collide(velocity.normalized() * attributes['speed'] * delta)
+	move_and_slide(velocity.normalized() * attributes['speed'] * delta * 50)
 
 func rotate_player_to_mouse_dir():
 	rotation = (get_global_mouse_position() - global_position).angle() + rotation_fix
@@ -189,8 +189,8 @@ func _on_Reload_timer_timeout():
 	update_weapons_interface()
 
 func _on_Hurtbox_area_entered(area):
-	var enemy = area.get_parent()
-	attributes['status']['health'] -= enemy.get_damage()
+	var enemy_bullet = area.get_parent()
+	attributes['status']['health'] -= enemy_bullet.get_damage()
 	if attributes['status']['health'] <= 0:
 		die()
 	else:
@@ -207,8 +207,10 @@ func increase_money(value):
 	attributes.status.money += value
 
 func die():
-	var final_menu = load("res://Scenes_and_scripts/Interfaces/Menus/Final_menu.tscn").instance()
-	get_parent().add_child(final_menu)
-	SoundSystem.play_sound_effect(death_sound)
-	Game.current_status = Game.status.PAUSED
-	get_tree().paused = true
+	if not is_queued_for_deletion():
+		var final_menu = load("res://Scenes_and_scripts/Interfaces/Menus/Final_menu.tscn").instance()
+		get_parent().add_child(final_menu)
+		SoundSystem.play_sound_effect(death_sound)
+		Game.current_status = Game.status.PAUSED
+		queue_free()
+		get_tree().paused = true

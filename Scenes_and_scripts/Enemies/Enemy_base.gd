@@ -35,6 +35,7 @@ func _ready():
 	emit_signal("enemy_spawn")
 	
 	on_ready()
+	healthbar.max_value = attributes['max_health']
 
 func set_default_attributes(health, speed, damage):
 	attributes['health'] = health
@@ -45,7 +46,6 @@ func set_default_attributes(health, speed, damage):
 func update_healthbar():
 	healthbar.visible = true
 	healthbar.value = attributes['health']
-	healthbar.max_value = attributes['max_health']
 	healthbar_timer.start()
 
 func die():
@@ -65,7 +65,7 @@ func _on_HealthBar_timer_timeout():
 
 func _on_Hurtbox_area_entered(area):
 	var player_bullet = area.get_parent()
-	attributes['health'] -= player_bullet.damage
+	attributes['health'] -= player_bullet.get_damage()
 	SoundSystem.play_sound_effect(enemy_hit_sound)
 	if attributes['health'] <= 0 and not self.is_queued_for_deletion():
 		die()
