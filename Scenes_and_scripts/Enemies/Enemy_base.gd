@@ -19,8 +19,16 @@ func on_process(delta):
 	pass
 
 func _process(delta):
+	update()
+	get_parent().get_node("CollisionShape2D").transform = Transform2D(rotation + PI / 2, global_position + Vector2(0, -50).rotated(rotation))
 	healthbar.set_rotation(-rotation)
 	on_process(delta)
+
+func _draw():
+	#draw_line(Vector2(18.5,0), ((Player.global_position - global_position) + Vector2(18.5,0).rotated(rotation)).rotated(-rotation), ColorN("red"))
+	#draw_line(-Vector2(18.5,0), ((Player.global_position - global_position) - Vector2(18.5,0).rotated(rotation)).rotated(-rotation), ColorN("red")) 
+	draw_line(Vector2(18.5,0), (Vector2(18.5, 0).rotated(rotation) + global_position.direction_to(Player.global_position) * 100).rotated(-rotation),ColorN("red"))
+	draw_line(-Vector2(18.5,0), (-Vector2(18.5, 0).rotated(rotation) + global_position.direction_to(Player.global_position) * 100).rotated(-rotation),ColorN("red"))
 
 func _ready():
 	var enemies_spawner = get_parent().get_node("Enemies_spawner")
@@ -56,8 +64,22 @@ func die():
 	emit_signal("enemy_died")
 	queue_free()
 
+
 func get_damage():
 	return attributes['damage']
+
+func _input(event):
+	if event.is_action_pressed("1_shop_select"):
+		pass
+
+func dodge_obstacles(width, height, distance):
+	# Tenta retornar um vetor de direção de movimento que desvia de obstaculos
+	# OBS: só funciona para colision shapes circulares
+	var space_state = get_world_2d().direct_space_state
+	
+	var query = Physics2DShapeQueryParameters.new()
+	query.collision_layer = 0b00000000000000000000
+	pass
 
 
 func _on_HealthBar_timer_timeout():
