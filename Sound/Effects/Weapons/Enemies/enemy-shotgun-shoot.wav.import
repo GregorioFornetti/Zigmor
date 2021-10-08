@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/enemy-shotgun-shoot.wav-7906b29280be4c6935fab373be8a52ae.sample"
+
+[deps]
+
+source_file="res://Sound/Effects/Weapons/Enemies/enemy-shotgun-shoot.wav"
+dest_files=[ "res://.import/enemy-shotgun-shoot.wav-7906b29280be4c6935fab373be8a52ae.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

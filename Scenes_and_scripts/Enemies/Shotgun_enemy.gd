@@ -1,7 +1,7 @@
 extends "res://Scenes_and_scripts/Enemies/Enemy_shooter_chaser.gd"
 
 onready var shoot_animation = $ShootAnimation
-onready var shotgun_shoot_sound = preload("res://Sound/Effects/Weapons/enemy-shotgun-shoot.wav")
+onready var shotgun_shoot_sound = preload("res://Sound/Effects/Weapons/Enemies/enemy-shotgun-shoot.wav")
 onready var Bullet = preload("res:///Scenes_and_scripts/Bullets/Enemy_shotgun_bullet.tscn")
 export (float) var angle
 export (int) var qnt_bullets

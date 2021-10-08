@@ -11,9 +11,9 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Range" index="0"]
 
-[node name="Timer_shoot" type="Timer" parent="." index="7"]
+[node name="Timer_shoot" type="Timer" parent="." index="6"]
 
-[node name="Weapon_pos" type="Position2D" parent="." index="8"]
+[node name="Weapon_pos" type="Position2D" parent="." index="7"]
 
 [connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
 [connection signal="body_exited" from="Range" to="." method="_on_Range_body_exited"]

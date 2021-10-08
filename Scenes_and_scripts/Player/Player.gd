@@ -1,5 +1,9 @@
 extends KinematicBody2D
 
+const PISTOL_INITIAL_RELOADTIME = 3
+const SHOTGUN_INITIAL_RELOADTIME = 4
+const SNIPER_INITIAL_RELOADTIME = 5
+
 onready var sprite = $Sprite
 onready var shoot_timer = $Shoot_timer
 onready var reload_timer = $Reload_timer
@@ -8,7 +12,14 @@ onready var shoot_animation = $ShootAnimations
 onready var Pistol_bullet = preload('res://Scenes_and_scripts/Bullets/Pistol_bullet.tscn')
 onready var Shotgun_bullet = preload("res://Scenes_and_scripts/Bullets/Shotgun_bullet.tscn")
 onready var Sniper_bullet = preload("res://Scenes_and_scripts/Bullets/Sniper_bullet.tscn")
-onready var pistol_shoot_sound = preload("res://Sound/Effects/Weapons/player-pistol-shoot.wav")
+
+onready var pistol_shoot_sound = preload("res://Sound/Effects/Weapons/Player/Shoot/player-pistol-shoot.wav")
+onready var shotgun_shoot_sound = preload("res://Sound/Effects/Weapons/Player/Shoot/player-shotgun-shoot.wav")
+onready var sniper_shoot_sound = preload("res://Sound/Effects/Weapons/Player/Shoot/player-sniper-shoot.wav")
+onready var pistol_reload_sound = preload("res://Sound/Effects/Weapons/Player/Reload/player-pistol-reload.wav")
+onready var shotgun_reload_sound = preload("res://Sound/Effects/Weapons/Player/Reload/player-shotgun-reload.wav")
+onready var sniper_reload_sound = preload("res://Sound/Effects/Weapons/Player/Reload/player-sniper-reload.wav")
+
 onready var death_sound = preload("res://Sound/Effects/Death/player-death.wav")
 
 enum {PISTOL, SHOTGUN, SNIPER}
@@ -21,7 +32,7 @@ var attributes = {
 	},
 	PISTOL : {
 		"damage": 5,
-		"reload_time": 3,
+		"reload_time": PISTOL_INITIAL_RELOADTIME,
 		"fire_rate": 1,
 		"magazine_capacity": 6,
 		"status" : {
@@ -33,7 +44,7 @@ var attributes = {
 	},
 	SHOTGUN : {
 		"damage": 1,
-		"reload_time": 4,
+		"reload_time": SHOTGUN_INITIAL_RELOADTIME,
 		"fire_rate": 1.5,
 		"magazine_capacity": 2,
 		"status" : {
@@ -45,7 +56,7 @@ var attributes = {
 	},
 	SNIPER : {
 		"damage": 10,
-		"reload_time": 5,
+		"reload_time": SNIPER_INITIAL_RELOADTIME,
 		"fire_rate": 2,
 		"magazine_capacity": 5,
 		"status" : {
@@ -61,6 +72,7 @@ var velocity = Vector2.ZERO
 var rotation_fix = PI / 2
 var current_weapon = PISTOL
 var reloading = false
+var current_reload_effect
 
 
 func _ready():
@@ -131,6 +143,17 @@ func reload_current_weapon():
 	if not reloading and attributes[current_weapon]['status']['qnt_reloaded_bullets'] != attributes[current_weapon]['magazine_capacity'] and attributes[current_weapon]['status']['qnt_total_bullets'] != 0:
 		reloading = true
 		reload_timer.start(attributes[current_weapon]['reload_time'])
+		
+		if current_weapon == PISTOL:
+			current_reload_effect = SoundSystem.play_sound_effect_with_config( \
+			pistol_reload_sound, PISTOL_INITIAL_RELOADTIME / attributes[current_weapon]['reload_time'])
+		elif current_weapon == SHOTGUN:
+			current_reload_effect = SoundSystem.play_sound_effect_with_config( \
+			shotgun_reload_sound, SHOTGUN_INITIAL_RELOADTIME / attributes[current_weapon]['reload_time'])
+		else:
+			current_reload_effect = SoundSystem.play_sound_effect_with_config( \
+			shotgun_reload_sound, SNIPER_INITIAL_RELOADTIME / attributes[current_weapon]['reload_time'])
+
 
 func change_weapon(new_weapon):
 	if new_weapon != current_weapon:
@@ -144,6 +167,9 @@ func change_weapon(new_weapon):
 		reloading = false
 		reload_timer.stop()
 		shoot_animation.stop()
+		if current_reload_effect:
+			current_reload_effect.stop()
+			current_reload_effect = null
 		update_weapons_interface()
 
 func shoot():
@@ -152,9 +178,11 @@ func shoot():
 		SoundSystem.play_sound_effect(pistol_shoot_sound)
 		instantiate_bullet(Pistol_bullet, attributes[current_weapon]['damage'], direction)
 	elif current_weapon == SHOTGUN:
+		SoundSystem.play_sound_effect(shotgun_shoot_sound)
 		for i in range(12):
 			instantiate_bullet(Shotgun_bullet, attributes[current_weapon]['damage'], direction.rotated(rand_range(-PI/12, PI/12)))
 	else:
+		SoundSystem.play_sound_effect(sniper_shoot_sound)
 		instantiate_bullet(Sniper_bullet, attributes[current_weapon]['damage'], direction)
 	
 	shoot_timer.start(attributes[current_weapon]['fire_rate'])

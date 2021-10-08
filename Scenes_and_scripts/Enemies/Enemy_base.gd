@@ -19,16 +19,9 @@ func on_process(delta):
 	pass
 
 func _process(delta):
-	update()
-	get_parent().get_node("CollisionShape2D").transform = Transform2D(rotation + PI / 2, global_position + Vector2(0, -50).rotated(rotation))
 	healthbar.set_rotation(-rotation)
 	on_process(delta)
 
-func _draw():
-	#draw_line(Vector2(18.5,0), ((Player.global_position - global_position) + Vector2(18.5,0).rotated(rotation)).rotated(-rotation), ColorN("red"))
-	#draw_line(-Vector2(18.5,0), ((Player.global_position - global_position) - Vector2(18.5,0).rotated(rotation)).rotated(-rotation), ColorN("red")) 
-	draw_line(Vector2(18.5,0), (Vector2(18.5, 0).rotated(rotation) + global_position.direction_to(Player.global_position) * 100).rotated(-rotation),ColorN("red"))
-	draw_line(-Vector2(18.5,0), (-Vector2(18.5, 0).rotated(rotation) + global_position.direction_to(Player.global_position) * 100).rotated(-rotation),ColorN("red"))
 
 func _ready():
 	var enemies_spawner = get_parent().get_node("Enemies_spawner")
@@ -72,14 +65,38 @@ func _input(event):
 	if event.is_action_pressed("1_shop_select"):
 		pass
 
-func dodge_obstacles(width, height, distance):
-	# Tenta retornar um vetor de direção de movimento que desvia de obstaculos
-	# OBS: só funciona para colision shapes circulares
+func verify_colision(space_state, width, height, angle):
+	# Verifica se há ocorrerá colisão a frente (rotacionado em angle).
+	# width e height estão relacionados ao retângulo de colisão que será criado para verificar
+	# a colisão
+	# Se ocorrer uma colisão, o retorno é true, caso contrário é false.
+	var query = Physics2DShapeQueryParameters.new()
+	query.collision_layer = 0b00000000001000000000
+	var shape = RectangleShape2D.new()
+	shape.extents = Vector2(width, height)
+	query.set_shape(shape)
+	query.transform = Transform2D(rotation + PI / 2 + deg2rad(angle), global_position + Vector2(0, -height).rotated(rotation + deg2rad(angle)))
+	return len(space_state.collide_shape(query, 1)) != 0
+
+func get_angle_to_dodge_obstacles(width, height):
+	# Tenta retornar um angulo para o desvio de obstaculos
+	# Width e heigth estão relacionados aos retângulos de colisão que serão criados
+	# para verificar obstaculos. Width deve ser da largura do inimigo e height
+	# quanto maior for, o inimigo detectará antes o obstaculo
 	var space_state = get_world_2d().direct_space_state
 	
-	var query = Physics2DShapeQueryParameters.new()
-	query.collision_layer = 0b00000000000000000000
-	pass
+	if not verify_colision(space_state, width, height, 0):
+		return 0
+	
+	for angle in range(5, 181, 5):
+		if not verify_colision(space_state, width, height, angle):
+			return angle
+	
+	for angle in range(-5, -181, -5):
+		if not verify_colision(space_state, width, height, angle):
+			return angle
+	
+	return 0
 
 
 func _on_HealthBar_timer_timeout():
