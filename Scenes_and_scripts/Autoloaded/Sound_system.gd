@@ -51,5 +51,4 @@ func mute_in_min(bus_index, current_value, min_value):
 		AudioServer.set_bus_mute(bus_index, false)
 
 func _on_Effect_player_finish(effect_player):
-	print("oi")
 	effect_player.pitch_scale = 1
