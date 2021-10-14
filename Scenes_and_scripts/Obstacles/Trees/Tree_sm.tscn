@@ -10,7 +10,6 @@ radius = 24.75
 radius = 25.7609
 
 [node name="Tree_sm" instance=ExtResource( 2 )]
-collision_layer = 512
 health = 50
 
 [node name="Sprite" parent="." index="0"]

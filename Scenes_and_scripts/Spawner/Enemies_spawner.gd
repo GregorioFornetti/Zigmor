@@ -92,7 +92,7 @@ func get_random_position(enemy_colision_shape):
 		var random_pos = player.position + Vector2(rng.randf_range(-SPAWN_WIDTH/2,SPAWN_WIDTH/2), rng.randf_range(-SPAWN_HEIGHT/2,SPAWN_HEIGHT/2))
 		
 		var query = Physics2DShapeQueryParameters.new()
-		query.collision_layer = 0b00000000000010000111
+		query.collision_layer = 0b00000000001010000111
 		query.collide_with_areas = true
 		query.set_shape(enemy_colision_shape)
 		query.set_transform(Transform2D(0, random_pos))
