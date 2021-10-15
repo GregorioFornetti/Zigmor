@@ -24,7 +24,7 @@ onready var death_sound = preload("res://Sound/Effects/Death/player-death.wav")
 
 enum {PISTOL, SHOTGUN, SNIPER}
 var attributes = {
-	"speed" : 150,
+	"speed" : 1000,
 	"max_health" : 100,
 	"status" : {
 		"health" : 100,

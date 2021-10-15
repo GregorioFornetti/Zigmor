@@ -1,12 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Interface.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes_and_scripts/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Upgrades_shop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes_and_scripts/Testing_map.gd" type="Script" id=4]
 [ext_resource path="res://Scenes_and_scripts/Spawner/Enemies_spawner.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Scenes_and_scripts/Obstacles/Trees/Tree_lg.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Scenes_and_scripts/Map_generation/Chunks/Florest_chunk.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes_and_scripts/Map_generation/Map_generator.tscn" type="PackedScene" id=7]
 
 [node name="Testing_map" type="Node2D"]
 script = ExtResource( 4 )
@@ -19,11 +18,7 @@ script = ExtResource( 4 )
 
 [node name="Enemies_spawner" parent="." instance=ExtResource( 5 )]
 
-[node name="Florest_chunk" parent="." instance=ExtResource( 8 )]
-z_index = -10
-
-[node name="Tree_lg" parent="." instance=ExtResource( 6 )]
-position = Vector2( 500, 0 )
+[node name="Map_generator" parent="." instance=ExtResource( 7 )]
 
 [editable path="Upgrade_shop"]
 [editable path="Upgrade_shop/Main_container/Bottom_container/Shop_main_page"]
