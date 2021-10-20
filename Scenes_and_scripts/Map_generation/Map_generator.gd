@@ -13,6 +13,8 @@ func _process(_delta):
 	create_chunks_if_necessary()
 
 func _draw():
+	var window_size = Vector2(ProjectSettings.get_setting("display/window/size/width"), ProjectSettings.get_setting("display/window/size/height"))
+	draw_rect(Rect2(Game.Player.global_position - window_size / 2, window_size), ColorN("red"), false, 10)
 	for i in range(1, -2, -1):
 		for j in range(1, -2, -1):
 			var x = Game.Player.global_position.x + ProjectSettings.get_setting("display/window/size/width") * 1.5 * i

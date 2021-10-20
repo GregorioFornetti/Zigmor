@@ -70,12 +70,18 @@ func verify_colision(space_state, width, height, angle):
 	# width e height estão relacionados ao retângulo de colisão que será criado para verificar
 	# a colisão
 	# Se ocorrer uma colisão, o retorno é true, caso contrário é false.
+	var teste = get_parent().get_node("TESTE")
+	teste.position = global_position
+	teste.transform = Transform2D(rotation + deg2rad(angle), global_position + Vector2(0, -height).rotated(rotation + deg2rad(angle)))
+	
 	var query = Physics2DShapeQueryParameters.new()
 	query.collision_layer = 0b00000000001000000000
 	var shape = RectangleShape2D.new()
 	shape.extents = Vector2(width, height)
+	teste.shape = shape
 	query.set_shape(shape)
-	query.transform = Transform2D(rotation + PI / 2 + deg2rad(angle), global_position + Vector2(0, -height).rotated(rotation + deg2rad(angle)))
+	query.transform = Transform2D(rotation + deg2rad(angle), global_position + Vector2(0, -height).rotated(rotation + deg2rad(angle)))
+	# Transform2D(rotation + PI / 2 + deg2rad(angle), global_position + Vector2(0, -height).rotated(rotation + deg2rad(angle)))
 	return len(space_state.collide_shape(query, 1)) != 0
 
 func get_angle_to_dodge_obstacles(width, height):
