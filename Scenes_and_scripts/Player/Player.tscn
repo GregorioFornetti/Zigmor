@@ -87,6 +87,9 @@ one_shot = true
 [node name="Reload_timer" type="Timer" parent="."]
 one_shot = true
 
+[node name="Life_regen_timer" type="Timer" parent="."]
+wait_time = 5.0
+
 [node name="ShootAnimations" type="AnimationPlayer" parent="."]
 playback_speed = 5.0
 anims/Pistol = SubResource( 3 )
@@ -99,3 +102,4 @@ current = true
 [connection signal="area_entered" from="Hurtbox" to="." method="_on_Hurtbox_area_entered"]
 [connection signal="timeout" from="Shoot_timer" to="." method="_on_Shoot_timer_timeout"]
 [connection signal="timeout" from="Reload_timer" to="." method="_on_Reload_timer_timeout"]
+[connection signal="timeout" from="Life_regen_timer" to="." method="_on_Life_regen_timer_timeout"]

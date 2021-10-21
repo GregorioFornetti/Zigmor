@@ -8,7 +8,10 @@ export (int) var qnt_bullets
 var current_rotation
 
 func on_ready():
-	set_default_attributes(20, 90, 5)
+	var health = 30 + Game.get_enemies_points() * 6
+	var speed = min(90 + Game.get_enemies_points() * 2, 250)
+	var damage = 4 + int(Game.get_enemies_points() / 2)
+	set_default_attributes(health, speed, damage)
 	angle = deg2rad(angle)
 	set_default_range()
 

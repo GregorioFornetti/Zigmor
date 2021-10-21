@@ -33,7 +33,6 @@ func create_new_chunk_if_necessary(global_x, global_y):
 	for chunk_info in chunks_info_list:
 		if chunk_info["grid_position"] == grid_position:
 			return
-	print("NOVO")
 	create_new_chunk(grid_position)
 	
 func create_new_chunk(grid_position):

@@ -29,9 +29,19 @@ margin_bottom = 180.0
 [node name="Title" parent="Left_container/Shop_btns_container/Btn_upgrade_sniper" index="0"]
 text = "Sniper"
 
+[node name="Btn_upgrade_armor" parent="Left_container/Shop_btns_container" index="3" instance=ExtResource( 3 )]
+margin_left = 250.0
+margin_top = 105.0
+margin_right = 450.0
+margin_bottom = 180.0
+
+[node name="Title" parent="Left_container/Shop_btns_container/Btn_upgrade_armor" index="0"]
+text = "Armadura"
+
 [node name="Sprite" parent="Rigth_container" index="0"]
 texture = ExtResource( 2 )
 
 [editable path="Left_container/Shop_btns_container/Btn_upgrade_pistol"]
 [editable path="Left_container/Shop_btns_container/Btn_upgrade_shotgun"]
 [editable path="Left_container/Shop_btns_container/Btn_upgrade_sniper"]
+[editable path="Left_container/Shop_btns_container/Btn_upgrade_armor"]

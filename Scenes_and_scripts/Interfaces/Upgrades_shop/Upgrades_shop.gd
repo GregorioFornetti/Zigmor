@@ -47,6 +47,9 @@ func _on_Btn_upgrade_shotgun_pressed():
 func _on_Btn_upgrade_sniper_pressed():
 	change_page("Upgrades da sniper", $Main_container/Bottom_container/Shop_sniper_page)
 
+func _on_Btn_upgrade_armor_pressed():
+	change_page("Upgrades da armadura", $Main_container/Bottom_container/Shop_armor_container)
+
 func _on_Btn_close_pressed():
 	close_shop()
 
@@ -122,5 +125,3 @@ func _input(event):
 			
 			if btn_num != null and btn_num < btns_container.get_child_count():
 				btns_container.get_child(btn_num).emit_signal("pressed")
-
-

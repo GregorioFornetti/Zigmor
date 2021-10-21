@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
-const PISTOL_INITIAL_RELOADTIME = 3
-const SHOTGUN_INITIAL_RELOADTIME = 4
-const SNIPER_INITIAL_RELOADTIME = 5
+const PISTOL_INITIAL_SOUND_DURATION = 3.0
+const SHOTGUN_INITIAL_SOUND_DURATION = 4.0
+const SNIPER_INITIAL_SOUND_DURATION = 5.0
 
 onready var sprite = $Sprite
 onready var shoot_timer = $Shoot_timer
@@ -26,14 +26,15 @@ enum {PISTOL, SHOTGUN, SNIPER}
 var attributes = {
 	"speed" : 250,
 	"max_health" : 100,
+	"life_regen": 1,
 	"status" : {
 		"health" : 100,
 		"money" : 0
 	},
 	PISTOL : {
 		"damage": 5,
-		"reload_time": PISTOL_INITIAL_RELOADTIME,
-		"fire_rate": 1,
+		"reload_time": 2,
+		"fire_rate": 0.5,
 		"magazine_capacity": 6,
 		"status" : {
 			"qnt_reloaded_bullets": 6,
@@ -44,8 +45,8 @@ var attributes = {
 	},
 	SHOTGUN : {
 		"damage": 1,
-		"reload_time": SHOTGUN_INITIAL_RELOADTIME,
-		"fire_rate": 1.5,
+		"reload_time": 3,
+		"fire_rate": 1,
 		"magazine_capacity": 2,
 		"status" : {
 			"qnt_reloaded_bullets": 2,
@@ -56,8 +57,8 @@ var attributes = {
 	},
 	SNIPER : {
 		"damage": 10,
-		"reload_time": SNIPER_INITIAL_RELOADTIME,
-		"fire_rate": 2,
+		"reload_time": 3,
+		"fire_rate": 1,
 		"magazine_capacity": 5,
 		"status" : {
 			"qnt_reloaded_bullets": 5,
@@ -146,13 +147,13 @@ func reload_current_weapon():
 		
 		if current_weapon == PISTOL:
 			current_reload_effect = SoundSystem.play_sound_effect_with_config( \
-			pistol_reload_sound, PISTOL_INITIAL_RELOADTIME / attributes[current_weapon]['reload_time'])
+			pistol_reload_sound, PISTOL_INITIAL_SOUND_DURATION / attributes[current_weapon]['reload_time'])
 		elif current_weapon == SHOTGUN:
 			current_reload_effect = SoundSystem.play_sound_effect_with_config( \
-			shotgun_reload_sound, SHOTGUN_INITIAL_RELOADTIME / attributes[current_weapon]['reload_time'])
+			shotgun_reload_sound, SHOTGUN_INITIAL_SOUND_DURATION / attributes[current_weapon]['reload_time'])
 		else:
 			current_reload_effect = SoundSystem.play_sound_effect_with_config( \
-			shotgun_reload_sound, SNIPER_INITIAL_RELOADTIME / attributes[current_weapon]['reload_time'])
+			shotgun_reload_sound, SNIPER_INITIAL_SOUND_DURATION / attributes[current_weapon]['reload_time'])
 
 
 func change_weapon(new_weapon):
@@ -223,6 +224,7 @@ func _on_Hurtbox_area_entered(area):
 		die()
 	else:
 		update_health_interface()
+	$Life_regen_timer.start()
 
 
 func get_money():
@@ -242,3 +244,11 @@ func die():
 		Game.current_status = Game.status.PAUSED
 		queue_free()
 		get_tree().paused = true
+
+
+func _on_Life_regen_timer_timeout():
+	attributes.status.health = min(attributes.status.health + attributes.life_regen, \
+								   attributes.max_health)
+	update_health_interface()
+	if attributes.status.health == attributes.max_health:
+		$Life_regen_timer.stop()

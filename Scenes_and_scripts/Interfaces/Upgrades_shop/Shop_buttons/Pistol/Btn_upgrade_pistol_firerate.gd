@@ -6,7 +6,7 @@ func get_upgrade_price():
 
 func make_upgrade(): 
 	Game.Player.attributes[Game.Player.PISTOL].fire_rate -= 0.05
-	if is_equal_approx(Game.Player.attributes[Game.Player.PISTOL].fire_rate, 0.1):
+	if is_equal_approx(Game.Player.attributes[Game.Player.PISTOL].fire_rate, 0.05):
 		disable_btn()
 
 func update_status_box():

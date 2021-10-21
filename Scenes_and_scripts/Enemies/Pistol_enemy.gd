@@ -6,8 +6,10 @@ onready var pistol_shoot_sound = preload("res://Sound/Effects/Weapons/Enemies/en
 var current_rotation
 
 func on_ready():
-	points = 5
-	set_default_attributes(20, 90, 5)
+	var health = 20 + Game.get_enemies_points() * 4
+	var speed = min(90 + Game.get_enemies_points() * 2, 250)
+	var damage = 5 + Game.get_enemies_points()
+	set_default_attributes(health, speed, damage)
 	set_default_range()
 
 func on_process(delta):

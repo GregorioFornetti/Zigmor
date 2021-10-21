@@ -10,7 +10,6 @@ func shoot():
 
 func movimentation(delta):
 	var dodge_rotation = get_angle_to_dodge_obstacles($CollisionShape2D.shape.radius, 100)
-	print(dodge_rotation)
 	move_and_slide(global_position.direction_to(Player.global_position).rotated(deg2rad(dodge_rotation)) * attributes['speed'] * delta * 50)
 
 func set_default_range():
