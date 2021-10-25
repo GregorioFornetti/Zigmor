@@ -9,7 +9,13 @@ onready var enemies = [  # Definir os enemy points (dificuldade) de cada no expo
 		"enemy": preload("res://Scenes_and_scripts/Enemies/Pistol_enemy.tscn")
 	},
 	{   # Shotgun enemy (policial com shotgun)
-		"enemy": preload("res://Scenes_and_scripts/Enemies/Shotgun_enemy.tscn")
+		"enemy": preload("res://Scenes_and_scripts/Enemies/Shotgun_enemy_police.tscn")
+	},
+	{   # Shotgun upgraded (militar com shotgun)
+		"enemy": preload("res://Scenes_and_scripts/Enemies/Shotgun_enemy_militar.tscn")
+	},
+	{   # Sub-machine-gun enemy (militar com metralhadora)
+		"enemy": preload("res://Scenes_and_scripts/Enemies/Sub_machine_gun_enemy.tscn")
 	}
 ]
 onready var player = get_parent().get_node("Player")

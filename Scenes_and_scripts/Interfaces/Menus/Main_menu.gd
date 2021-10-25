@@ -2,7 +2,6 @@ extends Control
 
 onready var Options_menu = preload("res://Scenes_and_scripts/Interfaces/Menus/Options_menu.tscn")
 
-
 func _on_Btn_play_pressed():
 	get_tree().change_scene("res://Scenes_and_scripts/Interfaces/Menus/Play_menu.tscn")
 

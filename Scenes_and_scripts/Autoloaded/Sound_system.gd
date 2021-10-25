@@ -7,7 +7,6 @@ const MASTER_MIN_VOLUME = -60
 const MUSICS_MIN_VOLUME = -60
 const EFFECTS_MIN_VOLUME = -60
 
-onready var music_player = get_node("Music_player")
 onready var effects_players_list = get_node("Effects_players_list")
 
 func _ready():
@@ -16,7 +15,10 @@ func _ready():
 
 func play_music(music_audio):
 	$Music_player.stream = music_audio
-	music_player.play()
+	$Music_player.play()
+
+func stop_music():
+	$Music_player.stop()
 
 func play_sound_effect(effect_audio):
 	for effect_player in $Effects_players_list.get_children():

@@ -1,6 +1,7 @@
 extends Node
 
 onready var options_path = "user://opcoes.dat"
+onready var Menu_music = preload("res://Sound/Musics/main-menu-music.wav")
 
 func _ready():
 	var file = File.new()
@@ -10,6 +11,7 @@ func _ready():
 		var options = file.get_var()
 		GeneralCommands.apply_resolution(options.resolution)
 		SoundSystem.apply_sound_configurations(options.audio)
+		SoundSystem.play_music(Menu_music)
 	else:
 		file.open(options_path, File.WRITE)
 		file.store_var({

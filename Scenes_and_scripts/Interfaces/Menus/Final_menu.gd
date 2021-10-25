@@ -23,9 +23,11 @@ var stop_updating = false
 onready var current_index = 0
 onready var update = score_info_list[0].function
 onready var points = score_info_list[0].points
+onready var Menu_music = preload("res://Sound/Musics/main-menu-music.wav")
 
 
 func _ready():
+	SoundSystem.play_music(Menu_music)
 	if Game.current_difficulty == Game.difficulties.EASY:
 		$Bottom_container/GridContainer/Difficulty_box/Value.text = "Fácil"
 	elif Game.current_difficulty == Game.difficulties.MEDIUM:

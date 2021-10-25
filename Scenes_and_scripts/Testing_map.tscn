@@ -25,6 +25,7 @@ script = ExtResource( 4 )
 [editable path="Upgrade_shop/Main_container/Bottom_container/Shop_main_page/Left_container/Shop_btns_container/Btn_upgrade_pistol"]
 [editable path="Upgrade_shop/Main_container/Bottom_container/Shop_main_page/Left_container/Shop_btns_container/Btn_upgrade_shotgun"]
 [editable path="Upgrade_shop/Main_container/Bottom_container/Shop_main_page/Left_container/Shop_btns_container/Btn_upgrade_sniper"]
+[editable path="Upgrade_shop/Main_container/Bottom_container/Shop_main_page/Left_container/Shop_btns_container/Btn_upgrade_armor"]
 [editable path="Upgrade_shop/Main_container/Bottom_container/Shop_fixed_container/Money_status"]
 [editable path="Upgrade_shop/Main_container/Bottom_container/Shop_fixed_container/Btn_close"]
 [editable path="Upgrade_shop/Main_container/Bottom_container/Shop_fixed_container/Btn_return"]
