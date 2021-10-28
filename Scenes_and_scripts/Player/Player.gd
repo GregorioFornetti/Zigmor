@@ -22,6 +22,7 @@ onready var sniper_reload_sound = preload("res://Sound/Effects/Weapons/Player/Re
 
 onready var death_sound = preload("res://Sound/Effects/Death/player-death.wav")
 
+enum {DASHING, NORMAL}
 enum {PISTOL, SHOTGUN, SNIPER}
 var attributes = {
 	"speed" : 250,
@@ -29,8 +30,15 @@ var attributes = {
 	"life_regen": 1,
 	"status" : {
 		"health" : 100,
-		"money" : 0
+		"money" : 0,
+		"qnt_available_dashes": 1
 	},
+	
+	"dash": {
+		"qnt_total_dashes": 1,
+		"reload_time": 5
+	},
+	
 	PISTOL : {
 		"damage": 5,
 		"reload_time": 2,
@@ -74,6 +82,8 @@ var rotation_fix = PI / 2
 var current_weapon = PISTOL
 var reloading = false
 var current_reload_effect
+var movement_status = NORMAL
+
 
 
 func _ready():
@@ -94,6 +104,9 @@ func _input(event):
 		
 		if event.get_action_strength("reload_weapon"):
 			reload_current_weapon()
+		
+		if event.get_action_strength("dash"):
+			start_dash()
 
 func _process(delta):
 	move_player(delta)
@@ -113,9 +126,29 @@ func verify_shoot_input():
 			shoot()
 
 func move_player(delta):
-	velocity.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	velocity.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	move_and_slide(velocity.normalized() * attributes['speed'] * delta * 50)
+	if movement_status == NORMAL:
+		velocity.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+		velocity.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+		move_and_slide(velocity.normalized() * attributes['speed'] * delta * 50)
+	
+	else:  #DASHING
+		move_and_slide(velocity.normalized() * (attributes['speed'] * 3) * delta * 50)
+
+func start_dash():
+	if not movement_status == DASHING and attributes.status.qnt_available_dashes > 0:
+		movement_status = DASHING
+		velocity = global_position.direction_to(get_global_mouse_position())
+		$Dash_timer.start()
+
+func _on_Dash_timer_timeout():
+	movement_status = NORMAL
+	attributes.status.qnt_available_dashes -= 1
+	$Dash_reload_timer.start(attributes.dash.reload_time)
+
+func _on_Dash_reload_timer_timeout():
+	attributes.status.qnt_available_dashes += 1
+	if attributes.status.qnt_available_dashes < attributes.dash.qnt_total_dashes:
+		$Dash_reload_timer.start(attributes.dash.reload_time)
 
 func rotate_player_to_mouse_dir():
 	rotation = (get_global_mouse_position() - global_position).angle() + rotation_fix
@@ -218,13 +251,14 @@ func _on_Reload_timer_timeout():
 	update_weapons_interface()
 
 func _on_Hurtbox_area_entered(area):
-	var enemy_bullet = area.get_parent()
-	attributes['status']['health'] -= enemy_bullet.get_damage()
-	if attributes['status']['health'] <= 0:
-		die()
-	else:
-		update_health_interface()
-	$Life_regen_timer.start()
+	if not movement_status == DASHING:
+		var enemy_bullet = area.get_parent()
+		attributes['status']['health'] -= enemy_bullet.get_damage()
+		if attributes['status']['health'] <= 0:
+			die()
+		else:
+			update_health_interface()
+		$Life_regen_timer.start()
 
 
 func get_money():

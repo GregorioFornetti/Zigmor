@@ -104,16 +104,10 @@ func hard_spawn_delay_function(current_time):
 
 
 func easy_enemy_money_drop_function(enemy_points, current_time):
-	var min_money = 5 + int(enemy_points * 10 * current_time / 40)
-	var max_money = 10 + int(enemy_points * 15 * current_time / 40)
-	return rng.randi_range(min_money, max_money)
+	return 10 + int(enemy_points * 15 * current_time / 60)
 
 func medium_enemy_money_drop_function(enemy_points, current_time):
-	var min_money = 3 + int(enemy_points * 7 * current_time / 40)
-	var max_money = 7 + int(enemy_points * 13 * current_time / 40)
-	return rng.randi_range(min_money, max_money)
+	return 10 + int(enemy_points * 13 * current_time / 65)
 
 func hard_enemy_money_drop_function(enemy_points, current_time):
-	var min_money = 2 + int(enemy_points * 5 * current_time / 40)
-	var max_money = 5 + int(enemy_points * 10 * current_time / 40)
-	return rng.randi_range(min_money, max_money)
+	return 10 + int(enemy_points * 10 * current_time / 70)

@@ -38,6 +38,9 @@ func close_shop():
 	get_tree().paused = false
 
 
+func _on_Btn_upgrade_weapons_pressed():
+	change_page("Upgrades gerais das armas", $Main_container/Bottom_container/Shop_weapons_container)
+
 func _on_Btn_upgrade_pistol_pressed():
 	change_page("Upgrades da pistola", $Main_container/Bottom_container/Shop_pistol_page)
 
@@ -49,6 +52,7 @@ func _on_Btn_upgrade_sniper_pressed():
 
 func _on_Btn_upgrade_armor_pressed():
 	change_page("Upgrades da armadura", $Main_container/Bottom_container/Shop_armor_container)
+
 
 func _on_Btn_close_pressed():
 	close_shop()

@@ -1,0 +1,29 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Sprites/Interface/Menu-interface/Upgrade-shop-images/Weapons-image.png" type="Texture" id=1]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Pages/Shop_content_page.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Shop_buttons/Weapons/Btn_upgrade_weapons_damage.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Shop_buttons/Weapons/Btn_upgrade_weapons_firerate.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Shop_buttons/Weapons/Btn_upgrade_weapons_reload_time.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Shop_buttons/Weapons/Btn_upgrade_weapons_magazine_size.tscn" type="PackedScene" id=6]
+
+[node name="Shop_weapons_container" instance=ExtResource( 2 )]
+
+[node name="Btn_upgrade_weapons_damage" parent="Left_container/Shop_btns_container" index="0" instance=ExtResource( 3 )]
+
+[node name="Btn_upgrade_weapons_firerate" parent="Left_container/Shop_btns_container" index="1" instance=ExtResource( 4 )]
+margin_left = 250.0
+margin_right = 450.0
+
+[node name="Btn_upgrade_weapons_reload_time" parent="Left_container/Shop_btns_container" index="2" instance=ExtResource( 5 )]
+margin_top = 105.0
+margin_bottom = 180.0
+
+[node name="Btn_upgrade_weapons_magazine_size" parent="Left_container/Shop_btns_container" index="3" instance=ExtResource( 6 )]
+margin_left = 250.0
+margin_top = 105.0
+margin_right = 450.0
+margin_bottom = 180.0
+
+[node name="Sprite" parent="Rigth_container" index="0"]
+texture = ExtResource( 1 )
