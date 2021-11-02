@@ -9,6 +9,7 @@ onready var shoot_timer = $Shoot_timer
 onready var reload_timer = $Reload_timer
 onready var Interface = get_parent().get_node("Interface")
 onready var shoot_animation = $ShootAnimations
+onready var dash_reload_timer = $Dash_reload_timer
 onready var Pistol_bullet = preload('res://Scenes_and_scripts/Bullets/Pistol_bullet.tscn')
 onready var Shotgun_bullet = preload("res://Scenes_and_scripts/Bullets/Shotgun_bullet.tscn")
 onready var Sniper_bullet = preload("res://Scenes_and_scripts/Bullets/Sniper_bullet.tscn")
@@ -112,6 +113,7 @@ func _process(delta):
 	move_player(delta)
 	rotate_player_to_mouse_dir()
 	update_weaponReloading_interface()
+	update_dash_interface()
 	
 	verify_shoot_input()
 
@@ -143,12 +145,14 @@ func start_dash():
 func _on_Dash_timer_timeout():
 	movement_status = NORMAL
 	attributes.status.qnt_available_dashes -= 1
-	$Dash_reload_timer.start(attributes.dash.reload_time)
+	if dash_reload_timer.time_left == 0:
+		$Dash_reload_timer.start(attributes.dash.reload_time)
 
 func _on_Dash_reload_timer_timeout():
 	attributes.status.qnt_available_dashes += 1
 	if attributes.status.qnt_available_dashes < attributes.dash.qnt_total_dashes:
 		$Dash_reload_timer.start(attributes.dash.reload_time)
+	
 
 func rotate_player_to_mouse_dir():
 	rotation = (get_global_mouse_position() - global_position).angle() + rotation_fix
@@ -164,6 +168,11 @@ func update_weaponReloading_interface():
 
 func update_money_interface():
 	Interface.update_money(attributes.status.money)
+
+func update_dash_interface():
+	Interface.update_dash_box(attributes.dash.reload_time - dash_reload_timer.time_left, \
+							  attributes.dash.reload_time, \
+							  attributes.status.qnt_available_dashes)
 
 func update_weapon_animation():
 	if current_weapon == PISTOL:

@@ -39,7 +39,7 @@ func close_shop():
 
 
 func _on_Btn_upgrade_weapons_pressed():
-	change_page("Upgrades gerais das armas", $Main_container/Bottom_container/Shop_weapons_container)
+	change_page("Upgrades gerais das armas", $Main_container/Bottom_container/Shop_weapons_page)
 
 func _on_Btn_upgrade_pistol_pressed():
 	change_page("Upgrades da pistola", $Main_container/Bottom_container/Shop_pistol_page)
@@ -51,7 +51,10 @@ func _on_Btn_upgrade_sniper_pressed():
 	change_page("Upgrades da sniper", $Main_container/Bottom_container/Shop_sniper_page)
 
 func _on_Btn_upgrade_armor_pressed():
-	change_page("Upgrades da armadura", $Main_container/Bottom_container/Shop_armor_container)
+	change_page("Upgrades da armadura", $Main_container/Bottom_container/Shop_armor_page)
+
+func _on_Btn_upgrade_powerup_pressed():
+	change_page("Upgrades de poderes", $Main_container/Bottom_container/Shop_powerup_page)
 
 
 func _on_Btn_close_pressed():
@@ -129,3 +132,4 @@ func _input(event):
 			
 			if btn_num != null and btn_num < btns_container.get_child_count():
 				btns_container.get_child(btn_num).emit_signal("pressed")
+

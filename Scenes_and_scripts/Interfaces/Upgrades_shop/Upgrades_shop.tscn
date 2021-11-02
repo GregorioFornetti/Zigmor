@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Sprites/Interface/Menu-interface/Backgrounds/Upgrades-shop-background.png" type="Texture" id=1]
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Pages/Shop_main_page.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Pages/Shop_armor_container.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Pages/Shop_weapons_page.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Pages/Shop_powerup_page.tscn" type="PackedScene" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -91,7 +92,7 @@ __meta__ = {
 
 [node name="Shop_main_page" parent="Main_container/Bottom_container" instance=ExtResource( 2 )]
 
-[node name="Shop_weapons_container" parent="Main_container/Bottom_container" instance=ExtResource( 12 )]
+[node name="Shop_weapons_page" parent="Main_container/Bottom_container" instance=ExtResource( 12 )]
 visible = false
 
 [node name="Shop_pistol_page" parent="Main_container/Bottom_container" instance=ExtResource( 9 )]
@@ -103,7 +104,10 @@ visible = false
 [node name="Shop_sniper_page" parent="Main_container/Bottom_container" instance=ExtResource( 8 )]
 visible = false
 
-[node name="Shop_armor_container" parent="Main_container/Bottom_container" instance=ExtResource( 11 )]
+[node name="Shop_armor_page" parent="Main_container/Bottom_container" instance=ExtResource( 11 )]
+visible = false
+
+[node name="Shop_powerup_page" parent="Main_container/Bottom_container" instance=ExtResource( 13 )]
 visible = false
 
 [node name="Shop_fixed_container" type="Control" parent="Main_container/Bottom_container"]
@@ -152,6 +156,7 @@ text = "Voltar"
 [connection signal="pressed" from="Main_container/Bottom_container/Shop_main_page/Left_container/Shop_btns_container/Btn_upgrade_shotgun" to="." method="_on_Btn_upgrade_shotgun_pressed"]
 [connection signal="pressed" from="Main_container/Bottom_container/Shop_main_page/Left_container/Shop_btns_container/Btn_upgrade_sniper" to="." method="_on_Btn_upgrade_sniper_pressed"]
 [connection signal="pressed" from="Main_container/Bottom_container/Shop_main_page/Left_container/Shop_btns_container/Btn_upgrade_armor" to="." method="_on_Btn_upgrade_armor_pressed"]
+[connection signal="pressed" from="Main_container/Bottom_container/Shop_main_page/Left_container/Shop_btns_container/Btn_upgrade_powerup" to="." method="_on_Btn_upgrade_powerup_pressed"]
 [connection signal="pressed" from="Main_container/Bottom_container/Shop_fixed_container/Btn_close" to="." method="_on_Btn_close_pressed"]
 [connection signal="pressed" from="Main_container/Bottom_container/Shop_fixed_container/Btn_return" to="." method="_on_Btn_return_pressed"]
 
@@ -161,6 +166,7 @@ text = "Voltar"
 [editable path="Main_container/Bottom_container/Shop_main_page/Left_container/Shop_btns_container/Btn_upgrade_shotgun"]
 [editable path="Main_container/Bottom_container/Shop_main_page/Left_container/Shop_btns_container/Btn_upgrade_sniper"]
 [editable path="Main_container/Bottom_container/Shop_main_page/Left_container/Shop_btns_container/Btn_upgrade_armor"]
+[editable path="Main_container/Bottom_container/Shop_main_page/Left_container/Shop_btns_container/Btn_upgrade_powerup"]
 [editable path="Main_container/Bottom_container/Shop_fixed_container/Money_status"]
 [editable path="Main_container/Bottom_container/Shop_fixed_container/Btn_close"]
 [editable path="Main_container/Bottom_container/Shop_fixed_container/Btn_return"]

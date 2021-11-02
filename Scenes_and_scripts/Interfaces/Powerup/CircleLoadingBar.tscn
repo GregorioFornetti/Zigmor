@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Sprites/Interface/Game-interface/Circular-loading/Rect-test.png" type="Texture" id=1]
+
+[node name="CircleLoadingBar" type="Control"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+margin_right = 24.0
+margin_bottom = 24.0
+max_value = 500.0
+texture_progress = ExtResource( 1 )
+fill_mode = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}

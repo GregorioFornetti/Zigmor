@@ -7,7 +7,7 @@
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Shop_buttons/Weapons/Btn_upgrade_weapons_reload_time.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Shop_buttons/Weapons/Btn_upgrade_weapons_magazine_size.tscn" type="PackedScene" id=6]
 
-[node name="Shop_weapons_container" instance=ExtResource( 2 )]
+[node name="Shop_weapons_page" instance=ExtResource( 2 )]
 
 [node name="Btn_upgrade_weapons_damage" parent="Left_container/Shop_btns_container" index="0" instance=ExtResource( 3 )]
 

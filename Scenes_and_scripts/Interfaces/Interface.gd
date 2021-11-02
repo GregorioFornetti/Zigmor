@@ -8,6 +8,7 @@ onready var reload_bar = $ReloadBar
 onready var time_label = $Top_right_interface/Top_container/Time_box/Time_label
 onready var enemy_label = $Top_right_interface/Top_container/Enemy_box/Enemy_label
 onready var money_label = $Top_right_interface/Center_container/Money_label
+onready var dash_box = $Bottom_interface/Left_interface/DashBox
 var qnt_enemies_alive = 0
 
 func _ready():
@@ -39,6 +40,13 @@ func update_enemies_qnt(enemies_qnt):
 
 func update_money(money):
 	money_label.text = "$ " + str(money)
+
+func update_dash_box(current_time, total_time, stack):
+	var progress_bar = dash_box.get_node("CircleLoadingBar/TextureProgress")
+	
+	dash_box.get_node("Counter").text = str(stack)
+	progress_bar.value = current_time * 100
+	progress_bar.max_value = total_time * 100
 
 func _on_Timer_1sec_timeout():
 	time_label.text = GeneralCommands.seconds_to_time_string(Game.current_time)
