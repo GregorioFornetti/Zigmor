@@ -30,8 +30,8 @@ onready var sniper_power_icon = preload("res://Sprites/Interface/Game-interface/
 
 onready var death_sound = preload("res://Sound/Effects/Death/player-death.wav")
 
-enum {NO_POWER, PISTOL_POWER, SHOTGUN_POWER, SNIPER_POWER}
-enum {DASHING, POWER, NORMAL}
+enum {NO_POWER, PISTOL_POWER, SNIPER_POWER}
+enum {DASHING, NORMAL}
 enum {PISTOL, SHOTGUN, SNIPER}
 
 var attributes = {
@@ -77,6 +77,7 @@ var attributes = {
 			"ready_to_shoot": true
 		},
 		"power" : {
+			"duration": 2,
 			"reload_time": 60
 		}
 	},
@@ -92,7 +93,9 @@ var attributes = {
 			"ready_to_shoot": true
 		},
 		"power" : {
-			"reload_time": 60
+			"reload_time": 60,
+			"duration": 5,
+			"multiplicator": 2
 		}
 	}
 }
@@ -104,6 +107,7 @@ var reloading = false
 var current_reload_effect
 var movement_status = NORMAL
 var power_status = NO_POWER
+var invulnerable = false
 
 
 
@@ -137,13 +141,26 @@ func _input(event):
 			start_dash()
 
 func _process(delta):
+	update()
 	move_player(delta)
 	rotate_player_to_mouse_dir()
 	update_weaponReloading_interface()
 	update_dash_interface()
 	update_weapon_power_interface()
+	verify_sniper_power()
 	
 	verify_shoot_input()
+
+func _draw():
+	if power_status == SNIPER_POWER:
+		var angle = max(PI / 2 * (($Power_duration.time_left - 1) / attributes[SNIPER].power.duration), 0)
+		draw_line($Gun_pos.position, $Gun_pos.position + Vector2(0,-1).rotated(angle) * 1000, ColorN("red"))
+		draw_line($Gun_pos.position, $Gun_pos.position + Vector2(0,-1).rotated(-angle) * 1000, ColorN("red"))
+		draw_line($Gun_pos.position, $Gun_pos.position + Vector2(0,-1).rotated(angle / 2) * 1000, ColorN("red"))
+		draw_line($Gun_pos.position, $Gun_pos.position + Vector2(0,-1).rotated(-angle / 2) * 1000, ColorN("red"))
+	
+	if invulnerable:
+		draw_arc(Vector2.ZERO, 40, 0, 360, 1000, ColorN("blue"))
 
 func verify_shoot_input():
 	# É preciso que seja colocado fora da função _input para que seja possível segurar o botao
@@ -159,7 +176,10 @@ func move_player(delta):
 	if movement_status == NORMAL:
 		velocity.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 		velocity.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-		move_and_slide(velocity.normalized() * attributes['speed'] * delta * 50)
+		if power_status != SNIPER_POWER:
+			move_and_slide(velocity.normalized() * attributes['speed'] * delta * 50)
+		else:
+			move_and_slide(velocity.normalized() * attributes['speed'] * delta * 10)
 	
 	else:  #DASHING
 		move_and_slide(velocity.normalized() * (attributes['speed'] * 3) * delta * 50)
@@ -212,7 +232,7 @@ func update_weapon_power_interface():
 	else:
 		timer = sniper_power_reloadtimer
 	Interface.update_weapon_power_progress_bar(attributes[current_weapon].power.reload_time - timer.time_left,
-											  attributes[current_weapon].power.reload_time)
+											   attributes[current_weapon].power.reload_time)
 
 func update_weapon_animation():
 	if current_weapon == PISTOL:
@@ -284,13 +304,20 @@ func start_power():
 	if power_status == NO_POWER and not reloading:
 		if current_weapon == PISTOL and pistol_power_reloadtimer.time_left == 0:
 			start_pistol_power()
+		elif current_weapon == SNIPER and sniper_power_reloadtimer.time_left == 0:
+			start_sniper_power()
+		elif current_weapon == SHOTGUN and shotgun_power_reloadtimer.time_left == 0:
+			start_shotgun_power()
 
 func _on_Power_duration_timeout():
 	if power_status == PISTOL_POWER:
 		$Pistol_power_shoot_timer.stop()
 		pistol_power_reloadtimer.start(attributes[PISTOL].power.reload_time)
+	if power_status == SNIPER_POWER:
+		shoot_sniper_power()
 		
 	power_status = NO_POWER
+
 
 func start_pistol_power():
 	power_status = PISTOL_POWER
@@ -302,6 +329,44 @@ func start_pistol_power():
 
 func _on_Pistol_power_shoot_timer_timeout():
 	instantiate_bullet(Pistol_bullet, attributes[PISTOL].damage, Vector2(0, -1).rotated(rotation))
+
+
+func start_sniper_power():
+	power_status = SNIPER_POWER
+	$Power_duration.start(attributes[SNIPER].power.duration)
+
+func verify_sniper_power():
+	# O poder da sniper precisa que o jogador segure o botao direito
+	# quando ele soltar o botão, o poder deve soltar
+	# quanto mais segurar, mais forte será (há limite para isso, que é a duração do poder)
+	if power_status == SNIPER_POWER and not Input.is_action_pressed("weapon_special_ability"):
+		shoot_sniper_power()
+		power_status = NO_POWER
+		$Power_duration.stop()
+
+func shoot_sniper_power():
+	var damage = int(attributes[SNIPER].damage * \
+				 ((attributes[SNIPER].power.duration - $Power_duration.time_left + 1) * 3) * \
+				 attributes[SNIPER].power.multiplicator)
+	
+	instantiate_bullet(Sniper_bullet, damage, Vector2(0, -1).rotated(rotation))
+	sniper_power_reloadtimer.start(attributes[SNIPER].power.reload_time)
+
+
+func start_shotgun_power():
+	invulnerable = true
+	shoot_shotgun_power()
+	shotgun_power_reloadtimer.start(attributes[SHOTGUN].power.reload_time)
+	$Invunerability_timer.start(attributes[SHOTGUN].power.duration)
+
+func _on_Invunerability_timer_timeout():
+	invulnerable = false
+
+func shoot_shotgun_power():
+	for angle in range(0, 360, 5):
+		var bullet = Shotgun_bullet.instance()
+		bullet.initialize_bullet(global_position + Vector2(40, 0).rotated(deg2rad(angle)), attributes[SHOTGUN].damage, Vector2(0, -1).rotated(deg2rad(angle)))
+		get_parent().add_child(bullet)
 
 
 func _on_Shoot_timer_timeout():
@@ -324,7 +389,7 @@ func _on_Reload_timer_timeout():
 	update_weapons_interface()
 
 func _on_Hurtbox_area_entered(area):
-	if not movement_status == DASHING:
+	if not movement_status == DASHING and not invulnerable:
 		var enemy_bullet = area.get_parent()
 		attributes['status']['health'] -= enemy_bullet.get_damage()
 		if attributes['status']['health'] <= 0:

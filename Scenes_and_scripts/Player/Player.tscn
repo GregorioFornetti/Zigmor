@@ -99,6 +99,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="Power_duration" type="Timer" parent="."]
+one_shot = true
 
 [node name="Pistol_power_shoot_timer" type="Timer" parent="."]
 
@@ -109,6 +110,9 @@ one_shot = true
 one_shot = true
 
 [node name="Sniper_power_reload_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Invunerability_timer" type="Timer" parent="."]
 one_shot = true
 
 [node name="ShootAnimations" type="AnimationPlayer" parent="."]
@@ -128,3 +132,4 @@ current = true
 [connection signal="timeout" from="Dash_reload_timer" to="." method="_on_Dash_reload_timer_timeout"]
 [connection signal="timeout" from="Power_duration" to="." method="_on_Power_duration_timeout"]
 [connection signal="timeout" from="Pistol_power_shoot_timer" to="." method="_on_Pistol_power_shoot_timer_timeout"]
+[connection signal="timeout" from="Invunerability_timer" to="." method="_on_Invunerability_timer_timeout"]
