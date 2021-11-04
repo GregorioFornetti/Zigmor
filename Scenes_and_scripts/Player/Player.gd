@@ -10,6 +10,9 @@ onready var reload_timer = $Reload_timer
 onready var Interface = get_parent().get_node("Interface")
 onready var shoot_animation = $ShootAnimations
 onready var dash_reload_timer = $Dash_reload_timer
+onready var pistol_power_reloadtimer = $Pistol_power_reload_timer
+onready var shotgun_power_reloadtimer = $Shotgun_power_reload_timer
+onready var sniper_power_reloadtimer = $Sniper_power_reload_timer
 onready var Pistol_bullet = preload('res://Scenes_and_scripts/Bullets/Pistol_bullet.tscn')
 onready var Shotgun_bullet = preload("res://Scenes_and_scripts/Bullets/Shotgun_bullet.tscn")
 onready var Sniper_bullet = preload("res://Scenes_and_scripts/Bullets/Sniper_bullet.tscn")
@@ -21,10 +24,16 @@ onready var pistol_reload_sound = preload("res://Sound/Effects/Weapons/Player/Re
 onready var shotgun_reload_sound = preload("res://Sound/Effects/Weapons/Player/Reload/player-shotgun-reload.wav")
 onready var sniper_reload_sound = preload("res://Sound/Effects/Weapons/Player/Reload/player-sniper-reload.wav")
 
+onready var pistol_power_icon = preload("res://Sprites/Interface/Game-interface/Pistol-power-icon.png")
+onready var shotgun_power_icon = preload("res://Sprites/Interface/Game-interface/Shotgun-power-icon.png")
+onready var sniper_power_icon = preload("res://Sprites/Interface/Game-interface/Sniper-power-icon.png")
+
 onready var death_sound = preload("res://Sound/Effects/Death/player-death.wav")
 
-enum {DASHING, NORMAL}
+enum {NO_POWER, PISTOL_POWER, SHOTGUN_POWER, SNIPER_POWER}
+enum {DASHING, POWER, NORMAL}
 enum {PISTOL, SHOTGUN, SNIPER}
+
 var attributes = {
 	"speed" : 250,
 	"max_health" : 100,
@@ -50,6 +59,10 @@ var attributes = {
 			"qnt_total_bullets" : -1,  # numero negativo de balas representa que é infinito.
 			"time_left": 0,
 			"ready_to_shoot": true
+		},
+		"power" : {
+			"duration" : 5,
+			"reload_time": 60
 		}
 	},
 	SHOTGUN : {
@@ -62,6 +75,9 @@ var attributes = {
 			"qnt_total_bullets" : 10,
 			"time_left": 0,
 			"ready_to_shoot": true
+		},
+		"power" : {
+			"reload_time": 60
 		}
 	},
 	SNIPER : {
@@ -74,6 +90,9 @@ var attributes = {
 			"qnt_total_bullets" : 20,
 			"time_left": 0,
 			"ready_to_shoot": true
+		},
+		"power" : {
+			"reload_time": 60
 		}
 	}
 }
@@ -84,6 +103,7 @@ var current_weapon = PISTOL
 var reloading = false
 var current_reload_effect
 var movement_status = NORMAL
+var power_status = NO_POWER
 
 
 
@@ -96,15 +116,22 @@ func _ready():
 
 func _input(event):
 	if not event is InputEventMouseMotion and not Game.current_status == Game.status.SHOPPING:
-		if event.get_action_strength("change_weapon_to_pistol"):
-			change_weapon(PISTOL)
-		elif event.get_action_strength("change_weapon_to_shotgun"):
-			change_weapon(SHOTGUN)
-		elif event.get_action_strength("change_weapon_to_sniper"):
-			change_weapon(SNIPER)
+		if power_status == NO_POWER:
+			if event.get_action_strength("change_weapon_to_pistol"):
+				Interface.update_weapon_power_icon(pistol_power_icon)
+				change_weapon(PISTOL)
+			elif event.get_action_strength("change_weapon_to_shotgun"):
+				Interface.update_weapon_power_icon(shotgun_power_icon)
+				change_weapon(SHOTGUN)
+			elif event.get_action_strength("change_weapon_to_sniper"):
+				Interface.update_weapon_power_icon(sniper_power_icon)
+				change_weapon(SNIPER)
 		
 		if event.get_action_strength("reload_weapon"):
 			reload_current_weapon()
+		
+		if event.get_action_strength("weapon_special_ability"):
+			start_power()
 		
 		if event.get_action_strength("dash"):
 			start_dash()
@@ -114,14 +141,15 @@ func _process(delta):
 	rotate_player_to_mouse_dir()
 	update_weaponReloading_interface()
 	update_dash_interface()
+	update_weapon_power_interface()
 	
 	verify_shoot_input()
 
 func verify_shoot_input():
-	# É preciso que seja colocado da função _input para que seja possível segurar o botao
+	# É preciso que seja colocado fora da função _input para que seja possível segurar o botao
 	# de atirar e continuar atirando.
 	# Se for colocado no _input, só atira uma vez se segurar o botão.
-	if not Game.current_status == Game.status.SHOPPING and Input.is_action_pressed("shoot"):
+	if not Game.current_status == Game.status.SHOPPING and power_status == NO_POWER and Input.is_action_pressed("shoot"):
 		if attributes[current_weapon]['status']['qnt_reloaded_bullets'] == 0:
 			reload_current_weapon()
 		elif attributes[current_weapon]['status']['ready_to_shoot'] and not reloading:
@@ -155,7 +183,8 @@ func _on_Dash_reload_timer_timeout():
 	
 
 func rotate_player_to_mouse_dir():
-	rotation = (get_global_mouse_position() - global_position).angle() + rotation_fix
+	if power_status != PISTOL_POWER:
+		rotation = (get_global_mouse_position() - global_position).angle() + rotation_fix
 
 func update_weapons_interface():
 	Interface.update_weaponAndAmmo(current_weapon, attributes[current_weapon]['status']['qnt_reloaded_bullets'], attributes[current_weapon]['status']['qnt_total_bullets'])
@@ -170,9 +199,20 @@ func update_money_interface():
 	Interface.update_money(attributes.status.money)
 
 func update_dash_interface():
-	Interface.update_dash_box(attributes.dash.reload_time - dash_reload_timer.time_left, \
-							  attributes.dash.reload_time, \
+	Interface.update_dash_box(attributes.dash.reload_time - dash_reload_timer.time_left, 
+							  attributes.dash.reload_time, 
 							  attributes.status.qnt_available_dashes)
+
+func update_weapon_power_interface():
+	var timer
+	if current_weapon == PISTOL:
+		timer = pistol_power_reloadtimer
+	elif current_weapon == SHOTGUN:
+		timer = shotgun_power_reloadtimer
+	else:
+		timer = sniper_power_reloadtimer
+	Interface.update_weapon_power_progress_bar(attributes[current_weapon].power.reload_time - timer.time_left,
+											  attributes[current_weapon].power.reload_time)
 
 func update_weapon_animation():
 	if current_weapon == PISTOL:
@@ -183,7 +223,7 @@ func update_weapon_animation():
 		shoot_animation.play("Sniper")
 
 func reload_current_weapon():
-	if not reloading and attributes[current_weapon]['status']['qnt_reloaded_bullets'] != attributes[current_weapon]['magazine_capacity'] and attributes[current_weapon]['status']['qnt_total_bullets'] != 0:
+	if not reloading and power_status == NO_POWER and attributes[current_weapon]['status']['qnt_reloaded_bullets'] != attributes[current_weapon]['magazine_capacity'] and attributes[current_weapon]['status']['qnt_total_bullets'] != 0:
 		reloading = true
 		reload_timer.start(attributes[current_weapon]['reload_time'])
 		
@@ -238,6 +278,30 @@ func instantiate_bullet(bullet_type, damage, direction):
 	var bullet = bullet_type.instance()
 	bullet.initialize_bullet($Gun_pos.global_position, damage, direction)
 	get_parent().add_child(bullet)
+
+
+func start_power():
+	if power_status == NO_POWER and not reloading:
+		if current_weapon == PISTOL and pistol_power_reloadtimer.time_left == 0:
+			start_pistol_power()
+
+func _on_Power_duration_timeout():
+	if power_status == PISTOL_POWER:
+		$Pistol_power_shoot_timer.stop()
+		pistol_power_reloadtimer.start(attributes[PISTOL].power.reload_time)
+		
+	power_status = NO_POWER
+
+func start_pistol_power():
+	power_status = PISTOL_POWER
+	$Power_duration.start(attributes[PISTOL].power.duration)
+	if attributes[PISTOL].fire_rate <= 0.25:
+		$Pistol_power_shoot_timer.start(attributes[PISTOL].fire_rate / 2)
+	else:
+		$Pistol_power_shoot_timer.start(attributes[PISTOL].fire_rate / 4)
+
+func _on_Pistol_power_shoot_timer_timeout():
+	instantiate_bullet(Pistol_bullet, attributes[PISTOL].damage, Vector2(0, -1).rotated(rotation))
 
 
 func _on_Shoot_timer_timeout():
@@ -295,3 +359,4 @@ func _on_Life_regen_timer_timeout():
 	update_health_interface()
 	if attributes.status.health == attributes.max_health:
 		$Life_regen_timer.stop()
+

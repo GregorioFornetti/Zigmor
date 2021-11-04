@@ -98,6 +98,19 @@ one_shot = true
 wait_time = 5.0
 one_shot = true
 
+[node name="Power_duration" type="Timer" parent="."]
+
+[node name="Pistol_power_shoot_timer" type="Timer" parent="."]
+
+[node name="Pistol_power_reload_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Shotgun_power_reload_timer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Sniper_power_reload_timer" type="Timer" parent="."]
+one_shot = true
+
 [node name="ShootAnimations" type="AnimationPlayer" parent="."]
 playback_speed = 5.0
 anims/Pistol = SubResource( 3 )
@@ -113,3 +126,5 @@ current = true
 [connection signal="timeout" from="Life_regen_timer" to="." method="_on_Life_regen_timer_timeout"]
 [connection signal="timeout" from="Dash_timer" to="." method="_on_Dash_timer_timeout"]
 [connection signal="timeout" from="Dash_reload_timer" to="." method="_on_Dash_reload_timer_timeout"]
+[connection signal="timeout" from="Power_duration" to="." method="_on_Power_duration_timeout"]
+[connection signal="timeout" from="Pistol_power_shoot_timer" to="." method="_on_Pistol_power_shoot_timer_timeout"]
