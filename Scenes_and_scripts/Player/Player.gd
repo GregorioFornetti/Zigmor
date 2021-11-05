@@ -16,6 +16,9 @@ onready var sniper_power_reloadtimer = $Sniper_power_reload_timer
 onready var Pistol_bullet = preload('res://Scenes_and_scripts/Bullets/Pistol_bullet.tscn')
 onready var Shotgun_bullet = preload("res://Scenes_and_scripts/Bullets/Shotgun_bullet.tscn")
 onready var Sniper_bullet = preload("res://Scenes_and_scripts/Bullets/Sniper_bullet.tscn")
+onready var Pistol_power_bullet = preload("res://Scenes_and_scripts/Bullets/Pistol_power_bullet.tscn")
+onready var Shotgun_power_bullet = preload("res://Scenes_and_scripts/Bullets/Shotgun_power_bullet.tscn")
+onready var Sniper_power_bullet = preload("res://Scenes_and_scripts/Bullets/Sniper_power_bullet.tscn")
 
 onready var pistol_shoot_sound = preload("res://Sound/Effects/Weapons/Player/Shoot/player-pistol-shoot.wav")
 onready var shotgun_shoot_sound = preload("res://Sound/Effects/Weapons/Player/Shoot/player-shotgun-shoot.wav")
@@ -328,7 +331,7 @@ func start_pistol_power():
 		$Pistol_power_shoot_timer.start(attributes[PISTOL].fire_rate / 4)
 
 func _on_Pistol_power_shoot_timer_timeout():
-	instantiate_bullet(Pistol_bullet, attributes[PISTOL].damage, Vector2(0, -1).rotated(rotation))
+	instantiate_bullet(Pistol_power_bullet, attributes[PISTOL].damage, Vector2(0, -1).rotated(rotation))
 
 
 func start_sniper_power():
@@ -349,7 +352,7 @@ func shoot_sniper_power():
 				 ((attributes[SNIPER].power.duration - $Power_duration.time_left + 1) * 3) * \
 				 attributes[SNIPER].power.multiplicator)
 	
-	instantiate_bullet(Sniper_bullet, damage, Vector2(0, -1).rotated(rotation))
+	instantiate_bullet(Sniper_power_bullet, damage, Vector2(0, -1).rotated(rotation))
 	sniper_power_reloadtimer.start(attributes[SNIPER].power.reload_time)
 
 
@@ -364,7 +367,7 @@ func _on_Invunerability_timer_timeout():
 
 func shoot_shotgun_power():
 	for angle in range(0, 360, 5):
-		var bullet = Shotgun_bullet.instance()
+		var bullet = Shotgun_power_bullet.instance()
 		bullet.initialize_bullet(global_position + Vector2(40, 0).rotated(deg2rad(angle)), attributes[SHOTGUN].damage, Vector2(0, -1).rotated(deg2rad(angle)))
 		get_parent().add_child(bullet)
 

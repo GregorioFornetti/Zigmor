@@ -8,6 +8,8 @@ onready var collision_shape = $CollisionShape2D.shape
 onready var enemy_hit_sound = preload("res://Sound/Effects/Collisions/enemy-hit.wav")
 onready var enemy_death_sound = preload("res://Sound/Effects/Death/enemy-death.wav")
 export (int) var points
+enum {NORMAL, KNOCKBACK}
+var movement_status = NORMAL
 
 signal enemy_spawn(enemy)
 signal enemy_died(enemy)
@@ -108,8 +110,16 @@ func _on_Hurtbox_area_entered(area):
 	var player_bullet = area.get_parent()
 	attributes['health'] -= player_bullet.get_damage()
 	SoundSystem.play_sound_effect(enemy_hit_sound)
+	
 	if attributes['health'] <= 0 and not self.is_queued_for_deletion():
 		die()
 	else:
 		update_healthbar()
+	
+	if player_bullet.have_knockback:
+		movement_status = KNOCKBACK
+		$Knockback_timer.start()
 
+
+func _on_Knockback_timer_timeout():
+	movement_status = NORMAL

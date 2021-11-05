@@ -3,6 +3,7 @@ extends KinematicBody2D
 export (float) var speed
 export (Texture) var crit_sprite
 export (int) var damage
+export (bool) var have_knockback
 var velocity = Vector2.ZERO
 var attributes
 
