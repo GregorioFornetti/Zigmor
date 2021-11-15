@@ -94,3 +94,12 @@ func save_options():
 		"resolution": selected_resolution_options
 	})
 	file.close()
+
+
+func _on_Btn_controls_pressed():
+	$Bottom_container/Options_content.visible = false
+	$Bottom_container/Controls_content.visible = true
+
+func _on_Btn_return_pressed():
+	$Bottom_container/Options_content.visible = true
+	$Bottom_container/Controls_content.visible = false

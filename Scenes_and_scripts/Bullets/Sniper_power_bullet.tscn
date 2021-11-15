@@ -1,17 +1,17 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://Sprites/Bullets/M-bullet-power.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Bullets/LG-bullet-power.png" type="Texture" id=1]
 [ext_resource path="res://Scenes_and_scripts/Bullets/Bullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sprites/Bullets/M-bullet-crit.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
-radius = 8.58619
+radius = 12.5
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 9.32327
+radius = 12.3497
 
 [node name="Sniper_power_bullet" instance=ExtResource( 2 )]
-speed = 700.0
+speed = 1200.0
 crit_sprite = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]

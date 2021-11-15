@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pause.wav-0174579d73fd283b4ed3f347ad3d7961.sample"
+
+[deps]
+
+source_file="res://Sound/Effects/Interface/pause.wav"
+dest_files=[ "res://.import/pause.wav-0174579d73fd283b4ed3f347ad3d7961.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

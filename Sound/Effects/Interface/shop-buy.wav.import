@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shop-buy.wav-ad141fc1fb834c851cfee0d1666e3110.sample"
+
+[deps]
+
+source_file="res://Sound/Effects/Interface/shop-buy.wav"
+dest_files=[ "res://.import/shop-buy.wav-ad141fc1fb834c851cfee0d1666e3110.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

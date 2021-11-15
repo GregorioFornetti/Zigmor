@@ -98,7 +98,7 @@ var attributes = {
 		"power" : {
 			"reload_time": 60,
 			"duration": 5,
-			"multiplicator": 2
+			"multiplicator": 1
 		}
 	}
 }

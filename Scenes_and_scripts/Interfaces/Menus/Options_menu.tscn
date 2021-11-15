@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Sprites/Interface/Menu-interface/Backgrounds/Options-menu-background.png" type="Texture" id=1]
 [ext_resource path="res://Fonts/Roboto-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Menus/Options_menu.gd" type="Script" id=3]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Control_option.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes_and_scripts/Interfaces/Buttons/Btn_md.tscn" type="PackedScene" id=5]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -14,6 +16,10 @@ font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 32
 font_data = ExtResource( 2 )
 
 [node name="Options_menu" type="Control"]
@@ -85,36 +91,6 @@ __meta__ = {
 [node name="Options_content" type="Control" parent="Bottom_container"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Resolution_box" type="Control" parent="Bottom_container/Options_content"]
-margin_left = 53.4487
-margin_top = 239.607
-margin_right = 150.449
-margin_bottom = 279.607
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="Bottom_container/Options_content/Resolution_box"]
-margin_right = 65.0
-margin_bottom = 14.0
-text = "Resolução"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Res_options" type="OptionButton" parent="Bottom_container/Options_content/Resolution_box"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -47.0
-margin_top = -20.0
-margin_right = 47.0
-text = "Resolução"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -223,8 +199,493 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Resolution_box" type="Control" parent="Bottom_container/Options_content"]
+margin_left = 53.4487
+margin_top = 239.607
+margin_right = 150.449
+margin_bottom = 279.607
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Bottom_container/Options_content/Resolution_box"]
+margin_right = 65.0
+margin_bottom = 14.0
+text = "Resolução"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Res_options" type="OptionButton" parent="Bottom_container/Options_content/Resolution_box"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -47.0
+margin_top = -20.0
+margin_right = 47.0
+text = "Resolução"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Btn_controls" parent="Bottom_container/Options_content" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -179.0
+margin_right = 100.0
+margin_bottom = -139.0
+
+[node name="Label" parent="Bottom_container/Options_content/Btn_controls" index="0"]
+text = "Controles"
+
+[node name="Controls_content" type="Control" parent="Bottom_container"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Bottom_container/Controls_content"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -375.0
+margin_top = 15.0
+margin_right = 399.0
+margin_bottom = 365.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Bottom_container/Controls_content/ScrollContainer"]
+margin_right = 750.0
+margin_bottom = 1290.0
+rect_min_size = Vector2( 750, 0 )
+custom_constants/separation = 20
+
+[node name="In_game_title" type="Control" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer"]
+margin_right = 750.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 0, 60 )
+
+[node name="ColorRect" type="ColorRect" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/In_game_title"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.156863, 0.14902, 0.14902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/In_game_title"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 30 )
+custom_fonts/font = SubResource( 4 )
+text = "Comandos em jogo"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Move_up_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 80.0
+margin_right = 750.0
+margin_bottom = 110.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Move_up_option/Command_box" index="0"]
+text = "Mover para cima:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Move_up_option/Key_box" index="1"]
+text = "W"
+
+[node name="Move_left_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 130.0
+margin_right = 750.0
+margin_bottom = 160.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Move_left_option/Command_box" index="0"]
+text = "Mover para esquerda:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Move_left_option/Key_box" index="1"]
+text = "A"
+
+[node name="Move_down_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 180.0
+margin_right = 750.0
+margin_bottom = 210.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Move_down_option/Command_box" index="0"]
+text = "Mover para baixo:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Move_down_option/Key_box" index="1"]
+text = "S"
+
+[node name="Move_right_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 230.0
+margin_right = 750.0
+margin_bottom = 260.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Move_right_option/Command_box" index="0"]
+text = "Mover para direita:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Move_right_option/Key_box" index="1"]
+text = "D"
+
+[node name="Open_shop_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 280.0
+margin_right = 750.0
+margin_bottom = 310.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Open_shop_option/Command_box" index="0"]
+text = "Abrir loja de upgrades"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Open_shop_option/Key_box" index="1"]
+text = "B"
+
+[node name="Change_to_pistol_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 330.0
+margin_right = 750.0
+margin_bottom = 360.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Change_to_pistol_option/Command_box" index="0"]
+text = "Trocar para pistola:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Change_to_pistol_option/Key_box" index="1"]
+text = "1"
+
+[node name="Change_to_shotgun_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 380.0
+margin_right = 750.0
+margin_bottom = 410.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Change_to_shotgun_option/Command_box" index="0"]
+text = "Trocar para shotgun:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Change_to_shotgun_option/Key_box" index="1"]
+text = "2"
+
+[node name="Change_to_sniper_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 430.0
+margin_right = 750.0
+margin_bottom = 460.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Change_to_sniper_option/Command_box" index="0"]
+text = "Trocar para sniper:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Change_to_sniper_option/Key_box" index="1"]
+text = "3"
+
+[node name="Reload_weapon_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 480.0
+margin_right = 750.0
+margin_bottom = 510.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Reload_weapon_option/Command_box" index="0"]
+text = "Recarregar arma:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Reload_weapon_option/Key_box" index="1"]
+text = "R"
+
+[node name="Shoot_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 530.0
+margin_right = 750.0
+margin_bottom = 560.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Shoot_option/Command_box" index="0"]
+text = "Atirar:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Shoot_option/Key_box" index="1"]
+text = "Botão esquerdo do mouse"
+
+[node name="Weapon_power_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 580.0
+margin_right = 750.0
+margin_bottom = 610.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Weapon_power_option/Command_box" index="0"]
+text = "Usar poder da arma:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Weapon_power_option/Key_box" index="1"]
+text = "Botão direito do mouse"
+
+[node name="Dash_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 630.0
+margin_right = 750.0
+margin_bottom = 660.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Dash_option/Command_box" index="0"]
+text = "Usar dash:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Dash_option/Key_box" index="1"]
+text = "Shift"
+
+[node name="Pause_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 680.0
+margin_right = 750.0
+margin_bottom = 710.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Pause_option/Command_box" index="0"]
+text = "Pausar o jogo:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Pause_option/Key_box" index="1"]
+text = "Esc"
+
+[node name="Shopping_title" type="Control" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer"]
+margin_top = 730.0
+margin_right = 750.0
+margin_bottom = 790.0
+rect_min_size = Vector2( 0, 60 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Shopping_title"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.156863, 0.14902, 0.14902, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Shopping_title"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_min_size = Vector2( 0, 30 )
+custom_fonts/font = SubResource( 4 )
+text = "Comandos na loja"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Back_or_quit_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 810.0
+margin_right = 750.0
+margin_bottom = 840.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Back_or_quit_option/Command_box" index="0"]
+text = "Fechar loja ou voltar pagina:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Back_or_quit_option/Key_box" index="1"]
+text = "0"
+
+[node name="Buy_acess_item1_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 860.0
+margin_right = 750.0
+margin_bottom = 890.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item1_option/Command_box" index="0"]
+text = "Acessar/comprar primeira opção:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item1_option/Key_box" index="1"]
+text = "1"
+
+[node name="Buy_acess_item2_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 910.0
+margin_right = 750.0
+margin_bottom = 940.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item2_option/Command_box" index="0"]
+text = "Acessar/comprar segunda opção:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item2_option/Key_box" index="1"]
+text = "2"
+
+[node name="Buy_acess_item3_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 960.0
+margin_right = 750.0
+margin_bottom = 990.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item3_option/Command_box" index="0"]
+text = "Acessar/comprar terceira opção:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item3_option/Key_box" index="1"]
+text = "3"
+
+[node name="Buy_acess_item4_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 1010.0
+margin_right = 750.0
+margin_bottom = 1040.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item4_option/Command_box" index="0"]
+text = "Acessar/comprar quarta opção:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item4_option/Key_box" index="1"]
+text = "4"
+
+[node name="Buy_acess_item5_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 1060.0
+margin_right = 750.0
+margin_bottom = 1090.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item5_option/Command_box" index="0"]
+text = "Acessar/comprar quinta opção:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item5_option/Key_box" index="1"]
+text = "5"
+
+[node name="Buy_acess_item6_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 1110.0
+margin_right = 750.0
+margin_bottom = 1140.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item6_option/Command_box" index="0"]
+text = "Acessar/comprar sexta opção:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item6_option/Key_box" index="1"]
+text = "6"
+
+[node name="Buy_acess_item7_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 1160.0
+margin_right = 750.0
+margin_bottom = 1190.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item7_option/Command_box" index="0"]
+text = "Acessar/comprar setima opção:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item7_option/Key_box" index="1"]
+text = "7"
+
+[node name="Buy_acess_item8_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 1210.0
+margin_right = 750.0
+margin_bottom = 1240.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item8_option/Command_box" index="0"]
+text = "Acessar/comprar oitava opção:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item8_option/Key_box" index="1"]
+text = "8"
+
+[node name="Close_shop_option" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer" instance=ExtResource( 4 )]
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 1260.0
+margin_right = 750.0
+margin_bottom = 1290.0
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Close_shop_option/Command_box" index="0"]
+text = "Fechar loja:"
+
+[node name="Label" parent="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Close_shop_option/Key_box" index="1"]
+text = "B"
+
+[node name="Btn_return" parent="Bottom_container/Controls_content" instance=ExtResource( 5 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -100.0
+margin_top = -46.0
+margin_right = 100.0
+margin_bottom = -6.0
+
+[node name="Label" parent="Bottom_container/Controls_content/Btn_return" index="0"]
+text = "Voltar"
+
 [connection signal="pressed" from="Top_container/Btn_exit" to="." method="_on_Btn_exit_pressed"]
-[connection signal="item_selected" from="Bottom_container/Options_content/Resolution_box/Res_options" to="." method="_on_Res_options_item_selected"]
 [connection signal="value_changed" from="Bottom_container/Options_content/Audio_box/Volume_box/Master_volume_box/Slider_master_volume" to="." method="_on_Slider_master_volume_value_changed"]
 [connection signal="value_changed" from="Bottom_container/Options_content/Audio_box/Volume_box/Music_volume_box/Slider_music_volume" to="." method="_on_Slider_music_volume_value_changed"]
 [connection signal="value_changed" from="Bottom_container/Options_content/Audio_box/Volume_box/Sfx_volume_box/Slider_sfx_volume" to="." method="_on_Slider_sfx_volume_value_changed"]
+[connection signal="item_selected" from="Bottom_container/Options_content/Resolution_box/Res_options" to="." method="_on_Res_options_item_selected"]
+[connection signal="pressed" from="Bottom_container/Options_content/Btn_controls" to="." method="_on_Btn_controls_pressed"]
+[connection signal="pressed" from="Bottom_container/Controls_content/Btn_return" to="." method="_on_Btn_return_pressed"]
+
+[editable path="Bottom_container/Options_content/Btn_controls"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Move_up_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Move_left_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Move_down_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Move_right_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Open_shop_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Change_to_pistol_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Change_to_shotgun_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Change_to_sniper_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Reload_weapon_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Shoot_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Weapon_power_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Dash_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Pause_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Back_or_quit_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item1_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item2_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item3_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item4_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item5_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item6_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item7_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Buy_acess_item8_option"]
+[editable path="Bottom_container/Controls_content/ScrollContainer/VBoxContainer/Close_shop_option"]
+[editable path="Bottom_container/Controls_content/Btn_return"]

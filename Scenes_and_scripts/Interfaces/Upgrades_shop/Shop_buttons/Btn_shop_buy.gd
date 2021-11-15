@@ -40,6 +40,8 @@ func _on_Btn_shop_buy_pressed():
 			Game.Player.update_money_interface()
 			var shop_main = get_parent().get_parent().get_parent().get_parent().get_parent().get_parent()
 			shop_main.update_money_label()
+			SoundSystem.play_sound_effect(load("res://Sound/Effects/Interface/shop-buy.wav"))
+			
 
 func _ready():
 	update_status_box()
