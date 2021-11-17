@@ -9,3 +9,7 @@ script = ExtResource( 3 )
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 2 )
+
+[node name="HealthBar" parent="." index="3"]
+visible = false
+percent_visible = false

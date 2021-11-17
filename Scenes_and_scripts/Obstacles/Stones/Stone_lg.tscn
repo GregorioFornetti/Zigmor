@@ -7,7 +7,7 @@
 radius = 101.178
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 101.498
+radius = 101.0
 
 [node name="Stone_lg" instance=ExtResource( 2 )]
 health = 300
