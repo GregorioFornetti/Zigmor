@@ -92,11 +92,11 @@ func get_angle_to_dodge_obstacles(width, height):
 	if not verify_colision(space_state, width, height, 0):
 		return 0
 	
-	for angle in range(5, 181, 5):
+	for angle in range(5, 181, 30):
 		if not verify_colision(space_state, width, height, angle):
 			return angle
 	
-	for angle in range(-5, -181, -5):
+	for angle in range(-5, -181, -30):
 		if not verify_colision(space_state, width, height, angle):
 			return angle
 	
