@@ -3,7 +3,6 @@ extends "res://Scenes_and_scripts/Enemies/Enemy_shooter_chaser.gd"
 onready var shoot_animation = $ShootAnimation
 onready var Bullet = preload("res:///Scenes_and_scripts/Bullets/Enemy_pistol_bullet.tscn")
 onready var pistol_shoot_sound = preload("res://Sound/Effects/Weapons/Enemies/enemy-pistol-shoot.wav")
-var current_rotation
 
 func on_ready():
 	pass
