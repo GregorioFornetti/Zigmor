@@ -4,7 +4,7 @@
 [ext_resource path="res://Scenes_and_scripts/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes_and_scripts/Interfaces/Upgrades_shop/Upgrades_shop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes_and_scripts/Testing_map.gd" type="Script" id=4]
-[ext_resource path="res://Scenes_and_scripts/Enemies/Tank.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes_and_scripts/Enemies/Explosive_car.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes_and_scripts/Map_generation/Map_generator.tscn" type="PackedScene" id=7]
 
 [node name="Testing_map" type="Node2D"]
@@ -18,8 +18,8 @@ script = ExtResource( 4 )
 
 [node name="Map_generator" parent="." instance=ExtResource( 7 )]
 
-[node name="Tank" parent="." instance=ExtResource( 5 )]
-position = Vector2( 579.084, 114.035 )
+[node name="Explosive_car" parent="." instance=ExtResource( 5 )]
+position = Vector2( 1009.41, -48.8544 )
 
 [editable path="Upgrade_shop"]
 [editable path="Upgrade_shop/Main_container/Bottom_container/Shop_main_page"]

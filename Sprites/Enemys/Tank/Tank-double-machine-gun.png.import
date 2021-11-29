@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TankT1-body.png-3cc052b043891ebac2458e9617372342.stex"
+path="res://.import/Tank-double-machine-gun.png-8f24ce8059597206d5f7ba13cab23384.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemys/Tank/Tier1/TankT1-body.png"
-dest_files=[ "res://.import/TankT1-body.png-3cc052b043891ebac2458e9617372342.stex" ]
+source_file="res://Sprites/Enemys/Tank/Tank-double-machine-gun.png"
+dest_files=[ "res://.import/Tank-double-machine-gun.png-8f24ce8059597206d5f7ba13cab23384.stex" ]
 
 [params]
 

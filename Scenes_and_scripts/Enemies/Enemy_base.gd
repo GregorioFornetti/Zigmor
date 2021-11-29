@@ -67,7 +67,7 @@ func _input(event):
 	if event.is_action_pressed("1_shop_select"):
 		pass
 
-func verify_colision(space_state, width, height, angle):
+func verify_colision(space_state, width, height, angle, rotate):
 	# Verifica se há ocorrerá colisão a frente (rotacionado em angle).
 	# width e height estão relacionados ao retângulo de colisão que será criado para verificar
 	# a colisão
@@ -78,26 +78,26 @@ func verify_colision(space_state, width, height, angle):
 	var shape = RectangleShape2D.new()
 	shape.extents = Vector2(width, height)
 	query.set_shape(shape)
-	query.transform = Transform2D(rotation + deg2rad(angle), global_position + Vector2(0, -height).rotated(rotation + deg2rad(angle)))
+	query.transform = Transform2D(rotate + deg2rad(angle), global_position + Vector2(0, -height).rotated(rotation + deg2rad(angle)))
 	# Transform2D(rotation + deg2rad(angle), global_position + Vector2(0, -height).rotated(rotation + deg2rad(angle)))
 	return len(space_state.collide_shape(query, 1)) != 0
 
-func get_angle_to_dodge_obstacles(width, height):
+func get_angle_to_dodge_obstacles(width, height, rotate = rotation):
 	# Tenta retornar um angulo para o desvio de obstaculos
 	# Width e heigth estão relacionados aos retângulos de colisão que serão criados
 	# para verificar obstaculos. Width deve ser da largura do inimigo e height
 	# quanto maior for, o inimigo detectará antes o obstaculo
 	var space_state = get_world_2d().direct_space_state
 	
-	if not verify_colision(space_state, width, height, 0):
+	if not verify_colision(space_state, width, height, 0, rotate):
 		return 0
 	
-	for angle in range(5, 181, 5):
-		if not verify_colision(space_state, width, height, angle):
+	for angle in range(5, 91, 5):
+		if not verify_colision(space_state, width, height, angle, rotate):
 			return angle
 	
-	for angle in range(-5, -181, -5):
-		if not verify_colision(space_state, width, height, angle):
+	for angle in range(-5, -91, -5):
+		if not verify_colision(space_state, width, height, angle, rotate):
 			return angle
 	
 	return 0

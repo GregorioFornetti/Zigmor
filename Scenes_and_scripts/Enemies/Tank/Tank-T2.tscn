@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scenes_and_scripts/Enemies/Tank/Tank.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes_and_scripts/Enemies/Tank/Tank_single_machine_gun.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes_and_scripts/Enemies/Tank/Tank-T2.gd" type="Script" id=3]
+
+[node name="Tank_T2" instance=ExtResource( 1 )]
+script = ExtResource( 3 )
+
+[node name="Tank_single_machine_gun" parent="." index="1" instance=ExtResource( 2 )]
+position = Vector2( -37, -41 )
+speed = 10.0
+anticlockwise = true
+max_rotation = 90.0
+shoot_delay = 0.5
+
+[node name="Tank_single_machine_gun2" parent="." index="2" instance=ExtResource( 2 )]
+position = Vector2( 37, -41 )
+speed = 10.0
+max_rotation = 90.0
+shoot_delay = 0.5

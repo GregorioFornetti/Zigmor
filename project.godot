@@ -160,6 +160,7 @@ weapon_special_ability={
 2d_physics/layer_8="Spawn_blocker"
 2d_physics/layer_9="Obstacle_hurtbox"
 2d_physics/layer_10="Obstacle"
+2d_physics/layer_11="Explosion"
 
 [physics]
 

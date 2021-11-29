@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes_and_scripts/Enemies/Tank/Tank.gd" type="Script" id=1]
+[ext_resource path="res://Scenes_and_scripts/Enemies/Enemy_base.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites/Enemys/Tank/Tank-body.png" type="Texture" id=3]
+[ext_resource path="res://Sprites/Enemys/Tank/Tank-head.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 55.4595, 76.9834 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 55.0079, 76.9622 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 55.5246, 70 )
+
+[sub_resource type="RectangleShape2D" id=4]
+
+[sub_resource type="Animation" id=5]
+resource_name = "Shoot"
+tracks/0/type = "value"
+tracks/0/path = NodePath("TankHead:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 3, 0 ]
+}
+
+[node name="Tank" instance=ExtResource( 2 )]
+script = ExtResource( 1 )
+
+[node name="Sprite" parent="." index="0"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 3 )
+
+[node name="TankHead" type="Sprite" parent="." index="1"]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 4 )
+offset = Vector2( 0, -19 )
+vframes = 4
+
+[node name="TankWeaponPosition" type="Position2D" parent="TankHead" index="0"]
+position = Vector2( 0, -44 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="CollisionShape2D" parent="." index="2"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource( 2 )
+
+[node name="ObstacleDetectionArea" type="Area2D" parent="." index="7"]
+collision_layer = 0
+collision_mask = 514
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ObstacleDetectionArea" index="0"]
+position = Vector2( 0, -148 )
+shape = SubResource( 3 )
+
+[node name="Range" type="Area2D" parent="." index="8"]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range" index="0"]
+shape = SubResource( 4 )
+
+[node name="ShootTimer" type="Timer" parent="." index="9"]
+wait_time = 2.0
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="10"]
+playback_speed = 3.5
+anims/Shoot = SubResource( 5 )
+
+[connection signal="body_entered" from="ObstacleDetectionArea" to="." method="_on_ObstacleDetectionArea_body_entered"]
+[connection signal="body_exited" from="ObstacleDetectionArea" to="." method="_on_ObstacleDetectionArea_body_exited"]
+[connection signal="body_entered" from="Range" to="." method="_on_Range_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_Range_body_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

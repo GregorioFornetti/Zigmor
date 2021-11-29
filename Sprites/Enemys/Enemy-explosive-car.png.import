@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/TankT1-head.png-30683912b198a26a7de691c6841edd52.stex"
+path="res://.import/Enemy-explosive-car.png-b86a95ebfaaddf3953c767561a8a87b4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Enemys/Tank/Tier1/TankT1-head.png"
-dest_files=[ "res://.import/TankT1-head.png-30683912b198a26a7de691c6841edd52.stex" ]
+source_file="res://Sprites/Enemys/Enemy-explosive-car.png"
+dest_files=[ "res://.import/Enemy-explosive-car.png-b86a95ebfaaddf3953c767561a8a87b4.stex" ]
 
 [params]
 

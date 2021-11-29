@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Sprites/Enemys/Tank/Tank-double-machine-gun.png" type="Texture" id=1]
+[ext_resource path="res://Scenes_and_scripts/Enemies/Tank/Tank_double_machine_gun.gd" type="Script" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "left_gun_shoot"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 4, 6, 0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "right_gun_shoot"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 5, 7, 0 ]
+}
+
+[node name="Tank_double_machine_gun" type="Node2D"]
+scale = Vector2( 1.5, 1.5 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, -19 )
+hframes = 2
+vframes = 4
+frame = 3
+
+[node name="Left_gun_pos" type="Position2D" parent="."]
+position = Vector2( -8, -48 )
+
+[node name="Right_gun_pos" type="Position2D" parent="."]
+position = Vector2( 8, -48 )
+
+[node name="Shoot_timer" type="Timer" parent="."]
+autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 5.0
+anims/left_gun_shoot = SubResource( 1 )
+anims/right_gun_shoot = SubResource( 2 )
+
+[connection signal="timeout" from="Shoot_timer" to="." method="_on_Shoot_timer_timeout"]

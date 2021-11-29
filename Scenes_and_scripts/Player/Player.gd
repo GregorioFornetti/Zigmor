@@ -393,8 +393,12 @@ func _on_Reload_timer_timeout():
 
 func _on_Hurtbox_area_entered(area):
 	if not movement_status == DASHING and not invulnerable:
-		var enemy_bullet = area.get_parent()
-		attributes['status']['health'] -= enemy_bullet.get_damage()
+		var damage_taken = 0
+		if area.has_method("get_damage"):
+			damage_taken = area.get_damage()
+		else:
+			damage_taken = area.get_parent().get_damage()
+		attributes['status']['health'] -= damage_taken
 		if attributes['status']['health'] <= 0:
 			die()
 		else:

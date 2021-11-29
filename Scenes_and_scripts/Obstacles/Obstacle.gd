@@ -21,13 +21,16 @@ func update_health_bar():
 
 
 func _on_Hurt_box_area_entered(area):
-	var bullet = area.get_parent()
-	health -= bullet.damage
-	SoundSystem.play_sound_effect(hit_sound)
-	if health <= 0:
+	if "Explosion" in area.name:
 		die()
 	else:
-		update_health_bar()
+		var bullet = area.get_parent()
+		health -= bullet.damage
+		SoundSystem.play_sound_effect(hit_sound)
+		if health <= 0:
+			die()
+		else:
+			update_health_bar()
 
 func _on_Timer_timeout():
 	$HealthBar.visible = false
