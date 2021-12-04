@@ -6,7 +6,7 @@ func get_upgrade_price():
 func make_upgrade():
 	Game.Player.attributes[Game.Player.PISTOL].magazine_capacity += 1
 	Game.Player.attributes[Game.Player.SHOTGUN].magazine_capacity += 1
-	Game.Player.attributes[Game.Player.SNIPER].magazine_capacity -= 1
+	Game.Player.attributes[Game.Player.SNIPER].magazine_capacity += 1
 
 func update_all_weapons_status(pistol_status_container, shotgun_status_container, sniper_status_container):
 	var pistol_magazine_size = Game.Player.attributes[Game.Player.PISTOL].magazine_capacity

@@ -379,7 +379,7 @@ func _on_Reload_timer_timeout():
 	reloading = false
 	var bullets_to_reload = attributes[current_weapon]['magazine_capacity'] - attributes[current_weapon]['status']['qnt_reloaded_bullets']
 	
-	if attributes[current_weapon]['status']['qnt_total_bullets'] < 0:
+	if attributes[current_weapon]['status']['qnt_total_bullets'] < 0:  # recarga infinita (pistola)
 		attributes[current_weapon]['status']['qnt_reloaded_bullets'] = attributes[current_weapon]['magazine_capacity']
 		
 	elif attributes[current_weapon]['status']['qnt_total_bullets'] >= bullets_to_reload:

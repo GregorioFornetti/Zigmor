@@ -15,9 +15,9 @@ func _draw():
 		#draw_line($Weapon_pos.position - BULLET_WIDTH, (Player.global_position - BULLET_WIDTH.rotated(rotation) - global_position).rotated(-rotation), ColorN("Red"))
 
 func on_ready():
-	var health = 20 + Game.get_enemies_points() * 4
+	var health = 30 + Game.get_enemies_points() * 2
 	var speed = min(90 + Game.get_enemies_points() * 2, 250)
-	var damage = 5 + Game.get_enemies_points()
+	var damage = 10 + Game.get_enemies_points() * 3
 	set_default_attributes(health, speed, damage)
 
 
@@ -40,9 +40,9 @@ func on_process(delta):
 func is_path_to_player_free():
 	var space_state = get_world_2d().direct_space_state
 	var result1 = space_state.intersect_ray(global_position + BULLET_WIDTH.rotated(rotation),\
-				  Player.global_position + BULLET_WIDTH.rotated(rotation), [self, Player])
+				  Player.global_position + BULLET_WIDTH.rotated(rotation), [self, Player], 0b00000000001000000000)
 	var result2 = space_state.intersect_ray(global_position - BULLET_WIDTH.rotated(rotation),\
-				  Player.global_position - BULLET_WIDTH.rotated(rotation), [self, Player])
+				  Player.global_position - BULLET_WIDTH.rotated(rotation), [self, Player], 0b00000000001000000000)
 	return not result1 and not result2
 
 func _on_Range_body_entered(_body):

@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://Sprites/Bullets/M-bullet.png" type="Texture" id=1]
+[ext_resource path="res://Sprites/Bullets/M-bullet-enemy.png" type="Texture" id=1]
 [ext_resource path="res://Scenes_and_scripts/Bullets/Bullet.tscn" type="PackedScene" id=2]
 
 [sub_resource type="CircleShape2D" id=1]

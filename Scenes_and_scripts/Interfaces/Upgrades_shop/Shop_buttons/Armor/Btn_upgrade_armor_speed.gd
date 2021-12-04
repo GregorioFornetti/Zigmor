@@ -2,7 +2,7 @@ extends "res://Scenes_and_scripts/Interfaces/Upgrades_shop/Shop_buttons/Btn_shop
 
 
 func get_upgrade_price():
-	return 50 + 70 * qnt_buyed
+	return 50 + 100 * qnt_buyed + 5 * int(pow(qnt_buyed, 2))
 
 func make_upgrade():
 	Game.Player.attributes.speed += 10

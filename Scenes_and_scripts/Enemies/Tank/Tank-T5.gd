@@ -1,9 +1,9 @@
 extends "res://Scenes_and_scripts/Enemies/Tank/Tank.gd"
 
 func set_status():
-	var health = 20 + Game.get_enemies_points() * 4
+	var health = 250 + Game.get_enemies_points() * 25
 	var speed = min(90 + Game.get_enemies_points() * 2, 250)
-	var damage = 5 + Game.get_enemies_points()
+	var damage = 10 + int(Game.get_enemies_points() * 1.2)
 	set_default_attributes(health, speed, damage)
 	
 	$Tank_single_machine_gun.damage = damage

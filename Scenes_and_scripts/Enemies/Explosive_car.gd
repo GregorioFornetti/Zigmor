@@ -4,7 +4,7 @@ onready var Explosion = preload("res://Scenes_and_scripts/Explosions/Explosion.t
 const rotation_fix = PI / 2
 
 func on_ready():
-	var health = 20 + Game.get_enemies_points() * 4
+	var health = 20 + Game.get_enemies_points()
 	var speed = min(300 + Game.get_enemies_points() * 5, 800)
 	var damage = 5 + Game.get_enemies_points()
 	set_default_attributes(health, speed, damage)

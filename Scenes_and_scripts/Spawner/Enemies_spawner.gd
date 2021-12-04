@@ -16,6 +16,27 @@ onready var enemies = [  # Definir os enemy points (dificuldade) de cada no expo
 	},
 	{   # Sub-machine-gun enemy (militar com metralhadora)
 		"enemy": preload("res://Scenes_and_scripts/Enemies/Sub_machine_gun_enemy.tscn")
+	},
+	{   # Sniper enemy (militar com sniper)
+		"enemy": preload("res://Scenes_and_scripts/Enemies/Sniper_enemy.tscn")
+	},
+	{   # Explosive car (carro bomba)
+		"enemy": preload("res://Scenes_and_scripts/Enemies/Explosive_car.tscn")
+	},
+	{   # Tank tier 1
+		"enemy": preload("res://Scenes_and_scripts/Enemies/Tank/Tank-T1.tscn")
+	},
+	{   # Tank tier 2
+		"enemy": preload("res://Scenes_and_scripts/Enemies/Tank/Tank-T2.tscn")
+	},
+	{   # Tank tier 3
+		"enemy": preload("res://Scenes_and_scripts/Enemies/Tank/Tank-T3.tscn")
+	},
+	{   # Tank tier 4
+		"enemy": preload("res://Scenes_and_scripts/Enemies/Tank/Tank-T4.tscn")
+	},
+	{   # Tank tier 5
+		"enemy": preload("res://Scenes_and_scripts/Enemies/Tank/Tank-T5.tscn")
 	}
 ]
 onready var player = get_parent().get_node("Player")

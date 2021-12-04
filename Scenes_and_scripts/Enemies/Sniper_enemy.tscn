@@ -31,6 +31,7 @@ tracks/0/keys = {
 
 [node name="Sniper_enemy" instance=ExtResource( 1 )]
 script = ExtResource( 3 )
+points = 5
 
 [node name="Sprite" parent="." index="0"]
 scale = Vector2( 2, 2 )
@@ -47,6 +48,13 @@ position = Vector2( 0, 12 )
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource( 2 )
 
+[node name="HealthBar" parent="." index="3"]
+margin_left = -42.0
+margin_top = -56.0
+margin_right = 42.0
+margin_bottom = -42.0
+rect_pivot_offset = Vector2( 42, 68 )
+
 [node name="Range" parent="." index="4"]
 position = Vector2( 0, 12 )
 
@@ -54,7 +62,7 @@ position = Vector2( 0, 12 )
 shape = SubResource( 3 )
 
 [node name="Timer_shoot" parent="." index="6"]
-wait_time = 3.0
+wait_time = 2.0
 
 [node name="Weapon_pos" parent="." index="7"]
 position = Vector2( 0, -32 )

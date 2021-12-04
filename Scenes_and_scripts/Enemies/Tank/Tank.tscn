@@ -54,6 +54,13 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 shape = SubResource( 2 )
 
+[node name="HealthBar" parent="." index="4"]
+margin_left = -42.0
+margin_top = -7.0
+margin_right = 42.0
+margin_bottom = 7.0
+rect_pivot_offset = Vector2( 42, 7 )
+
 [node name="ObstacleDetectionArea" type="Area2D" parent="." index="7"]
 collision_layer = 0
 collision_mask = 514

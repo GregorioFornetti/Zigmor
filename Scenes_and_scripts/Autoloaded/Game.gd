@@ -104,10 +104,10 @@ func hard_spawn_delay_function(current_time):
 
 
 func easy_enemy_money_drop_function(enemy_points, current_time):
-	return 10 + int(enemy_points * 15 * current_time / 60)
+	return 10 + int(enemy_points * 13 * current_time / 70)
 
 func medium_enemy_money_drop_function(enemy_points, current_time):
-	return 10 + int(enemy_points * 13 * current_time / 65)
+	return 10 + int(enemy_points * 11 * current_time / 70)
 
 func hard_enemy_money_drop_function(enemy_points, current_time):
 	return 10 + int(enemy_points * 10 * current_time / 70)

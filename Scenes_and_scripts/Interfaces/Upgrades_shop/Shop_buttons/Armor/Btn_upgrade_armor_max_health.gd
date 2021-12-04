@@ -2,11 +2,11 @@ extends "res://Scenes_and_scripts/Interfaces/Upgrades_shop/Shop_buttons/Btn_shop
 
 
 func get_upgrade_price():
-	return 30 + qnt_buyed * 40
+	return 30 + qnt_buyed * 20 + 10 * int(pow(qnt_buyed, 2))
 
 func make_upgrade():
 	var max_health = Game.Player.attributes.max_health
-	var incremented_health = int(max_health / 10) + 10
+	var incremented_health = int(max_health * 0.05) + 10
 	Game.Player.attributes.max_health = max_health + incremented_health
 	Game.Player.attributes.status.health += incremented_health
 	Game.Player.update_health_interface()

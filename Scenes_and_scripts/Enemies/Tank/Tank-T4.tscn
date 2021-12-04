@@ -7,6 +7,7 @@
 
 [node name="Tank-T4" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
+points = 15
 
 [node name="Tank_single_machine_gun" parent="." index="1" instance=ExtResource( 3 )]
 position = Vector2( -37, -44 )
