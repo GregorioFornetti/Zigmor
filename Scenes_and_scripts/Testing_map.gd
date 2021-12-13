@@ -11,6 +11,7 @@ func _unhandled_input(event):
 		Game.current_status = Game.status.SHOPPING
 		if Game.current_difficulty != Game.difficulties.HARD:
 			get_tree().paused = true
+			SoundSystem.play_pause_music()
 	
 	if event.is_action_pressed("ui_cancel"):
 		var pause_menu = Pause_menu.instance()
@@ -18,5 +19,5 @@ func _unhandled_input(event):
 		Game.current_status = Game.status.PAUSED
 		get_tree().paused = true
 		SoundSystem.play_sound_effect(Pause_sound)
-		SoundSystem.play_music(Menu_music)
+		SoundSystem.play_pause_music()
 

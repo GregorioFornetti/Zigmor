@@ -10,7 +10,7 @@ radius = 7.98496
 radius = 7.99439
 
 [node name="Bullet" instance=ExtResource( 2 )]
-speed = 500.0
+speed = 425.0
 
 [node name="Sprite" parent="." index="0"]
 texture = ExtResource( 1 )

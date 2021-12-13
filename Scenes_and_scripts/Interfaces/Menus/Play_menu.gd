@@ -57,6 +57,5 @@ func _on_Btn_return_pressed():
 
 func _on_Btn_play_pressed():
 	Game.start_game(current_option)
-	SoundSystem.stop_music()
 
 

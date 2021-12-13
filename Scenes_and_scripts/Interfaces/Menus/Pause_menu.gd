@@ -12,7 +12,7 @@ func _input(event):
 
 func continue_game():
 	get_tree().paused = false
-	SoundSystem.stop_music()
+	SoundSystem.continue_game_bg_music()
 	Game.current_status = Game.status.PLAYING
 	queue_free()
 

@@ -36,6 +36,8 @@ func close_shop():
 	Game.current_status = Game.status.PLAYING
 	$Main_container.visible = false
 	get_tree().paused = false
+	if Game.current_difficulty != Game.difficulties.HARD:
+		SoundSystem.continue_game_bg_music()
 
 
 func _on_Btn_upgrade_weapons_pressed():

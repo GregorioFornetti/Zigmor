@@ -44,6 +44,7 @@ func start_game(game_difficulty):
 	
 	get_tree().change_scene("res://Scenes_and_scripts/Testing_map.tscn")
 	$Timer.start()
+	SoundSystem.start_game_bg_music(current_difficulty)
 
 
 func _on_Timer_timeout():
@@ -84,30 +85,30 @@ func hard_enemies_points_function(current_time):
 
 
 func easy_spawn_points_function(current_time):
-	return int(current_time / 70 + 2)
+	return int(current_time / 50 + 2)
 
 func medium_spawn_points_function(current_time):
-	return int(current_time / 60 + 2)
+	return int(current_time / 45 + 2)
 
 func hard_spawn_points_function(current_time):
-	return int(current_time / 50 + 2)
+	return int(current_time / 40 + 2)
 
 
 func easy_spawn_delay_function(current_time):
-	return 30
+	return 20
 
 func medium_spawn_delay_function(current_time):
-	return 25
+	return 20
 
 func hard_spawn_delay_function(current_time):
 	return 20
 
 
 func easy_enemy_money_drop_function(enemy_points, current_time):
-	return 10 + int(enemy_points * 13 * current_time / 70)
+	return 10 + int(enemy_points * 10 * current_time / 70)
 
 func medium_enemy_money_drop_function(enemy_points, current_time):
-	return 10 + int(enemy_points * 11 * current_time / 70)
+	return 10 + int(enemy_points * 10 * current_time / 70)
 
 func hard_enemy_money_drop_function(enemy_points, current_time):
 	return 10 + int(enemy_points * 10 * current_time / 70)

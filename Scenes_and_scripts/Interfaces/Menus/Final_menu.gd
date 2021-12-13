@@ -27,7 +27,7 @@ onready var Menu_music = preload("res://Sound/Musics/main-menu-music.wav")
 
 
 func _ready():
-	SoundSystem.play_music(Menu_music)
+	SoundSystem.play_pause_music()
 	if Game.current_difficulty == Game.difficulties.EASY:
 		$Bottom_container/GridContainer/Difficulty_box/Value.text = "Fácil"
 	elif Game.current_difficulty == Game.difficulties.MEDIUM:
